@@ -1,10 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
+import Allroutes from './Components/AllRoutes';
+import Navbar from './Components/Navbar';
+import Register from './Pages/Register';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -17,9 +20,11 @@ function App() {
         >
           Learn React
         </a>
-      </header>
+      </header> */}
+      <Allroutes/>
+      <Register/>
     </div>
-  );
+  )
 }
 
 export default App;
