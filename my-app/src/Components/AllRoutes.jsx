@@ -6,8 +6,8 @@ import PrivateRouter from "./PrivateRouter"
 export default function Allroutes(){
     return(
         <Routes>
-            <Route to="/" element={<HomePage/>}/>
-            <Route to="/register" element={<RegisterPage/>}/>
+            <Route path="/" element={<HomePage/>}/>
+            <Route path="/register" element={<RegisterPage/>}/>
         </Routes>
     )
 }
