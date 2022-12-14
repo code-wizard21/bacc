@@ -17,7 +17,7 @@ import {
   import { useState } from 'react';
   import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
   
-  export default function Register() {
+  export default function Signup() {
     const [showPassword, setShowPassword] = useState(false);
   
     return (
@@ -29,10 +29,10 @@ import {
         <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
           <Stack align={'center'}>
             <Heading fontSize={'4xl'} textAlign={'center'}>
-              Sign up
+              Join the League
             </Heading>
             <Text fontSize={'lg'} color={'gray.600'}>
-              to enjoy all of our cool features ✌️
+              You are amazing as you are ✌️
             </Text>
           </Stack>
           <Box
@@ -88,7 +88,7 @@ import {
               </Stack>
               <Stack pt={6}>
                 <Text align={'center'}>
-                  Already a user? <Link color={'blue.400'}>Login</Link>
+                  Already a member? <Link color={'blue.400'}>Login</Link>
                 </Text>
               </Stack>
             </Stack>
