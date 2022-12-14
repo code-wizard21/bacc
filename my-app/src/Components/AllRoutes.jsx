@@ -1,13 +1,16 @@
 import {Routes,Route} from "react-router-dom"
 import HomePage from "../Pages/HomePage"
-import RegisterPage from "../Pages/Register"
+import Signup from "../Pages/Signup"
+import Login from '../Pages/Login'
 import PrivateRouter from "./PrivateRouter"
 
 export default function Allroutes(){
     return(
         <Routes>
             <Route path="/" element={<HomePage/>}/>
-            <Route path="/register" element={<RegisterPage/>}/>
+            <Route path="/signup" element={<Signup/>}/>
+            <Route path="/login" element={<Login/>}/>
+
         </Routes>
     )
 }
