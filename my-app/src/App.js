@@ -5,6 +5,7 @@ import Navbar from './Components/Navbar';
 import Topbar from './Components/Topbar';
 import React from 'react';
 import Footer from './Components/Footer';
+import Calander from './Components/Calander';
 
 function App() {
   const [width,setWidth]=React.useState('100%')
@@ -13,7 +14,12 @@ function App() {
       <Topbar setScreen={(wid)=>setWidth(wid)}/>
       <Navbar/>
       <Allroutes/>
+      
+       {/* <Calander/> */}
+
+
       <Footer/>
+     
      
     </div>
   )
