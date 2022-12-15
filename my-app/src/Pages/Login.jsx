@@ -24,7 +24,7 @@ import {
           <Stack align={'center'}>
             <Heading fontSize={'4xl'}>Welcome again...</Heading>
             <Text fontSize={'lg'} color={'gray.600'}>
-              Glad to see you back <Link color={'blue.400'}>features</Link> ✌️
+              Glad to see you back <Link color={'blue.400'}>features</Link>
             </Text>
           </Stack>
           <Box
