@@ -39,7 +39,7 @@ export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <div style={{position:'sticky',top:'0px'}}>
+    <div style={{position:'sticky',top:'40px'}}>
       <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <Link to='/'><Box><Image src='https://pbs.twimg.com/media/Fj4QgELaEAIL8IQ?format=png&name=small' width='8em' alt='logo'/></Box></Link>

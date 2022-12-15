@@ -31,8 +31,8 @@ const NavLink = ({ children }: { children: ReactNode }) => (
 export default function Topbar({setScreen}) {
     const handleScreen=(el)=>{
         let size='100%'
-        if(el.target.name==='small') size='50%'
-        else if(el.target.name==='medium') size='70%'
+        if(el.target.name==='small') size='29em'
+        else if(el.target.name==='medium') size='47em'
         setScreen(size)
     }
   return (
