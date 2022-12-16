@@ -18,7 +18,7 @@ import {
   Image,
 } from '@chakra-ui/react';
 import { AddIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
-import {Navigate,Link} from 'react-router-dom'
+import { Navigate, Link } from 'react-router-dom'
 
 const NavLink = ({ children }: { children: ReactNode }) => (
   <Link
@@ -39,10 +39,10 @@ export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <div style={{position:'sticky',top:'40px'}}>
+    <div style={{ position: 'sticky', top: '0px' }}>
       <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <Link to='/'><Box><Image src='https://pbs.twimg.com/media/Fj4QgELaEAIL8IQ?format=png&name=small' width='8em' alt='logo'/></Box></Link>
+          <Link to='/'><Box><Image src='https://pbs.twimg.com/media/Fj4QgELaEAIL8IQ?format=png&name=small' width='8em' alt='logo' /></Box></Link>
 
           <Flex alignItems={'center'}>
             <Stack direction={'row'} spacing={7}>
@@ -50,25 +50,25 @@ export default function Navbar() {
                 {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
               </Button>
 
-            <Link to='/login'>
-              <Button
-              variant={'outline'}
-              colorScheme={'teal'}
-              size={'md'}
-              mr={4}>
-              Login
-            </Button>
-            </Link>
+              <Link to='/login'>
+                <Button
+                  variant={'outline'}
+                  colorScheme={'teal'}
+                  size={'md'}
+                  mr={4}>
+                  Login
+                </Button>
+              </Link>
 
-            <Link to='/signup'>
-            <Button
-              variant={'solid'}
-              colorScheme={'pink'}
-              size={'md'}
-              mr={4}>
-              Signup
-            </Button>
-            </Link>
+              <Link to='/signup'>
+                <Button
+                  variant={'solid'}
+                  colorScheme={'pink'}
+                  size={'md'}
+                  mr={4}>
+                  Signup
+                </Button>
+              </Link>
 
               <Menu>
                 <MenuButton
