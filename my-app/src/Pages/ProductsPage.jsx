@@ -1,6 +1,7 @@
 import { Stack, VStack } from "@chakra-ui/react";
 import ProductCard from "../Components/ProductCard";
 import SearchPanel from "../Components/SearchPanel";
+import Sidebar from "../Components/Sidebar";
 
 export default function ProductsPage(){
     return<>
@@ -15,5 +16,7 @@ export default function ProductsPage(){
     </VStack>
     </Stack>
 
+    <Sidebar/>
     </>
+    
 }
