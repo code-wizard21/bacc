@@ -174,7 +174,7 @@ import {
           mt={16}
           mx={'auto'}>
           {testimonials.map((cardInfo, index) => (
-            <TestimonialCard {...cardInfo} index={index} />
+            <TestimonialCard {...cardInfo} index={index} key={Math.random()*Date.now()}/>
           ))}
         </SimpleGrid>
         <Box>
