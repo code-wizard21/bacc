@@ -15,14 +15,20 @@ import {
   VisuallyHidden,
   List,
   ListItem,
+  Toast,
+  useToast,
 } from '@chakra-ui/react';
 import axios from 'axios';
 import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { MdLocalShipping } from 'react-icons/md';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import React from 'react';
+import Alert from '../Components/Alert'
+
 
 export default function SingleProduct() {
+  let isAuth=false;
+const toast=useToast()
 const{id}=useParams()
 const [products, setproducts] = React.useState([])
 //console.log(products)
@@ -41,6 +47,7 @@ const [products, setproducts] = React.useState([])
         }
         FtchData()
     }, [])
+
 
   return (
     <Container maxW={'7xl'}>
@@ -179,7 +186,9 @@ const [products, setproducts] = React.useState([])
             </Box>
           </Stack>
 
+
           <Button
+            onClick={()=>{isAuth?<Navigate to='/login'/>:toast(Alert())}}
             rounded={'none'}
             w={'full'}
             mt={8}
