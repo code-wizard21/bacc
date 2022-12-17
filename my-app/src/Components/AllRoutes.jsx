@@ -5,6 +5,10 @@ import Login from '../Pages/Login'
 import PrivateRouter from "./PrivateRouter"
 import ProductsPage from "../Pages/ProductsPage"
 import SingleProduct from "../Pages/SingleProduct"
+import PaymentsPage from "../Pages/PaymentsPage"
+import CheckoutPage from "../Pages/CheckoutPage"
+import AdminPage from "../Pages/AdminPage"
+import PropertyListing from "../Pages/PropertyListing"
 
 export default function Allroutes(){
     return(
@@ -14,6 +18,11 @@ export default function Allroutes(){
             <Route path="/login" element={<Login/>}/>
             <Route path='/products' element={<ProductsPage/>}/>
             <Route path='/singleproduct/:id' element={<SingleProduct/>}/>
+            <Route path='/checkout' element={<CheckoutPage/>}/>
+            <Route path='/payment' element={<PaymentsPage/>}/>
+            <Route path='/admin' element={<AdminPage/>}/>
+            <Route path='/propertylist' element={<PropertyListing/>}/>
+
         </Routes>
     )
 }
