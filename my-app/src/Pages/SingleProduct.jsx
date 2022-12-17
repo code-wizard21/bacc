@@ -16,10 +16,32 @@ import {
   List,
   ListItem,
 } from '@chakra-ui/react';
+import axios from 'axios';
 import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { MdLocalShipping } from 'react-icons/md';
+import { useParams } from 'react-router-dom';
+import React from 'react';
 
 export default function SingleProduct() {
+const{id}=useParams()
+const [products, setproducts] = React.useState([])
+//console.log(products)
+    React.useEffect(() => {
+        const FtchData = async () => {
+            try {
+                let res = await axios({
+                    method: 'get',
+                    url: `http://localhost:3000/products?id=${id}`,
+                })
+                //console.log(res)
+                setproducts(res.data[0])
+            } catch (error) {
+                console.error(error)
+            }
+        }
+        FtchData()
+    }, [])
+
   return (
     <Container maxW={'7xl'}>
       <SimpleGrid
@@ -30,9 +52,7 @@ export default function SingleProduct() {
           <Image
             rounded={'md'}
             alt={'product image'}
-            src={
-              'https://images.unsplash.com/photo-1596516109370-29001ec8ec36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyODE1MDl8MHwxfGFsbHx8fHx8fHx8fDE2Mzg5MzY2MzE&ixlib=rb-1.2.1&q=80&w=1080'
-            }
+            src={products.image}
             fit={'cover'}
             align={'center'}
             w={'100%'}
