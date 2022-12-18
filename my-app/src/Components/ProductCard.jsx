@@ -26,6 +26,7 @@ export default function ProductCard({ product, id }) {
         variant='outline'
         cursor='pointer'
         border='none'
+        w='100%'
       >
         <Image
           objectFit='cover'
@@ -34,17 +35,14 @@ export default function ProductCard({ product, id }) {
           alt='Caffe Latte'
         />
 
-        <Stack>
+        <Stack w='100%'>
           <CardBody textAlign='start'>
             <Heading size='md'>{product.name}</Heading>
-
-            <Text py='2'>
-              Caffè latte is a coffee beverage of Italian origin made with espresso
-              and steamed milk.
-            </Text>
+            <Text py='2'>{product.place}, {product.location}</Text>
           </CardBody>
 
-          <CardFooter justifyContent='flex-end'>
+          <CardFooter justifyContent='space-between'>
+            <Text fontSize='xl'>Price: <b>{product.price}</b>/individual</Text>
             <Link to={`/singleproduct/${id}`}>
               <Button variant='solid' colorScheme='blue'>
                 Book Now
