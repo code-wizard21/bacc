@@ -172,7 +172,7 @@ export default function ProductsPage() {
                 </VStack>
             </Hide>
 
-            <VStack w={{ base: '100%', sm: '100%', md: '70%' }} border='1px solid'>
+            <VStack w={{ base: '100%', sm: '100%', md: '70%' }} border='0px solid'>
                 {products.map((product) =><ProductCard product={product}  key={product.id} id={product.id} /> )}
             </VStack>
         </Stack>

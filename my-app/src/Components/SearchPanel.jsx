@@ -1,27 +1,42 @@
-import { Button, Stack, Icon, Input, InputGroup, InputLeftElement, InputRightElement, Tab, TabList, TabPanel, TabPanels, Tabs, useColorModeValue } from "@chakra-ui/react"
+import { Button, Stack, Icon, Input, InputGroup, InputLeftElement, InputRightElement, Tab, TabList, TabPanel, TabPanels, Tabs, useColorModeValue, InputLeftAddon, Box } from "@chakra-ui/react"
 import { ImLocation, ImCalendar } from 'react-icons/im'
 import { Link } from "react-router-dom"
+import DatalistInput from 'react-datalist-input';
+import 'react-datalist-input/dist/styles.css';
 
 
 export default function SearchPanel() {
-    return <div>
+    return <div style={{'margin':'2%'}}>
+        <Box marginTop='2%'>
+        <InputGroup w='40em' margin='auto'>
+            <InputLeftAddon>Going to</InputLeftAddon>
+            <DatalistInput
+                placeholder="Enter the destination"
+                onSelect={(item) => console.log(item.value)}
+                items={[
+                { id: 'Delhi', value: 'Delhi' },
+                { id: 'Jaipur', value: 'Jaipur' },
+                { id: 'Mumbai', value: 'Mumbai' },
+                { id: 'Banglore', value: 'Banglore' },
+                { id: 'Kolkata', value: 'Kolkata' },
+                ]}
+            />
+            </InputGroup>
+            </Box>
         <Stack direction={{ base: 'column', md: 'row' }} spacing={4} align='center' padding={10}>
-            <InputGroup>
+            {/* <InputGroup>
                 <InputLeftElement
                     color='gray.400'
                     fontSize='1.2em'
                     children={<Icon as={ImLocation} />}
-                /><Input placeholder="Going to"/>
-            </InputGroup>
-
+                />              
+                <Input placeholder="Going to"/>
+            </InputGroup> */}
+            
             <InputGroup>
-                <InputRightElement
-                    color='gray.400'
-                    fontSize='1.2em'
-                    children={<Icon as={ImCalendar} />}
-                />
+            <InputLeftAddon>Check In:</InputLeftAddon>
                 <Input
-                    placeholder="Check In"
+                    placeholder="Enter the date here"
                     size="md"
                     type="text"
                     onFocus={(el) => el.target.type = 'date'}
@@ -29,13 +44,9 @@ export default function SearchPanel() {
             </InputGroup>
 
             <InputGroup>
-                <InputLeftElement
-                    color='gray.400'
-                    fontSize='1.2em'
-                    children={<Icon as={ImCalendar} />}
-                />
+            <InputLeftAddon>Check Out:</InputLeftAddon>
                 <Input
-                    placeholder="Check Out"
+                    placeholder="Enter the date here"
                     size="md"
                     type="text"
                     onFocus={(el) => el.target.type = 'date'}
