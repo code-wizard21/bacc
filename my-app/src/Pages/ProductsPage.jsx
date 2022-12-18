@@ -1,20 +1,22 @@
 import { AspectRatio, Box, Checkbox, Container, Divider, Heading, Hide, Input, Link, Stack, Text, Tooltip, VStack } from "@chakra-ui/react";
 import axios from "axios";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useState } from "react";
 import PriceSlider from "../Components/PriceSlider";
 import ProductCard from "../Components/ProductCard";
 import SearchPanel from "../Components/SearchPanel";
+import { SearchContext } from "../Contexts/SearchContextProvider";
 
 
 export default function ProductsPage() {
+  const{search}=useContext(SearchContext)
     const [products, setproducts] = useState([])
     useEffect(() => {
         const FtchData = async () => {
             try {
                 let res = await axios({
                     method: 'get',
-                    url: `http://localhost:3000/products`,
+                    url: `http://localhost:3000/products?location=${search}`,
                 })
                 //console.log(res)
                 setproducts(res.data)
@@ -23,7 +25,7 @@ export default function ProductsPage() {
             }
         }
         FtchData()
-    }, [])
+    }, [search])
 
 
     // useEffect(() => {
@@ -147,13 +149,8 @@ export default function ProductsPage() {
 
         <Stack direction='row' spacing={4}>
             <Hide below='md'>
-                <VStack w={{ sm: '0%', md: '30%' }} border='0px solid grey' align='flex-start'>
-
-                    <Heading size='md'>Price</Heading>
-                    <Container direction='row'><PriceSlider /></Container>
-                    <Divider orientation='horizontal' />
+                <VStack w={{ sm: '0%', md: '30%' }} border='0px solid grey' align='flex-start'>       
                     <Heading size='md'>Traveller Experience</Heading>
-
                     <Checkbox size='lg'>
                         LGBTQ welcoming:
                     </Checkbox>
@@ -165,10 +162,12 @@ export default function ProductsPage() {
                     <Text paddingLeft={6} textAlign='start'>See properties that pledge to make all guests feel safe, welcome, and respected.</Text>
 
                     <Checkbox size='lg'>
-                        Family Frendly:
+                        Family Friendly:
                     </Checkbox>
                     <Text paddingLeft={6} textAlign='start'>See properties that pledge to make all guests feel safe, welcome, and respected.</Text>
-
+                    <Divider orientation='horizontal'/>
+                    <Heading size='md'>Price</Heading>
+                    <Container direction='row'><PriceSlider /></Container>
                 </VStack>
             </Hide>
 

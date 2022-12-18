@@ -24,38 +24,53 @@ import { MdLocalShipping } from 'react-icons/md';
 import { Navigate, useParams } from 'react-router-dom';
 import React from 'react';
 import Alert from '../Components/Alert'
+import { useNavigate } from 'react-router-dom';
 
 
 export default function SingleProduct() {
-  let isAuth=false;
-const toast=useToast()
-const{id}=useParams()
-const [products, setproducts] = React.useState([])
-//console.log(products)
-    React.useEffect(() => {
-        const FtchData = async () => {
-            try {
-                let res = await axios({
-                    method: 'get',
-                    url: `http://localhost:3000/products?id=${id}`,
-                })
-                //console.log(res)
-                setproducts(res.data[0])
-            } catch (error) {
-                console.error(error)
-            }
-        }
-        FtchData()
-    }, [])
+  const navigate = useNavigate();
+  let isAuth = true;
+
+let alertdata={};  
+if(!isAuth){
+  alertdata={
+    title: ' Kindly Login/Signup',
+    description: "To proceed with your booking, please Login/Signup first.",
+    status: 'warning',
+  }
+}
 
 
+  const toast = useToast()
+  const { id } = useParams()
+  const [products, setproducts] = React.useState([])
+  //console.log(products)
+  React.useEffect(() => {
+    const FtchData = async () => {
+      try {
+        let res = await axios({
+          method: 'get',
+          url: `http://localhost:3000/products?id=${id}`,
+        })
+        //console.log(res)
+        setproducts(res.data[0])
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    FtchData()
+  }, [])
+
+  let bookingdata=JSON.parse(localStorage.getItem('booking'))
+  console.log(bookingdata)
   return (
-    <Container maxW={'7xl'}>
+    <Container maxW={'7xl'} border='0px solid'>
       <SimpleGrid
-        columns={{ base: 1, lg: 2 }}
+        border='0px solid'
+        columns={1}
         spacing={{ base: 8, md: 10 }}
         py={{ base: 18, md: 24 }}>
-        <Flex>
+        <Flex border='0px solid'>
           <Image
             rounded={'md'}
             alt={'product image'}
@@ -72,13 +87,13 @@ const [products, setproducts] = React.useState([])
               lineHeight={1.1}
               fontWeight={600}
               fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}>
-              Automatic Watch
+              {products.name}
             </Heading>
             <Text
               color={useColorModeValue('gray.900', 'gray.400')}
               fontWeight={300}
               fontSize={'2xl'}>
-              $350.00 USD
+              {products.price} Rs./ Individual
             </Text>
           </Box>
 
@@ -95,14 +110,12 @@ const [products, setproducts] = React.useState([])
                 color={useColorModeValue('gray.500', 'gray.400')}
                 fontSize={'2xl'}
                 fontWeight={'300'}>
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                diam nonumy eirmod tempor invidunt ut labore
+                Along with a full-service spa, this hotel has a golf course and an outdoor pool. Free WiFi in public areas and free valet parking are also provided. Additionally, a restaurant, a nightclub, and a health club are onsite.
               </Text>
-              <Text fontSize={'lg'}>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-                aliquid amet at delectus doloribus dolorum expedita hic, ipsum
-                maxime modi nam officiis porro, quae, quisquam quos
-                reprehenderit velit? Natus, totam.
+              <Heading size='md'>Awards and affiliations</Heading>
+              <Text fontSize={'lg'}>             
+              Green / Sustainable Property. 
+              This property participates in EarthCheck, a program that measures the property's impact on one or more of the following: environment, community, cultural-heritage, the local economy.
               </Text>
             </VStack>
             <Box>
@@ -112,19 +125,19 @@ const [products, setproducts] = React.useState([])
                 fontWeight={'500'}
                 textTransform={'uppercase'}
                 mb={'4'}>
-                Features
+                Amenities
               </Text>
 
               <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
                 <List spacing={2}>
-                  <ListItem>Chronograph</ListItem>
-                  <ListItem>Master Chronometer Certified</ListItem>{' '}
-                  <ListItem>Tachymeter</ListItem>
+                  <ListItem>Hot Tub</ListItem>
+                  <ListItem>Free WiFi</ListItem>
+                  <ListItem>Swimming Pool</ListItem>
                 </List>
                 <List spacing={2}>
-                  <ListItem>Anti‑magnetic</ListItem>
-                  <ListItem>Chronometer</ListItem>
-                  <ListItem>Small seconds</ListItem>
+                  <ListItem>Spa</ListItem>
+                  <ListItem>Food and Drinks</ListItem>
+                  <ListItem>Parking and Transportation</ListItem>
                 </List>
               </SimpleGrid>
             </Box>
@@ -135,60 +148,33 @@ const [products, setproducts] = React.useState([])
                 fontWeight={'500'}
                 textTransform={'uppercase'}
                 mb={'4'}>
-                Product Details
+                Other Details
               </Text>
 
               <List spacing={2}>
-                <ListItem>
-                  <Text as={'span'} fontWeight={'bold'}>
-                    Between lugs:
-                  </Text>{' '}
-                  20 mm
-                </ListItem>
-                <ListItem>
-                  <Text as={'span'} fontWeight={'bold'}>
-                    Bracelet:
-                  </Text>{' '}
-                  leather strap
-                </ListItem>
-                <ListItem>
-                  <Text as={'span'} fontWeight={'bold'}>
-                    Case:
-                  </Text>{' '}
-                  Steel
-                </ListItem>
-                <ListItem>
-                  <Text as={'span'} fontWeight={'bold'}>
-                    Case diameter:
-                  </Text>{' '}
-                  42 mm
-                </ListItem>
-                <ListItem>
-                  <Text as={'span'} fontWeight={'bold'}>
-                    Dial color:
-                  </Text>{' '}
-                  Black
-                </ListItem>
-                <ListItem>
-                  <Text as={'span'} fontWeight={'bold'}>
-                    Crystal:
-                  </Text>{' '}
-                  Domed, scratch‑resistant sapphire crystal with anti‑reflective
-                  treatment inside
-                </ListItem>
-                <ListItem>
-                  <Text as={'span'} fontWeight={'bold'}>
-                    Water resistance:
-                  </Text>{' '}
-                  5 bar (50 metres / 167 feet){' '}
-                </ListItem>
+                  <ListItem>WheelChair Accessible</ListItem>
+                  <ListItem>LGBTQ Welcoming</ListItem>
+                  <ListItem>Family Friendly</ListItem>
+                  <ListItem>Safety Fit</ListItem>
               </List>
             </Box>
           </Stack>
 
 
           <Button
-            onClick={()=>{isAuth?<Navigate to='/login'/>:toast(Alert())}}
+            onClick={() => { 
+              if (!isAuth) 
+              { 
+                toast(Alert(alertdata)); 
+                navigate('/login'); 
+              } 
+              else 
+              { 
+                
+                localStorage.setItem('booking',JSON.stringify({...bookingdata,price:products.price,hotel:products.name}))
+                navigate('/checkout') 
+              } 
+            }}
             rounded={'none'}
             w={'full'}
             mt={8}
@@ -201,12 +187,11 @@ const [products, setproducts] = React.useState([])
               transform: 'translateY(2px)',
               boxShadow: 'lg',
             }}>
-            Add to cart
+           Reserve a room
           </Button>
 
           <Stack direction="row" alignItems="center" justifyContent={'center'}>
-            <MdLocalShipping />
-            <Text>2-3 business days delivery</Text>
+            <Text color='tomato'>{Math.floor(Math.random()*100)} people booked this place today</Text>
           </Stack>
         </Stack>
       </SimpleGrid>
