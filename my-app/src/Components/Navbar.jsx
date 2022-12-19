@@ -19,6 +19,8 @@ import {
 } from '@chakra-ui/react';
 import { AddIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { Navigate, Link } from 'react-router-dom'
+import { useContext } from 'react';
+import { AuthContext } from '../Contexts/AuthContextProvider';
 
 const NavLink = ({ children }: { children: ReactNode }) => (
   <Link
@@ -36,22 +38,25 @@ const NavLink = ({ children }: { children: ReactNode }) => (
 
 export default function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+ // const { isOpen, onOpen, onClose } = useDisclosure();
+ const {isAuth}=useContext(AuthContext)
+ let userdata=JSON.parse(localStorage.getItem('booking'))
 
   return (
-    <div style={{ position: 'sticky', top: '0px' }}>
+    <div style={{ position: 'sticky', top: '0px', zIndex:'1' }}>
       <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <Link to='/'><Box><Image src='https://pbs.twimg.com/media/Fj4QgELaEAIL8IQ?format=png&name=small' width='8em' alt='logo' /></Box></Link>
 
           <Flex alignItems={'center'}>
-            <Stack direction={'row'} spacing={7}>
+            <Stack direction={'row'} spacing={4}>
               <Button onClick={toggleColorMode}>
                 {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
               </Button>
 
               <Link to='/login'>
                 <Button
+                disabled={isAuth?true:false}
                   variant={'outline'}
                   colorScheme={'teal'}
                   size={'md'}
@@ -62,6 +67,7 @@ export default function Navbar() {
 
               <Link to='/signup'>
                 <Button
+                disabled={isAuth?true:false}
                   variant={'solid'}
                   colorScheme={'pink'}
                   size={'md'}
@@ -79,7 +85,7 @@ export default function Navbar() {
                   minW={0}>
                   <Avatar
                     size={'sm'}
-                    src={'https://avatars.dicebear.com/api/male/username.svg'}
+                    src={'https://wallpaperaccess.com/full/226302.jpg'}
                   />
                 </MenuButton>
                 <MenuList alignItems={'center'}>
@@ -87,18 +93,18 @@ export default function Navbar() {
                   <Center>
                     <Avatar
                       size={'2xl'}
-                      src={'https://avatars.dicebear.com/api/male/username.svg'}
+                      src={'https://wallpaperaccess.com/full/226302.jpg'}
                     />
                   </Center>
                   <br />
                   <Center>
-                    <p>Username</p>
+                    <p>{userdata?.mobile}</p>
                   </Center>
                   <br />
                   <MenuDivider />
-                  <MenuItem>Your Servers</MenuItem>
+                  <Link to='/admin'><MenuItem>Admin User</MenuItem></Link>
                   <MenuItem>Account Settings</MenuItem>
-                  <MenuItem>Logout</MenuItem>
+                  <MenuItem >Logout</MenuItem>
                 </MenuList>
               </Menu>
             </Stack>
