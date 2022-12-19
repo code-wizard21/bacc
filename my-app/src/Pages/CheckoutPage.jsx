@@ -1,7 +1,6 @@
 import { Box, Button, Center, Divider, Heading, HStack, Input, Stack, Text, useToast, VStack } from "@chakra-ui/react";
 import { useNavigate,useParams } from "react-router-dom";
 import React from 'react'
-import { MdDetails } from "react-icons/md";
 import Alert from "../Components/Alert";
 
 export default function CheckoutPage(){
@@ -37,7 +36,7 @@ export default function CheckoutPage(){
   let payableamount=totalprice-discount-couponadd;
     return<div>
         <Stack direction={{base:'column',md:'row'}} w='80%' border='0px solid' margin='auto'marginTop='5%' marginBottom='5%'>
-            <VStack border='1px solid' w={{base:'100%',md:'60%'}} p={3}>
+            <VStack border='1px solid grey' w={{base:'100%',md:'60%'}} p={3} spacing={3}>
                 <Text border='0px solid'>Yay! you just saved {discount+couponadd} on this booking!</Text>
                 <Box textAlign='start'>
                     <Heading size='md'>Who's checking in?</Heading>
@@ -50,7 +49,7 @@ export default function CheckoutPage(){
                 <Button bg='teal.400'onClick={handlebooking}>Complete your booking</Button>
             </VStack>
     
-            <Box border='1px solid' w={{base:'100%',md:'40%'}} p={3}>
+            <Box border='1px solid grey' w={{base:'100%',md:'40%'}} p={3}>
                <Heading size='md' textAlign='start'>{bookdata.hotel}</Heading>
                <HStack justifyContent='space-between'>
                <Text>{bookdata.checkin} to {bookdata.checkout}</Text>
