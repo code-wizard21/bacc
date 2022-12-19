@@ -4,6 +4,12 @@
       "id": 1,
       "title": "json-server",
       "author": "typicode"
+    },
+    {
+      "mobile": "9784541446",
+      "email": "jagroshansingh615@gmail.com",
+      "password": "1234",
+      "id": 2
     }
   ],
   "products": [
@@ -13,17 +19,38 @@
       "location": "Delhi",
       "place": "Chanakyapuri",
       "image": "https://a.travel-assets.com/media/meso_cm/PAPI/Images/hotels/1000000/10000/3800/3793/17600cec_b.jpg",
-      "amenities":["Pool","Hot tub","Parking included"],
+      "amenities": [
+        "Pool",
+        "Hot tub",
+        "Parking included"
+      ],
+      "price": "1800",
+      "rating": "8.8"
+    },
+    {
+      "id": 5,
+      "name": "ITC Maurya",
+      "location": "Rajasthan",
+      "place": "Chanakyapuri",
+      "image": "https://a.travel-assets.com/media/meso_cm/PAPI/Images/hotels/1000000/10000/3800/3793/17600cec_b.jpg",
+      "amenities": [
+        "Pool",
+        "Hot tub",
+        "Parking included"
+      ],
       "price": "1800",
       "rating": "8.8"
     },
     {
       "id": 2,
       "name": "Radisson Blu Plaza",
-      "location": "Delhi",
+      "location": "Kolkata",
       "place": "Mahipalpur",
       "image": "https://images.trvl-media.com/hotels/2000000/1530000/1528800/1528788/64515cdf.jpg?impolicy=resizecrop&rw=455&ra=fit",
-      "amenities":["Pool","Hot tub"],
+      "amenities": [
+        "Pool",
+        "Hot tub"
+      ],
       "price": "1800",
       "rating": "8.8"
     },
@@ -33,7 +60,23 @@
       "location": "Mumbai",
       "place": "Mahipalpur",
       "image": "https://images.trvl-media.com/hotels/2000000/1530000/1528800/1528788/64515cdf.jpg?impolicy=resizecrop&rw=455&ra=fit",
-      "amenities":["Pool","Hot tub"],
+      "amenities": [
+        "Pool",
+        "Hot tub"
+      ],
+      "price": "1800",
+      "rating": "8.8"
+    },
+    {
+      "id": 6,
+      "name": "Radisson Blu Plaza",
+      "location": "Rajasthan",
+      "place": "Mahipalpur",
+      "image": "https://images.trvl-media.com/hotels/2000000/1530000/1528800/1528788/64515cdf.jpg?impolicy=resizecrop&rw=455&ra=fit",
+      "amenities": [
+        "Pool",
+        "Hot tub"
+      ],
       "price": "1800",
       "rating": "8.8"
     },
@@ -43,7 +86,14 @@
       "location": "Rajasthan",
       "place": "Jaipur",
       "image": "https://images.trvl-media.com/hotels/1000000/530000/526400/526331/9f98c9fd.jpg?impolicy=resizecrop&rw=455&ra=fit",
-      "amenities":["Pool","Hot tub","Free WiFi","Spa","Restaurant","Air conditioning"],
+      "amenities": [
+        "Pool",
+        "Hot tub",
+        "Free WiFi",
+        "Spa",
+        "Restaurant",
+        "Air conditioning"
+      ],
       "price": "2300",
       "rating": "9.6"
     }

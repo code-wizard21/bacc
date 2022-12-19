@@ -25,11 +25,14 @@ import { Navigate, useParams } from 'react-router-dom';
 import React from 'react';
 import Alert from '../Components/Alert'
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../Contexts/AuthContextProvider';
 
 
 export default function SingleProduct() {
+  const {isAuth}=useContext(AuthContext)
   const navigate = useNavigate();
-  let isAuth = true;
+  //let isAuth = true;
 
 let alertdata={};  
 if(!isAuth){

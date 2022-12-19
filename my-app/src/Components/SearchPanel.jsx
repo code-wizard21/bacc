@@ -30,7 +30,7 @@ export default function SearchPanel() {
     }
 
     const [traveldata, settraveldata] = useState(initialdata)
-    console.log(traveldata)
+    //console.log(traveldata)
 
     let handletraveller = (el) => {
         settraveldata({ ...traveldata, [el.target.name]: el.target.value })
@@ -78,7 +78,7 @@ export default function SearchPanel() {
                 />
             </InputGroup>
         </Box>
-        <Stack direction={{ base: 'column', lg: 'row' }} spacing={4} align='center' padding={10}>
+        <Stack direction={{ base: 'column', lg: 'row' }} spacing={2} padding={5} border='0px solid' justifyContent='space-evenly'>
             {/* <InputGroup>
                 <InputLeftElement
                     color='gray.400'
