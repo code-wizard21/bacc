@@ -1,7 +1,8 @@
-import { TabList, TabPanel, TabPanels, Tabs, Tab, useColorModeValue, Heading, Text, Input, Box, HStack, VStack, Button, useDisclosure, ModalOverlay, Modal, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, PinInputField, PinInput } from "@chakra-ui/react";
+import { TabList, TabPanel, TabPanels, Tabs, Tab, useColorModeValue, Heading, Text, Input, Box, HStack, VStack, Button, useDisclosure, ModalOverlay, Modal, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, PinInputField, PinInput, Toast, useToast } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Alert from "../Components/Alert";
 //import PinVerificationModal from '../Components/PinVerificationModal'
 
 
@@ -13,22 +14,35 @@ export default function PaymentsPage() {
     const navigate = useNavigate();
     //console.log(navigate)
 
+    const toast = useToast()
+
     const colors = useColorModeValue(
         ['red.50', 'teal.50', 'blue.50'],
         ['red.900', 'teal.900', 'blue.900'],
     )
     const [tabIndex, setTabIndex] = useState(0)
     const bg = colors[tabIndex]
+  
+    let entered;
+    const random=Math.floor(Math.random() * 10000)
+    const handleChange=(el)=>{       
+        entered=el.target.value;
+    }
 
     const handlePayment = () => {
-        onOpen()
+        let alertdata={
+            title: ' Incorrect Capcha',
+            description: "Please try again",
+            status: 'warning',
+          }
+        if(random==entered) onOpen()
+        else toast(Alert(alertdata))
     }
 
     const handlePin=()=>{
         onClose();
         navigate('/loader')
     }
-
 
     return <div style={{ 'margin': '5%' }}>
         <Tabs isFitted variant='solid-rounded' onChange={(index) => setTabIndex(index)} bg={bg} orientation='horizontal' w='80%' margin='auto'>
@@ -42,10 +56,10 @@ export default function PaymentsPage() {
                     <Heading size='md'>Pay on delivery (Cash/UPI)</Heading>
                     <VStack>
                         <Text>Capcha</Text>
-                        <Text border='1px solid' padding='2%' as='s'>{Math.floor(Math.random() * 10000)}</Text>
-                        <Input placeholder="Enter code shown in above image" w='auto' />
+                        <Text border='1px solid' padding='2%' as='s'>{random}</Text>
+                        <Input placeholder="Enter code shown in above image" w='auto' type='number' onChange={handleChange}/>
                     </VStack>
-                    <Text textAlign='start' >You can pay via Cash or UPI enabled app at the time of delivery. Ask your delivery executive for these options.</Text>
+                    <Text>You can pay via Cash or UPI enabled app at the time of delivery. Ask your delivery executive for these options.</Text>
                     <Button bg='red.500' onClick={handlePayment}>PLACE ORDER</Button>                </TabPanel>
                 <TabPanel>
                     <Heading size='md'>UPI ID</Heading>

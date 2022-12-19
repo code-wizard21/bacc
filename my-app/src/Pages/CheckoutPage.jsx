@@ -26,7 +26,8 @@ export default function CheckoutPage(){
     }
 
     const handleChange=(el)=>{
-        setdetail({...initialdetails,[el.target.name]:el.target.value})
+        //console.log(el.target.name,el.target.value)
+        setdetail({...detail,[el.target.name]:el.target.value})
     }
 
   let bookdata=JSON.parse(localStorage.getItem('booking'))
@@ -43,7 +44,7 @@ export default function CheckoutPage(){
                     <Text>We will use these details to share your booking information</Text>
                     <Stack direction='row'>
                         <Input type='text' placeholder="Full Name" name='fullname' onChange={handleChange}/>
-                        <Input type='email' placeholder="Email" name='email' onChange={handleChange}/>
+                        <Input type='text' placeholder="Email" name='email' onChange={handleChange}/>
                     </Stack>
                 </Box>
                 <Button bg='teal.400'onClick={handlebooking}>Complete your booking</Button>
