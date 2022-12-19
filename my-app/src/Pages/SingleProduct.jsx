@@ -38,7 +38,7 @@ let alertdata={};
 if(!isAuth){
   alertdata={
     title: ' Kindly Login/Signup',
-    description: "To proceed with your booking, please Login/Signup first.",
+    description: "Sorry to interrupt, but we can't proceed further without Login/Signup",
     status: 'warning',
   }
 }
@@ -172,8 +172,7 @@ if(!isAuth){
                 navigate('/login'); 
               } 
               else 
-              { 
-                
+              {                
                 localStorage.setItem('booking',JSON.stringify({...bookingdata,price:products.price,hotel:products.name}))
                 navigate('/checkout') 
               } 

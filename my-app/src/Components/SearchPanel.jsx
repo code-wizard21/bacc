@@ -55,17 +55,19 @@ export default function SearchPanel() {
 
         if(flag==true) 
         {
+            let bookingdata=JSON.parse(localStorage.getItem('booking'))
             setsearch(location)
             navigate('/products')
-            localStorage.setItem('booking',JSON.stringify(traveldata))
+            localStorage.setItem('booking',JSON.stringify({...bookingdata,...traveldata}))
         }
     }
 
-    return <div style={{ 'margin': '2%' }}>
+    return <div style={{ 'marginBottom': '2%','border':'0px solid' }}>
         <Box marginTop='2%'>
             <InputGroup w='20em' margin='auto'>
                 <InputLeftAddon>Going to</InputLeftAddon>
                 <DatalistInput
+                    
                     placeholder="Enter the destination"
                     onSelect={(item) => { setlocation(item.value); traveldata.destination = item.value }}
                     items={[

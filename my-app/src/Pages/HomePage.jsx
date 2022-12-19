@@ -1,6 +1,6 @@
 import React from "react"
 import axios from 'axios'
-import { Button, Stack, Icon, Input, InputGroup, InputLeftElement, InputRightElement, Tab, TabList, TabPanel, TabPanels, Tabs, useColorModeValue } from "@chakra-ui/react"
+import { Button, Stack, Icon, Input, InputGroup, InputLeftElement, InputRightElement, Tab, TabList, TabPanel, TabPanels, Tabs, useColorModeValue, Image, Box } from "@chakra-ui/react"
 import Carousel from "../Components/Carousel"
 import { ImLocation, ImCalendar } from 'react-icons/im'
 import { CheckIcon } from "@chakra-ui/icons"
@@ -15,54 +15,20 @@ export default function HomePage() {
     const [tabIndex, setTabIndex] = React.useState(0)
     const bg = colors[tabIndex]
     return (<>
-        <Tabs onChange={(index) => setTabIndex(index)} bg={bg}>
-            <TabList justifyContent={'center'}>
+        <Box border='0px solid'>
+        <Image objectFit='cover' h='300px' w='100%' src="https://forever.travel-assets.com/flex/flexmanager/images/2022/03/31/ORB_LGBTQ_TravelAsYouAre_lpheroB_1680x945_20220228.jpg?impolicy=fcrop&w=900&h=506&q=mediumHigh"/>
+        </Box>
+        <Tabs onChange={(index) => setTabIndex(index)} bg={bg} border='0px solid' marginY={5}>
+            <TabList justifyContent={'center'} border='0px solid'>
                 <Tab>Stays</Tab>
                 <Tab>Flights</Tab>
                 <Tab>Cruises</Tab>
             </TabList>
-            <SearchPanel/>
-            {/* <Stack direction={{ base: 'column', md: 'row' }} spacing={4} align='center' padding={10}>
-                <InputGroup>
-                    <InputLeftElement
-                        color='gray.400'
-                        fontSize='1.2em'
-                        children={<Icon as={ImLocation} />}
-                    /><Input placeholder="Going to" />
-                </InputGroup>
-                <InputGroup>
-                    <InputLeftElement
-                        color='gray.400'
-                        fontSize='1.2em'
-                        children={<Icon as={ImCalendar} />}
-                    />
-                    <Input
-                        placeholder="Check In"
-                        size="md"
-                        type="text"
-                        onFocus={(el) => el.target.type = 'date'}
-                    />
-                </InputGroup>
-                <InputGroup>
-                    <InputLeftElement
-                        color='gray.400'
-                        fontSize='1.2em'
-                        children={<Icon as={ImCalendar} />}
-                    />
-                    <Input
-                        placeholder="Check Out"
-                        size="md"
-                        type="text"
-                        onFocus={(el) => el.target.type = 'date'}
-                    />
-                </InputGroup>
-            </Stack>
-            <Button colorScheme='blue' size='lg'>
-                Search
-            </Button> */}
+            <SearchPanel/>           
         </Tabs>
 
         {/* <Carousel/> */}
+        <Image src="https://forever.travel-assets.com/flex/flexmanager/images/2022/03/31/ORB_LGBTQ_StayWhere_lpadB_1680x350_20220222.jpg"/>
         <Testimonials/>
         </>
     )

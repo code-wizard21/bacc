@@ -56,6 +56,7 @@ import { AuthContext } from '../Contexts/AuthContextProvider';
     FtchData()
 }
 
+
 const authenticating=()=>{
  if(login.password==confirm.password)
   { 
@@ -67,15 +68,16 @@ const authenticating=()=>{
     }
     toast(Alert(alertdata))
     Login()
+    localStorage.setItem('booking',JSON.stringify(login))
   }
  else 
- {
-  let alertdata={
-    title: 'Invalid credentials',
-    description: "Please try again",
-    status: 'warning',
-  }
-  toast(Alert(alertdata))
+  {
+    let alertdata={
+      title: 'Invalid credentials',
+      description: "Please try again",
+      status: 'warning',
+    }
+    toast(Alert(alertdata))
 }
 }
 
