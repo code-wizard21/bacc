@@ -43,7 +43,7 @@ export default function CheckoutPage(){
                     <Text>We will use these details to share your booking information</Text>
                     <Stack direction='row'>
                         <Input type='text' placeholder="Full Name" name='fullname' onChange={handleChange}/>
-                        <Input type='text' placeholder="Email" name='email' onChange={handleChange}/>
+                        <Input type='number' placeholder="Email" name='email' onChange={handleChange}/>
                     </Stack>
                 </Box>
                 <Button bg='teal.400'onClick={handlebooking}>Complete your booking</Button>

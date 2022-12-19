@@ -16,7 +16,7 @@ export default function ProductsPage() {
             try {
                 let res = await axios({
                     method: 'get',
-                    url: `http://localhost:3000/products?location=${search}`,
+                    url: `https://real-rose-tortoise-tutu.cyclic.app/products?location=${search}`,
                 })
                 //console.log(res)
                 setproducts(res.data)

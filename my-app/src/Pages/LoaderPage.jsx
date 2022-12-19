@@ -4,7 +4,7 @@ import { CloseIcon } from '@chakra-ui/icons';
 import Alert from "../Components/Alert";
 import {Link} from 'react-router-dom'
 
-function PaymentSuccess(){
+function PaymentFailed(){
     return(
     <Box textAlign="center" py={10} px={6}>
       <Box display="inline-block">
@@ -70,7 +70,7 @@ export default function LoaderPage() {
     
     return <>
         <Center h='800px'>
-            {flag?<PaymentSuccess/>:<Loader/>}           
+            {flag?<PaymentFailed/>:<Loader/>}           
         </Center>
 
         

@@ -10,6 +10,7 @@ import CheckoutPage from "../Pages/CheckoutPage"
 import AdminPage from "../Pages/AdminPage"
 import PropertyListing from "../Pages/PropertyListing"
 import LoaderPage from "../Pages/LoaderPage"
+import SuccessPayment from "../Pages/SuccessPayment"
 
 export default function Allroutes(){
     return(
@@ -22,8 +23,9 @@ export default function Allroutes(){
             <Route path='/checkout' element={<CheckoutPage/>}/>
             <Route path='/payment' element={<PaymentsPage/>}/>
             <Route path='/admin' element={<AdminPage/>}/>
-            <Route path='/propertylist' element={<PropertyListing/>}/>
-            <Route path='/loader' element={<LoaderPage/>}/>
+            {/* <Route path='/propertylist' element={<PropertyListing/>}/> */}
+            <Route path='/loader' element={<PrivateRouter><LoaderPage/></PrivateRouter>}/>
+            <Route path='/paymentdone' element={<SuccessPayment/>}/>
         </Routes>
     )
 }

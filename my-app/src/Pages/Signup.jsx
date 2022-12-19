@@ -39,7 +39,7 @@ export default function Signup() {
         try {
             let res = await axios({
                 method: 'post',
-                url: `http://localhost:3000/authentication`,
+                url: `https://real-rose-tortoise-tutu.cyclic.app/authentication`,
                 data:signup
             })
             //console.log(res)

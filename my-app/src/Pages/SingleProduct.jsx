@@ -30,15 +30,15 @@ import { AuthContext } from '../Contexts/AuthContextProvider';
 
 
 export default function SingleProduct() {
-  const {isAuth}=useContext(AuthContext)
+  const {isAuth,page}=useContext(AuthContext)
   const navigate = useNavigate();
   //let isAuth = true;
 
 let alertdata={};  
 if(!isAuth){
   alertdata={
-    title: ' Kindly Login/Signup',
-    description: "Sorry to interrupt, but we can't proceed further without Login/Signup",
+    title: ' Kindly Login/Signup first',
+    description: "Sorry to interrupt, but we can't proceed further.",
     status: 'warning',
   }
 }
@@ -53,7 +53,7 @@ if(!isAuth){
       try {
         let res = await axios({
           method: 'get',
-          url: `http://localhost:3000/products?id=${id}`,
+          url: `https://real-rose-tortoise-tutu.cyclic.app/products?id=${id}`,
         })
         //console.log(res)
         setproducts(res.data[0])
@@ -170,6 +170,7 @@ if(!isAuth){
               { 
                 toast(Alert(alertdata)); 
                 navigate('/login'); 
+                page=id;
               } 
               else 
               {                

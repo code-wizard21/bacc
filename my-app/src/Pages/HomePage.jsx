@@ -1,9 +1,6 @@
 import React from "react"
 import axios from 'axios'
-import { Button, Stack, Icon, Input, InputGroup, InputLeftElement, InputRightElement, Tab, TabList, TabPanel, TabPanels, Tabs, useColorModeValue, Image, Box } from "@chakra-ui/react"
-import Carousel from "../Components/Carousel"
-import { ImLocation, ImCalendar } from 'react-icons/im'
-import { CheckIcon } from "@chakra-ui/icons"
+import {Tab, TabList, Tabs, useColorModeValue, Image, Box } from "@chakra-ui/react"
 import Testimonials from "../Components/Testimonials"
 import SearchPanel from "../Components/SearchPanel"
 
