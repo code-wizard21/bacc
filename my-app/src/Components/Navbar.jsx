@@ -18,9 +18,10 @@ import {
   Image,
 } from '@chakra-ui/react';
 import { AddIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
-import { Navigate, Link } from 'react-router-dom'
+import { Navigate, Link, useNavigate } from 'react-router-dom'
 import { useContext } from 'react';
 import { AuthContext } from '../Contexts/AuthContextProvider';
+
 
 const NavLink = ({ children }: { children: ReactNode }) => (
   <Link
@@ -36,11 +37,20 @@ const NavLink = ({ children }: { children: ReactNode }) => (
   </Link>
 );
 
+
+
 export default function Navbar() {
+  const navigate=useNavigate();
   const { colorMode, toggleColorMode } = useColorMode();
  // const { isOpen, onOpen, onClose } = useDisclosure();
- const {isAuth}=useContext(AuthContext)
+ const {isAuth,Logout}=useContext(AuthContext)
  let userdata=JSON.parse(localStorage.getItem('booking'))
+
+ const handleLogout=()=>{
+  Logout();
+  localStorage.clear()
+  navigate(`/`)
+}
 
   return (
     <div style={{ position: 'sticky', top: '0px', zIndex:'1' }}>
@@ -103,8 +113,7 @@ export default function Navbar() {
                   <br />
                   <MenuDivider />
                   <Link to='/admin'><MenuItem>Admin User</MenuItem></Link>
-                  <MenuItem>Account Settings</MenuItem>
-                  <MenuItem >Logout</MenuItem>
+                  <MenuItem onClick={handleLogout}>Logout</MenuItem>
                 </MenuList>
               </Menu>
             </Stack>

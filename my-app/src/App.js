@@ -5,6 +5,7 @@ import Navbar from './Components/Navbar';
 import React from 'react';
 import Footer from './Components/Footer';
 import Testimonials from './Components/Testimonials';
+import EmailContactForm from './Components/Mail';
 
 
 function App() {
@@ -13,11 +14,11 @@ function App() {
       <Navbar/>
       <Allroutes/>
       
-       
+      {/* <EmailContactForm/> */}
 
       <Footer/>
      
-     
+      
     </div>
   )
 }

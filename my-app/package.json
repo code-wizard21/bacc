@@ -5,6 +5,7 @@
   "dependencies": {
     "@chakra-ui/icons": "^2.0.13",
     "@chakra-ui/react": "^2.4.3",
+    "@emailjs/browser": "^3.10.0",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@testing-library/jest-dom": "^5.16.5",
@@ -12,6 +13,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.2.1",
     "chakra-ui-simple-autocomplete": "^2.2.0",
+    "email-js": "^2.0.2",
     "framer-motion": "^7.7.2",
     "react": "^18.2.0",
     "react-datalist-input": "^3.2.1",
@@ -26,7 +28,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "homepage":"."
+    "homepage": "."
   },
   "eslintConfig": {
     "extends": [
