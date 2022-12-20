@@ -30,7 +30,7 @@ function PaymentFailed(){
         Kindly retry again.
       </Text>
       <HStack justifyContent='space-evenly' marginTop={6}>
-      <Button colorScheme='blue'>Go Back</Button>
+      <Link to='/payment'><Button colorScheme='blue'>Go Back</Button></Link>
       <Link to='/'><Button colorScheme='blue'>Go Home</Button></Link>
       </HStack>
     </Box>

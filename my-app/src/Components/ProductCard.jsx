@@ -17,7 +17,7 @@ import { Link, useParams } from 'react-router-dom';
 
 export default function ProductCard({ product, id }) {
   //const {id}=useParams();
-  console.log(product)
+  //console.log(product)
   return (
     <>
       <Card
@@ -38,7 +38,7 @@ export default function ProductCard({ product, id }) {
         <Stack w='100%'>
           <CardBody textAlign='start'>
             <Heading size='md'>{product.name}</Heading>
-            <Text py='2'>{product.place}, {product.location}</Text>
+            <Text py='2'>{product.location}</Text>
           </CardBody>
 
           <CardFooter justifyContent='space-between'>

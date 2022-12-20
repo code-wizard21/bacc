@@ -71,11 +71,11 @@ export default function SearchPanel() {
                     placeholder="Enter the destination"
                     onSelect={(item) => { setlocation(item.value); traveldata.destination = item.value }}
                     items={[
-                        { id: 'Delhi', value: 'Delhi' },
-                        { id: 'Rajasthan', value: 'Rajasthan' },
-                        { id: 'Mumbai', value: 'Mumbai' },
-                        { id: 'Banglore', value: 'Banglore' },
-                        { id: 'Kolkata', value: 'Kolkata' },
+                        { id: 'Antartica', value: 'Antartica' },
+                        { id: 'Shara Desert', value: 'Shara Desert' },
+                        { id: 'Amazon', value: 'Amazon' },
+                        { id: 'Mt.Everest', value: 'Mt.Everest' },
+                        { id: 'Goa', value: 'Goa' },
                     ]}
                 />
             </InputGroup>

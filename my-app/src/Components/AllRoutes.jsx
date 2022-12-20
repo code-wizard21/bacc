@@ -20,12 +20,12 @@ export default function Allroutes(){
             <Route path="/login" element={<Login/>}/>
             <Route path='/products' element={<ProductsPage/>}/>
             <Route path='/singleproduct/:id' element={<SingleProduct/>}/>
-            <Route path='/checkout' element={<CheckoutPage/>}/>
-            <Route path='/payment' element={<PaymentsPage/>}/>
+            <Route path='/checkout' element={<PrivateRouter><CheckoutPage/></PrivateRouter>}/>
+            <Route path='/payment' element={<PrivateRouter><PaymentsPage/></PrivateRouter>}/>
             <Route path='/admin' element={<AdminPage/>}/>
             {/* <Route path='/propertylist' element={<PropertyListing/>}/> */}
             <Route path='/loader' element={<PrivateRouter><LoaderPage/></PrivateRouter>}/>
-            <Route path='/paymentdone' element={<SuccessPayment/>}/>
+            <Route path='/paymentdone' element={<PrivateRouter><SuccessPayment/></PrivateRouter>}/>
         </Routes>
     )
 }

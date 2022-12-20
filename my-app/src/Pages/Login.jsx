@@ -12,17 +12,23 @@ import {
   Link,
   useColorModeValue,
   useToast,
+  Modal,
+  useDisclosure,
 } from '@chakra-ui/react';
 import axios from 'axios';
+import { useEffect } from 'react';
 import { useContext } from 'react';
 import { useState, useRef } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import Alert from '../Components/Alert';
 import EmailContactForm from '../Components/Mail';
+import PinModal from '../Components/PinModal';
+import Product from '../Components/Product';
 import { AuthContext } from '../Contexts/AuthContextProvider';
 
 export default function Login() {
-  const { Login } = useContext(AuthContext)
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  let { Login,page } = useContext(AuthContext)
   const navigate = useNavigate();
   const [confirm, setconfirm] = useState("")
   //console.log(confirm)
@@ -33,7 +39,7 @@ export default function Login() {
   const [login, setlogin] = useState(initial)
   //console.log(login)
 
-  const toast = useToast()
+  
 
   const handleChange = (el) => {
     setlogin({ ...login, [el.target.name]: el.target.value })
@@ -58,6 +64,7 @@ export default function Login() {
   }
 
 //Authenticating the login credentials---------------------  
+  const toast = useToast()
 
   const authenticating = () => {
     if (login.password == confirm.password) {
@@ -82,11 +89,70 @@ export default function Login() {
   }
 
 //In case of Forget password option selected-------------------
+//let [isOkay,setisOkay]=useState(false)
+let [seq,setseq]=useState(9876)
+console.log('seq: ', seq);
+let [verify,setverify]=useState(null)
+//console.log(verify)
+//let isVerify="";
+//console.log('isVerify: ', isVerify);
+
+useEffect(()=>{
+setInterval(()=>{
+let randomseq = (Math.floor(Math.random() * 10000) + 10000).toString().substring(1);
+setseq(randomseq)
+},60000)
+},[])
+
 const handleForget=()=>{
-  EmailContactForm()
+  EmailContactForm(seq)
+  onOpen()
+}
+console.log(page)
+let products=null;
+
+
+// const FtchData = async () => {
+//   try {
+//     let res = await axios({
+//       method: 'get',
+//       url: `https://real-rose-tortoise-tutu.cyclic.app/products?id=${page}`,
+//     })
+//     console.log(res)
+//     products=res.data[0]
+//     setisOkay(true)
+    
+//   } catch (error) {
+//     console.error(error)
+//   }
+// }
+
+const handlePin = () => {
+  let alertdata={
+    title: 'Invalid Pin',
+    description: "Please check the Pin and Try Again!",
+    status: 'warning',
+  }
+  
+  if(seq==verify)
+  { 
+    onClose();
+    navigate(`/singleproduct/${page}`)
+    Login()
+    //FtchData()
+  }
+  else 
+  {
+    toast(Alert(alertdata))
+  }
 }
 
-  return (
+
+// if(isOkay) return(<Product products={products}/>)
+
+
+// else
+  return (<>
     <Flex
       minH={'100vh'}
       align={'center'}
@@ -113,15 +179,8 @@ const handleForget=()=>{
               <FormLabel>Password</FormLabel>
               <Input type="password" name='password' onChange={handleChange} />
             </FormControl>
-            <Stack spacing={10}>
-              <Stack
-                direction={{ base: 'column', sm: 'row' }}
-                align={'start'}
-                justify={'space-between'}>
-                <Checkbox>Remember me</Checkbox>
+            <Stack spacing={10}>             
                 <Link color={'blue.400'} onClick={handleForget}>Forgot password?</Link>
-                
-              </Stack>
               <Button
                 bg={'blue.400'}
                 color={'white'}
@@ -136,5 +195,8 @@ const handleForget=()=>{
         </Box>
       </Stack>
     </Flex>
+
+    <PinModal handlePin={handlePin} isOpen={isOpen} onClose={onClose} device={'email address'} isVerify={setverify}/>
+  </>
   );
 }

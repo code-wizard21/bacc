@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate,Link } from "react-router-dom";
 import Alert from "../Components/Alert";
+import PinModal from "../Components/PinModal";
 //import PinVerificationModal from '../Components/PinVerificationModal'
 
 export default function PaymentsPage() {
@@ -94,7 +95,7 @@ export default function PaymentsPage() {
             </TabPanels>
         </Tabs>
 
-        <Modal isCentered isOpen={isOpen} onClose={onClose}>
+        {/* <Modal isCentered isOpen={isOpen} onClose={onClose}>
             <ModalOverlay
                 bg='blackAlpha.300'
                 backdropFilter='blur(10px) hue-rotate(90deg)' />
@@ -117,6 +118,7 @@ export default function PaymentsPage() {
                     <Button onClick={handlePin} colorScheme='blue'>Okay</Button>
                 </ModalFooter>
             </ModalContent>
-        </Modal>
+        </Modal> */}
+        <PinModal handlePin={handlePin} isOpen={isOpen} onClose={onClose} device={'mobile number'}/>
     </div>
 }

@@ -17,7 +17,7 @@ export default function PriceSlider() {
                         ml='-5'
                         w='12'
                     >
-                        {sliderValue * 24}
+                        {sliderValue * 48}
                     </SliderMark>
                     <SliderTrack>
                         <SliderFilledTrack />
