@@ -52,7 +52,8 @@ export default function Login() {
       try {
         let res = await axios({
           method: 'get',
-          url: `https://real-rose-tortoise-tutu.cyclic.app/authentication?mobile=${login.mobile}`,
+          url: `http://localhost:9090/authentication?mobile=${login.mobile}`,
+          //https://real-rose-tortoise-tutu.cyclic.app/authentication
         })
         //console.log(res)
         setconfirm(res.data[0])
