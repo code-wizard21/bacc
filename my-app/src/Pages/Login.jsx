@@ -116,7 +116,7 @@ let products=null;
 //   try {
 //     let res = await axios({
 //       method: 'get',
-//       url: `https://real-rose-tortoise-tutu.cyclic.app/products?id=${page}`,
+//       url: `http://localhost:3000/products?id=${page}`,
 //     })
 //     console.log(res)
 //     products=res.data[0]
