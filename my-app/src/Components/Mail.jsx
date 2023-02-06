@@ -1,11 +1,12 @@
 import React, { useRef } from 'react';
 import emailjs from '@emailjs/browser';
  
-const EmailContactForm = (seq) => {
+const EmailContactForm = (seq,email) => {
  //console.log(emailjs)
-
+console.log(seq,email)
  var templateParams = {
-  message: seq,
+  message: 5925,
+  email:email
 };
  
  
