@@ -55,7 +55,7 @@ if(!isAuth){
       try {
         let res = await axios({
           method: 'get',
-          url: `https://real-rose-tortoise-tutu.cyclic.app/products?id=${id}`,
+          url: `http://localhost:3000/products?id=${id}`,
         })
         //console.log(res)
         setproducts(res.data[0])

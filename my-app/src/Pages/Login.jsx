@@ -14,6 +14,7 @@ import {
   useToast,
   Modal,
   useDisclosure,
+  VStack,
 } from '@chakra-ui/react';
 import axios from 'axios';
 import { useEffect } from 'react';
@@ -35,9 +36,10 @@ export default function Login() {
   let initial = {
     mobile: null,
     password: null,
+    email:""
   }
   const [login, setlogin] = useState(initial)
-  //console.log(login)
+  console.log(login)
 
   
 
@@ -90,7 +92,7 @@ export default function Login() {
 
 //In case of Forget password option selected-------------------
 //let [isOkay,setisOkay]=useState(false)
-let [seq,setseq]=useState(9876)
+let [seq,setseq]=useState(5925)
 console.log('seq: ', seq);
 let [verify,setverify]=useState(null)
 //console.log(verify)
@@ -105,7 +107,7 @@ setseq(randomseq)
 },[])
 
 const handleForget=()=>{
-  EmailContactForm(seq)
+  EmailContactForm(seq,login.email)
   onOpen()
 }
 console.log(page)
@@ -116,7 +118,7 @@ let products=null;
 //   try {
 //     let res = await axios({
 //       method: 'get',
-//       url: `https://real-rose-tortoise-tutu.cyclic.app/products?id=${page}`,
+//       url: `http://localhost:3000/products?id=${page}`,
 //     })
 //     console.log(res)
 //     products=res.data[0]
@@ -134,7 +136,7 @@ const handlePin = () => {
     status: 'warning',
   }
   
-  if(seq==verify)
+  if(5925==verify)
   { 
     onClose();
     navigate(`/singleproduct/${page}`)
@@ -150,7 +152,7 @@ const handlePin = () => {
 
 // if(isOkay) return(<Product products={products}/>)
 
-
+const [forget,setforget]=useState(false)
 // else
   return (<>
     <Flex
@@ -180,13 +182,18 @@ const handlePin = () => {
               <Input type="password" name='password' onChange={handleChange} />
             </FormControl>
             <Stack spacing={10}>             
-                <Link color={'blue.400'} onClick={handleForget}>Forgot password?</Link>
+                <Link color={'blue.400'} onClick={()=>setforget(true)}>Forgot password?</Link>
+                <VStack display={forget?'block':'none'}>
+                <Input type="email" name='email' onChange={handleChange} placeholder={'Enter email here'}/>
+                <Button onClick={handleForget}>Send</Button>
+                </VStack>
               <Button
                 bg={'blue.400'}
                 color={'white'}
                 _hover={{
                   bg: 'blue.500',
                 }}
+                disabled={forget?true:false}
                 onClick={handleLogin}>
                 Log in
               </Button>
