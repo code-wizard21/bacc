@@ -56,11 +56,11 @@ export default function Navbar() {
     <div style={{ position: 'sticky', top: '0px', zIndex:'1' }}>
       <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <Link to='/'><Box><Image src='https://pbs.twimg.com/media/Fj4QgELaEAIL8IQ?format=png&name=small' width='8em' alt='logo' /></Box></Link>
+          <Link to='/'><Box><Image src='https://pbs.twimg.com/media/Fj4QgELaEAIL8IQ?format=png&name=small' width={{base:'5em',md:'8em'}} alt='logo' /></Box></Link>
 
-          <Flex alignItems={'center'}>
-            <Stack direction={'row'} spacing={4}>
-              <Button onClick={toggleColorMode}>
+          <Flex alignItems={'center'} border={'0px'}>
+            <Stack direction={'row'} spacing={{base:'1%',md:4}}>
+              <Button onClick={toggleColorMode} size={{base:'sm',md:'md'}} display={{base:'none',md:'block'}}>
                 {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
               </Button>
 
@@ -69,7 +69,7 @@ export default function Navbar() {
                 disabled={isAuth?true:false}
                   variant={'outline'}
                   colorScheme={'teal'}
-                  size={'md'}
+                  size={{base:'sm',md:'md'}}
                   mr={4}>
                   Login
                 </Button>
@@ -80,7 +80,8 @@ export default function Navbar() {
                 disabled={isAuth?true:false}
                   variant={'solid'}
                   colorScheme={'pink'}
-                  size={'md'}
+                  // size={'md'}
+                  size={{base:'sm',md:'md'}}
                   mr={4}>
                   Signup
                 </Button>
