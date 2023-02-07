@@ -26,13 +26,13 @@ import { SearchContext } from "../Contexts/SearchContextProvider";
 export default function ProductsPage() {
   const { search } = useContext(SearchContext);
   const [products, setproducts] = useState([]);
-  const [price, setprice] = useState(0);
+  const [price, setprice] = useState(4800);
   useEffect(() => {
     const FtchData = async () => {
       try {
         let res = await axios({
           method: "get",
-          url: `http://localhost:3000/products?location=${search}`,
+          url: `https://real-rose-tortoise-tutu.cyclic.app/products?location=${search}`,
         });
         //https://real-rose-tortoise-tutu.cyclic.app/products
         // console.log(res)
@@ -44,11 +44,6 @@ export default function ProductsPage() {
     };
     FtchData();
   }, [search,price]);
-
-//   useEffect(()=>{
-//     // console.log(products.map((product)=>product))
-//     // setproducts(products.filter((prod)=>prod.price<=price))
-//   },[price])
 
   return (
     <Box px={10}>
@@ -62,7 +57,7 @@ export default function ProductsPage() {
             align="flex-start"
           >
             <Heading size="md">Traveller Experience</Heading>
-            <Checkbox size="lg">LGBTQ welcoming:</Checkbox>
+            <Checkbox size="lg" isChecked>LGBTQ welcoming:</Checkbox>
             <Text paddingLeft={6} textAlign="start">
               See properties that pledge to make all guests feel safe, welcome,
               and respected.
