@@ -24,7 +24,7 @@ export default function ProductCard({ product, id }) {
         direction={{ base: 'column', sm: 'row' }}
         overflow='hidden'
         variant='outline'
-        cursor='pointer'
+        // cursor='pointer'
         border='none'
         w='100%'
       >

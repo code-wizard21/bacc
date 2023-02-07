@@ -56,10 +56,10 @@
     },
     {
       "id": 4,
-      "name": "Radisson Blu Plaza",
+      "name": "Lemon Tree Premier",
       "location": "Mt.Everst",
       "place": "Mahipalpur",
-      "image": "https://images.trvl-media.com/hotels/2000000/1530000/1528800/1528788/64515cdf.jpg?impolicy=resizecrop&rw=455&ra=fit",
+      "image": "https://images.trvl-media.com/lodging/6000000/5490000/5484200/5484188/bc2a56b3.jpg?impolicy=resizecrop&rw=598&ra=fit",
       "amenities": [
         "Pool",
         "Hot tub"
@@ -69,6 +69,114 @@
     },
     {
       "id": 5,
+      "name": "JW Marriott",
+      "location": "Goa",
+      "place": "Mahipalpur",
+      "image": "https://images.trvl-media.com/lodging/7000000/6180000/6172800/6172750/4b2ff253.jpg?impolicy=resizecrop&rw=598&ra=fit",
+      "amenities": [
+        "Pool",
+        "Hot tub"
+      ],
+      "price": "1800",
+      "rating": "8.8"
+    },
+    {
+      "id": 6,
+      "name": "ITC Maurya",
+      "location": "Shara Desert",
+      "place": "Chanakyapuri",
+      "image": "https://a.travel-assets.com/media/meso_cm/PAPI/Images/hotels/1000000/10000/3800/3793/17600cec_b.jpg",
+      "amenities": [
+        "Pool",
+        "Hot tub",
+        "Parking included"
+      ],
+      "price": "2780",
+      "rating": "8.8"
+    },
+    {
+      "id": 7,
+      "name": "Triumph Luxury Hotel",
+      "location": "Amazon",
+      "place": "New Cairo",
+      "image": "https://images.trvl-media.com/lodging/33000000/32150000/32142400/32142338/0f3b972c.jpg?impolicy=resizecrop&rw=1200&ra=fit",
+      "amenities": [
+        "Pool",
+        "Hot tub",
+        "Parking included"
+      ],
+      "price": "2780",
+      "rating": "8.8"
+    },
+    {
+      "id": 8,
+      "name": "Radisson Blu Plaza",
+      "location": "Mt.Everst",
+      "place": "Mahipalpur",
+      "image": "https://images.trvl-media.com/hotels/2000000/1530000/1528800/1528788/64515cdf.jpg?impolicy=resizecrop&rw=455&ra=fit",
+      "amenities": [
+        "Pool",
+        "Hot tub"
+      ],
+      "price": "2780",
+      "rating": "8.8"
+    },
+    {
+      "id": 9,
+      "name": "Lemon Tree Premier",
+      "location": "Goa",
+      "place": "Mahipalpur",
+      "image": "https://images.trvl-media.com/lodging/6000000/5490000/5484200/5484188/bc2a56b3.jpg?impolicy=resizecrop&rw=598&ra=fit",
+      "amenities": [
+        "Pool",
+        "Hot tub"
+      ],
+      "price": "2780",
+      "rating": "8.8"
+    },
+    {
+      "id": 10,
+      "name": "JW Marriott",
+      "location": "Antartica",
+      "place": "Mahipalpur",
+      "image": "https://images.trvl-media.com/lodging/7000000/6180000/6172800/6172750/4b2ff253.jpg?impolicy=resizecrop&rw=598&ra=fit",
+      "amenities": [
+        "Pool",
+        "Hot tub"
+      ],
+      "price": "2780",
+      "rating": "8.8"
+    },
+    {
+      "id": 11,
+      "name": "ITC Maurya",
+      "location": "Amazon",
+      "place": "Chanakyapuri",
+      "image": "https://a.travel-assets.com/media/meso_cm/PAPI/Images/hotels/1000000/10000/3800/3793/17600cec_b.jpg",
+      "amenities": [
+        "Pool",
+        "Hot tub",
+        "Parking included"
+      ],
+      "price": "1050",
+      "rating": "8.8"
+    },
+    {
+      "id": 12,
+      "name": "Triumph Luxury Hotel",
+      "location": "Mt.Everst",
+      "place": "New Cairo",
+      "image": "https://images.trvl-media.com/lodging/33000000/32150000/32142400/32142338/0f3b972c.jpg?impolicy=resizecrop&rw=1200&ra=fit",
+      "amenities": [
+        "Pool",
+        "Hot tub",
+        "Parking included"
+      ],
+      "price": "1050",
+      "rating": "8.8"
+    },
+    {
+      "id": 13,
       "name": "Radisson Blu Plaza",
       "location": "Goa",
       "place": "Mahipalpur",
@@ -77,7 +185,100 @@
         "Pool",
         "Hot tub"
       ],
-      "price": "1800",
+      "price": "1050",
+      "rating": "8.8"
+    },
+    {
+      "id": 14,
+      "name": "Lemon Tree Premier",
+      "location": "Antartica",
+      "place": "Mahipalpur",
+      "image": "https://images.trvl-media.com/lodging/6000000/5490000/5484200/5484188/bc2a56b3.jpg?impolicy=resizecrop&rw=598&ra=fit",
+      "amenities": [
+        "Pool",
+        "Hot tub"
+      ],
+      "price": "1050",
+      "rating": "8.8"
+    },
+    {
+      "id": 15,
+      "name": "JW Marriott",
+      "location": "Shara Desert",
+      "place": "Mahipalpur",
+      "image": "https://images.trvl-media.com/lodging/7000000/6105000/6172800/6172750/4b2ff253.jpg?impolicy=resizecrop&rw=598&ra=fit",
+      "amenities": [
+        "Pool",
+        "Hot tub"
+      ],
+      "price": "1050",
+      "rating": "8.8"
+    },
+    {
+      "id": 16,
+      "name": "ITC Maurya",
+      "location": "Mt.Everst",
+      "place": "Chanakyapuri",
+      "image": "https://a.travel-assets.com/media/meso_cm/PAPI/Images/hotels/1000000/10000/3800/3793/17600cec_b.jpg",
+      "amenities": [
+        "Pool",
+        "Hot tub",
+        "Parking included"
+      ],
+      "price": "3780",
+      "rating": "8.8"
+    },
+    {
+      "id": 17,
+      "name": "Triumph Luxury Hotel",
+      "location": "Goa",
+      "place": "New Cairo",
+      "image": "https://images.trvl-media.com/lodging/33000000/32150000/32142400/32142338/0f3b972c.jpg?impolicy=resizecrop&rw=1200&ra=fit",
+      "amenities": [
+        "Pool",
+        "Hot tub",
+        "Parking included"
+      ],
+      "price": "3780",
+      "rating": "8.8"
+    },
+    {
+      "id": 18,
+      "name": "Radisson Blu Plaza",
+      "location": "Antartica",
+      "place": "Mahipalpur",
+      "image": "https://images.trvl-media.com/hotels/2000000/1530000/1528800/1528788/64515cdf.jpg?impolicy=resizecrop&rw=455&ra=fit",
+      "amenities": [
+        "Pool",
+        "Hot tub"
+      ],
+      "price": "3780",
+      "rating": "8.8"
+    },
+    {
+      "id": 19,
+      "name": "Lemon Tree Premier",
+      "location": "Shara Desert",
+      "place": "Mahipalpur",
+      "image": "https://images.trvl-media.com/lodging/6000000/5490000/5484200/5484188/bc2a56b3.jpg?impolicy=resizecrop&rw=598&ra=fit",
+      "amenities": [
+        "Pool",
+        "Hot tub"
+      ],
+      "price": "3780",
+      "rating": "8.8"
+    },
+    {
+      "id": 20,
+      "name": "JW Marriott",
+      "location": "Amazon",
+      "place": "Mahipalpur",
+      "image": "https://images.trvl-media.com/lodging/7000000/6180000/6172800/6172750/4b2ff253.jpg?impolicy=resizecrop&rw=598&ra=fit",
+      "amenities": [
+        "Pool",
+        "Hot tub"
+      ],
+      "price": "3780",
       "rating": "8.8"
     }
   ]
