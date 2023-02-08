@@ -53,20 +53,20 @@ export default function PaymentsPage() {
     return <div style={{ 'margin': '5%' }}>
         <Tabs isFitted variant='solid-rounded' onChange={(index) => setTabIndex(index)} bg={bg} orientation='horizontal' w='80%' margin='auto'>
             <TabList mb='1em' borderBlockEnd='1px' borderBlockEndColor='gray.300'>
-                <Tab>Cash on Delivery</Tab>
+                <Tab>Pay on spot</Tab>
                 <Tab>UPI ( GooglePay / PhonePay / BHIM )</Tab>
                 <Tab>Debit/Credit Card</Tab>
             </TabList>
             <TabPanels>
                 <TabPanel>
-                    <Heading size='md'>Pay on delivery (Cash/UPI)</Heading>
+                    <Heading size='md'>Pay during checking in (Cash/UPI/Card)</Heading>
                     <VStack>
                         <Text>Capcha</Text>
                         <Text border='1px solid' padding='2%' as='s'>{random}</Text>
                         <Input placeholder="Enter code shown in above image" w='auto' type='number' onChange={handleChange} />
                     </VStack>
                     <VStack>
-                        <Text>You can pay via Cash or UPI enabled app at the time of delivery. Ask your delivery executive for these options.</Text>
+                        <Text>You can pay via Cash, UPI or Card at the spot during checking in.</Text>
                         <Button bg='red.500' onClick={handleCash}>PLACE ORDER</Button>
                     </VStack>
                 </TabPanel>
@@ -95,30 +95,6 @@ export default function PaymentsPage() {
             </TabPanels>
         </Tabs>
 
-        {/* <Modal isCentered isOpen={isOpen} onClose={onClose}>
-            <ModalOverlay
-                bg='blackAlpha.300'
-                backdropFilter='blur(10px) hue-rotate(90deg)' />
-            <ModalContent>
-                <ModalHeader>Enter the OTP</ModalHeader>
-                <ModalCloseButton />
-                <ModalBody>
-                    <HStack>
-                        <PinInput otp size='lg'>
-                            <PinInputField />
-                            <PinInputField />
-                            <PinInputField />
-                            <PinInputField />
-                        </PinInput>
-                    </HStack>
-                    <Text marginTop={2} >An One Time Password has been send to your registered mobile number.</Text>
-                </ModalBody>
-
-                <ModalFooter>
-                    <Button onClick={handlePin} colorScheme='blue'>Okay</Button>
-                </ModalFooter>
-            </ModalContent>
-        </Modal> */}
         <PinModal handlePin={handlePin} isOpen={isOpen} onClose={onClose} device={'mobile number'}/>
     </div>
 }
