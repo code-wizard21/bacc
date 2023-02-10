@@ -10,6 +10,12 @@
       "email": "jagroshansingh615@gmail.com",
       "password": "1234",
       "id": 2
+    },
+    {
+      "mobile": "9934915641",
+      "email": "jrsingh615@gmail.com",
+      "password": "9876",
+      "id": 3
     }
   ],
   "products": [
