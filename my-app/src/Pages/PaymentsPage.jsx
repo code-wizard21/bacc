@@ -82,7 +82,7 @@ export default function PaymentsPage() {
                         <Heading size='md'>CREDIT/DEBIT CARD</Heading>
                         <Text>Please ensure your card can be used for online transactions.</Text>
                         <VStack w='20em' margin='auto'>
-                            <Input placeholder="Card Number" type='number' />
+                            <Input placeholder="Card Number" type='number'/>
                             <Input placeholder="Name on Card" type='text' />
                             <HStack>
                                 <Input placeholder="Valid Thru(MM/YY)" />

@@ -1,8 +1,9 @@
 import { Box, Center, Spinner, Heading, VStack, Text, Flex, Button, useToast, HStack } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CloseIcon } from '@chakra-ui/icons';
 import Alert from "../Components/Alert";
 import {Link} from 'react-router-dom'
+import SuccessPayment from "./SuccessPayment";
 
 function PaymentFailed(){
     return(
@@ -58,19 +59,28 @@ export default function LoaderPage() {
     let [flag,setflag]=useState(false)
     const toast = useToast()
     let alertdata={
-        title: ' Payment Declined',
-        description: "Bank server is not responding",
-        status: 'error',
+        title: ' Payment Successful',
+        description: "Thank you for availing our services",
+        status: 'success',
       }
 
-    setTimeout(() => {
-        setflag(true)
-        toast(Alert(alertdata))
-        }, 5000)
+      // let alertdata={
+      //   title: ' Payment Declined',
+      //   description: "Bank server is not responding",
+      //   status: 'error',
+      // }
+
+   
+        setTimeout(() => {
+          setflag(true)
+          // toast(Alert(alertdata))
+          }, 4000)
+      
+    
     
     return <>
         <Center h='800px'>
-            {flag?<PaymentFailed/>:<Loader/>}           
+            {flag?<SuccessPayment/>:<Loader/>}           
         </Center>
 
         
