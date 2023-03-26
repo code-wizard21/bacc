@@ -32,7 +32,7 @@ export default function Signup() {
   let { Login } = useContext(AuthContext);
   const navigate = useNavigate();
   const [signup, setsignup] = useState(initial);
-  console.log(signup);
+  // console.log(signup);
 
   const handleChange = (el) => {
     setsignup({ ...signup, [el.target.name]: el.target.value });
@@ -40,36 +40,33 @@ export default function Signup() {
 
   const toast = useToast();
 
-  const authenticating = () => {
-    navigate("/");
+  const authenticating = (data) => {
+    if(data=='success') navigate("/");
     let alertdata = {
-      title: "Signup Successfull!",
-      description: "You're being redirected to the Home Page",
-      status: "success",
+      title: data=='success'?"Signup Successfull":"User already present",
+      description: data=='success'?"You're being redirected to the Home Page":"Please try again!",
+      status: data=='success'?"success":"warning",
     };
     toast(Alert(alertdata));
-    Login()
+    // Login()
   };
 
   const handleSignup = () => {
-    authenticating();
-    // const FtchData = async () => {
-    //   try {
-    //     let res = await axios({
-    //       method: "post",
-    //       url: `https://real-rose-tortoise-tutu.cyclic.app/authentication`,
-    //       //https://real-rose-tortoise-tutu.cyclic.app/authentication
-    //       data: signup,
-    //     });
-    //     console.log(res);
+    // authenticating();
+    // const FtchData = () => {
+        axios({
+          method: "post",
+          url:`${process.env.REACT_APP_URL}/authentication`,
+          data: signup,
+        })
+        .then(res=>authenticating(res.data))
+        .catch(err=>console.log(err))
         
     //     //setproducts(res.data)
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
+      
     // };
 
-    //   FtchData();
+      // FtchData();
   };
 
   return (

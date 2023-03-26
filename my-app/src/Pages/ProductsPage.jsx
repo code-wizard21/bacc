@@ -32,7 +32,7 @@ export default function ProductsPage() {
       try {
         let res = await axios({
           method: "get",
-          url: `https://real-rose-tortoise-tutu.cyclic.app/products?location=${search}`,
+          url: `${process.env.REACT_APP_URL}/products?location=${search}`,
         });
         //https://real-rose-tortoise-tutu.cyclic.app/products
         // console.log(res)
