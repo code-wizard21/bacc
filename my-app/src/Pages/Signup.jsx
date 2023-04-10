@@ -48,25 +48,17 @@ export default function Signup() {
       status: data=='success'?"success":"warning",
     };
     toast(Alert(alertdata));
-    // Login()
+    Login()
   };
 
-  const handleSignup = () => {
-    // authenticating();
-    // const FtchData = () => {
+  const handleSignup = () => {  
         axios({
           method: "post",
           url:`${process.env.REACT_APP_URL}/authentication`,
           data: signup,
         })
         .then(res=>authenticating(res.data))
-        .catch(err=>console.log(err))
-        
-    //     //setproducts(res.data)
-      
-    // };
-
-      // FtchData();
+        .catch(err=>console.log(err))       
   };
 
   return (

@@ -47,7 +47,7 @@ export default function SearchPanel() {
   };
 
   const [traveldata, settraveldata] = useState(initialdata);
-  //console.log(traveldata)
+  // console.log(traveldata)
 
   let handletraveller = (el) => {
     settraveldata({ ...traveldata, [el.target.name]: el.target.value });
@@ -80,7 +80,7 @@ export default function SearchPanel() {
       );
     }
   };
-
+  // console.log(new Date().getFullYear()+`-${new Date().getMonth()>8?"":0}`+(new Date().getMonth()+1)+"-"+new Date().getDate())
   return (
     <div style={{ marginBottom: "2%", border: "0px solid" }}>
       <Box marginTop="2%">
@@ -116,14 +116,6 @@ export default function SearchPanel() {
         border="0px solid"
         justifyContent="space-evenly"
       >
-        {/* <InputGroup>
-                <InputLeftElement
-                    color='gray.400'
-                    fontSize='1.2em'
-                    children={<Icon as={ImLocation} />}
-                />              
-                <Input placeholder="Going to"/>
-            </InputGroup> */}
         <Stack direction={{ base: "column", sm: "row" }}>
           <InputGroup>
             <InputLeftAddon>Check In</InputLeftAddon>
@@ -132,19 +124,19 @@ export default function SearchPanel() {
               type="date"
               name="checkin"
               onChange={handletraveller}
-              //onFocus={(el) => el.target.type = 'date'}
+              min={new Date().getFullYear()+`-${new Date().getMonth()>8?"":0}`+(new Date().getMonth()+1)+"-"+new Date().getDate()}
             />
           </InputGroup>
 
           <InputGroup>
             <InputLeftAddon>Check Out</InputLeftAddon>
             <Input
-              //placeholder="Entet the date"
               size="md"
               type="date"
               name="checkout"
               onChange={handletraveller}
-              //onFocus={(el) => el.target.type = 'date'}
+              disabled={traveldata.checkin?false:true}
+              min={traveldata.checkin}
             />
           </InputGroup>
         </Stack>

@@ -34,7 +34,6 @@ export default function ProductsPage() {
           method: "get",
           url: `${process.env.REACT_APP_URL}/products?location=${search}`,
         });
-        //https://real-rose-tortoise-tutu.cyclic.app/products
         // console.log(res)
         let priceFiltered=res.data.filter((prod)=>prod.price<=price)     
         setproducts(priceFiltered);

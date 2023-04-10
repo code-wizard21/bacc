@@ -31,15 +31,14 @@ export default function Login() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   let { Login, page } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [confirm, setconfirm] = useState("");
-  //console.log(confirm)
+
   let initial = {
     mobile: null,
     password: null,
     email: "",
   };
   const [login, setlogin] = useState(initial);
-  console.log(login);
+  // console.log(login);
 
   const handleChange = (el) => {
     setlogin({ ...login, [el.target.name]: el.target.value });
@@ -49,14 +48,11 @@ export default function Login() {
     const FtchData = async () => {
       try {
         let res = await axios({
-          method: "get",
-          url: `https://real-rose-tortoise-tutu.cyclic.app/authentication?mobile=${login.mobile}`,
-          //https://real-rose-tortoise-tutu.cyclic.app/authentication
+          method: "post",
+          url: `${process.env.REACT_APP_URL}/authentication/login`,
+          data:login
         });
-        //console.log(res)
-        setconfirm(res.data[0]);
-        authenticating();
-        //setproducts(res.data)
+        authenticating(res.data);
       } catch (error) {
         console.error(error);
       }
@@ -64,11 +60,11 @@ export default function Login() {
     FtchData();
   };
 
-  //Authenticating the login credentials---------------------
+
   const toast = useToast();
 
-  const authenticating = () => {
-    if (login.password == confirm.password) {
+  const authenticating = (response) => {
+    if (response == 'pass') {
       navigate("/");
       let alertdata = {
         title: "Hurrah...Login Success!",
@@ -77,7 +73,7 @@ export default function Login() {
       };
       toast(Alert(alertdata));
       Login();
-      localStorage.setItem("booking", JSON.stringify(login));
+      // localStorage.setItem("booking", JSON.stringify(login));
     } else {
       let alertdata = {
         title: "Invalid Credentials",
@@ -91,7 +87,7 @@ export default function Login() {
   //In case of Forget password option selected-------------------
   //let [isOkay,setisOkay]=useState(false)
   let [seq, setseq] = useState(5925);
-  console.log("seq: ", seq);
+  // console.log("seq: ", seq);
   let [verify, setverify] = useState(null);
   //console.log(verify)
   //let isVerify="";
@@ -107,10 +103,31 @@ export default function Login() {
   }, []);
 
   const handleForget = () => {
-    EmailContactForm(seq, login.email);
-    onOpen();
+    axios({
+      method:'post',
+      url:`${process.env.REACT_APP_URL}/authentication/email`,
+      data:{email:login.email}
+    })
+    .then(res=>{
+      if(res.data=='present')
+      {
+            // EmailContactForm(seq, login.email);
+           // onOpen();
+      }
+      else
+      {
+        let alertdata = {
+          title: "Email not registered",
+          description: "Please try again",
+          status: "warning",
+        };
+        toast(Alert(alertdata));
+      }
+    })
+    .catch(err=>console.log(err))
+
   };
-  console.log(page);
+  // console.log(page);
   let products = null;
 
   // const FtchData = async () => {
