@@ -11,4 +11,13 @@ productrouter.get('/',async(req,res)=>{
     }
 })
 
+productrouter.get('/single',async(req,res)=>{
+    try {
+        let see=await productModel.find({'id':req.query.id})
+        res.send(see)
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 module.exports={productrouter}

@@ -62,16 +62,14 @@ export default function ProductsPage() {
               and respected.
             </Text>
 
-            <Checkbox size="lg">Wheel-Chair Frendly:</Checkbox>
+            <Checkbox size="lg">Bussiness Frendly:</Checkbox>
             <Text paddingLeft={6} textAlign="start">
-              See properties that pledge to make all guests feel safe, welcome,
-              and respected.
+            See properties with amenities to help you work comfortably, like WiFi and breakfast.
             </Text>
 
             <Checkbox size="lg">Family Friendly:</Checkbox>
             <Text paddingLeft={6} textAlign="start">
-              See properties that pledge to make all guests feel safe, welcome,
-              and respected.
+            See properties that include family essentials like in-room conveniences and activities for the kids.
             </Text>
             <Divider orientation="horizontal" />
             <br />
