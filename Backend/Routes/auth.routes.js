@@ -33,11 +33,11 @@ authrouter.post('/login',async(req,res)=>{
     }
 })
 
-authrouter.post('/email',async(req,res)=>{
+authrouter.patch('/changepass',async(req,res)=>{
     try {
-        let find=await authModel.find({'email':req.body.email})
-        if(find.length==0) res.send('not available')
-        else res.send('present')
+        let find=await authModel.findOneAndUpdate({'email':req.body.email},{'password':req.body.password})
+        if(find) res.send('password changed')
+        else res.send('not available')
     } catch (error) {
         console.log(error)
     }
