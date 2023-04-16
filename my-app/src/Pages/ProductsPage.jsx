@@ -34,7 +34,6 @@ export default function ProductsPage() {
           method: "get",
           url: `${process.env.REACT_APP_URL}/products?location=${search}`,
         });
-        //https://real-rose-tortoise-tutu.cyclic.app/products
         // console.log(res)
         let priceFiltered=res.data.filter((prod)=>prod.price<=price)     
         setproducts(priceFiltered);
@@ -63,16 +62,14 @@ export default function ProductsPage() {
               and respected.
             </Text>
 
-            <Checkbox size="lg">Wheel-Chair Frendly:</Checkbox>
+            <Checkbox size="lg">Bussiness Frendly:</Checkbox>
             <Text paddingLeft={6} textAlign="start">
-              See properties that pledge to make all guests feel safe, welcome,
-              and respected.
+            See properties with amenities to help you work comfortably, like WiFi and breakfast.
             </Text>
 
             <Checkbox size="lg">Family Friendly:</Checkbox>
             <Text paddingLeft={6} textAlign="start">
-              See properties that pledge to make all guests feel safe, welcome,
-              and respected.
+            See properties that include family essentials like in-room conveniences and activities for the kids.
             </Text>
             <Divider orientation="horizontal" />
             <br />

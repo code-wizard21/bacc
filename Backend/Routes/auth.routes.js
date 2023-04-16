@@ -23,4 +23,24 @@ authrouter.post('/',async(req,res)=>{
     }
 })
 
+authrouter.post('/login',async(req,res)=>{
+    try {
+        let find=await authModel.find({'mobile':req.body.mobile,'password':req.body.password})
+        if(find.length==0) res.send('fail')
+        else res.send('pass')
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+authrouter.patch('/changepass',async(req,res)=>{
+    try {
+        let find=await authModel.findOneAndUpdate({'email':req.body.email},{'password':req.body.password})
+        if(find) res.send('password changed')
+        else res.send('not available')
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 module.exports={authrouter}

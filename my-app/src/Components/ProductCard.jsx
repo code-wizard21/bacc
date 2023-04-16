@@ -16,15 +16,13 @@ import {
 import { Link, useParams } from 'react-router-dom';
 
 export default function ProductCard({ product, id }) {
-  //const {id}=useParams();
-  //console.log(product)
+
   return (
     <>
       <Card
         direction={{ base: 'column', sm: 'row' }}
         overflow='hidden'
         variant='outline'
-        // cursor='pointer'
         border='none'
         w='100%'
       >
