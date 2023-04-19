@@ -99,7 +99,7 @@ export default function Navbar() {
                   <Link to="/admin">
                     <MenuItem>Admin User</MenuItem>
                   </Link>
-                  <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                  <MenuItem onClick={handleLogout} isDisabled={isAuth?false:true}>Logout</MenuItem>
                 </MenuList>
               </Menu>
             </Stack>

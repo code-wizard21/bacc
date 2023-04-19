@@ -11,6 +11,7 @@ import AdminPage from "../Pages/AdminPage"
 import PropertyListing from "../Pages/PropertyListing"
 import LoaderPage from "../Pages/LoaderPage"
 import SuccessPayment from "../Pages/SuccessPayment"
+import { Error404 } from "./Error404"
 
 export default function Allroutes(){
     return(
@@ -26,6 +27,7 @@ export default function Allroutes(){
             {/* <Route path='/propertylist' element={<PropertyListing/>}/> */}
             <Route path='/loader' element={<PrivateRouter><LoaderPage/></PrivateRouter>}/>
             <Route path='/paymentdone' element={<PrivateRouter><SuccessPayment/></PrivateRouter>}/>
+            <Route path='/*' element={<Error404/>}/>
         </Routes>
     )
 }

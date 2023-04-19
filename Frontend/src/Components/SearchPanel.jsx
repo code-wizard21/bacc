@@ -1,24 +1,14 @@
 import {
   Button,
   Stack,
-  Icon,
   Input,
   InputGroup,
-  InputLeftElement,
-  InputRightElement,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-  useColorModeValue,
   InputLeftAddon,
   Box,
   HStack,
   useToast,
   Text,
 } from "@chakra-ui/react";
-import { ImLocation, ImCalendar } from "react-icons/im";
 import { Link, useNavigate } from "react-router-dom";
 import DatalistInput from "react-datalist-input";
 import "react-datalist-input/dist/styles.css";
@@ -103,7 +93,7 @@ export default function SearchPanel() {
               { id: "Antartica", value: "Antartica" },
               { id: "Shara Desert", value: "Shara Desert" },
               { id: "Amazon", value: "Amazon" },
-              { id: "Mt.Everest", value: "Mt.Everest" },
+              { id: "Mt.Everst", value: "Mt.Everst" },
               { id: "Goa", value: "Goa" },
             ]}
           />

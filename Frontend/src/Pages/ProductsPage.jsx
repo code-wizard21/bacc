@@ -34,7 +34,7 @@ export default function ProductsPage() {
           method: "get",
           url: `${process.env.REACT_APP_URL}/products?location=${search}`,
         });
-        // console.log(res)
+        console.log(res)
         let priceFiltered=res.data.filter((prod)=>prod.price<=price)     
         setproducts(priceFiltered);
       } catch (error) {

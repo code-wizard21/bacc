@@ -4,6 +4,6 @@ import { AuthContext } from "../Contexts/AuthContextProvider"
 
 export default function PrivateRouter({children}){
     const {isAuth}=useContext(AuthContext)
-    // if(!isAuth) return <Navigate to="/login"/>
+    if(!isAuth) return <Navigate to="/login"/>
     return children
 }
