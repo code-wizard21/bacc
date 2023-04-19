@@ -9,7 +9,7 @@ export default function SuccessPayment() {
   const navigate=useNavigate()
 
   useEffect(()=>{
-    if(countdown==0) navigate("/")
+    if(countdown===0) navigate("/")
 
     cref.current=setTimeout(()=>{
       setCountdown((prev)=>prev-1)
