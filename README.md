@@ -34,6 +34,7 @@ Specifically catering to the LGBTQ+ community.
 </div>
 
 <h2>Backend</h2>
-<p>Backend: <span>https://wicked-mite-tweed-jacket.cyclic.app/</span></p>
+<p>Repo: <span>https://github.com/jagroshansingh/BA..e-BeAsYouAre_Backend<span></p>
+<p>Deployed: <span>https://wicked-mite-tweed-jacket.cyclic.app/</span></p>
 
 
