@@ -7,11 +7,13 @@ Specifically catering to the LGBTQ+ community.
 
 <h2>Functionalities:</h2>
 <ul>
-  <li> Sign-in/Sign-up with Forget Password feature</li>
-  <li> HomePage with Hotel Booking Option</li>
-  <li> Product Page</li>
-  <li> Payment Page</li>
-  <li> It is fully responsive.</li>
+  <li> Full-Stack(MERN) application</li>
+  <li> Sign-in/Sign-up pages with minimal details to fill</li>
+  <li> Sign-in with Forget Password feature</li>
+  <li> Authorization through frontend using private routes</li>
+  <li> Multi-page Application feature by using routes</li>
+  <li> Toast for alerts/feedbacks to the user</li>
+  <li> Fully responsive for all screen-sizes</li>
 </ul>
 
 <h2>Tech Stacks used</h2>
@@ -20,6 +22,9 @@ Specifically catering to the LGBTQ+ community.
   <li>HTML/CSS</li>
   <li>JavaScript</li>
   <li>Chakru-UI library</li>
+  <li>Express</li>
+  <li>Mongo</li>
+  <li>NodeJS</li>
 </ul>
 
 <h2> Snippets</h2>
@@ -27,5 +32,8 @@ Specifically catering to the LGBTQ+ community.
   <img src="https://github.com/jagroshansingh/Orbitz-Clone/blob/master/my-app/pics/Bae%20LandingPage.png?raw=true" width="49%">
   <img src="https://github.com/jagroshansingh/Orbitz-Clone/blob/master/my-app/pics/Bae%20HotelsPage.png?raw=true" width="49%">
 </div>
+
+<h2>Backend</h2>
+<p>Backend: <span>https://wicked-mite-tweed-jacket.cyclic.app/</span></p>
 
 
