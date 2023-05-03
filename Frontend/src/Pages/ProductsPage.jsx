@@ -34,7 +34,7 @@ export default function ProductsPage() {
           method: "get",
           url: `${process.env.REACT_APP_URL}/products?location=${search}`,
         });
-        console.log(res)
+        // console.log(res)
         let priceFiltered=res.data.filter((prod)=>prod.price<=price)     
         setproducts(priceFiltered);
       } catch (error) {
@@ -54,6 +54,11 @@ export default function ProductsPage() {
             w={{ sm: "0%", md: "30%" }}
             border="0px solid grey"
             align="flex-start"
+            alignSelf={"start"}
+            position={"sticky"}
+            top={"17vh"}
+            borderRight={'1px solid grey'}
+            paddingRight={3}
           >
             <Heading size="md">Traveller Experience</Heading>
             <Checkbox size="lg" isChecked>LGBTQ welcoming:</Checkbox>
@@ -112,7 +117,7 @@ export default function ProductsPage() {
           </Box>
         ) : (
           <VStack
-            w={{ base: "100%", sm: "100%", md: "70%" }}
+            w={{ base: "100%", sm: "100%", md: "100%" }}
             border="0px solid"
           >
             {products.map((product) => (

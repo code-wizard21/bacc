@@ -70,7 +70,7 @@ export default function SearchPanel() {
       );
     }
   };
-  // console.log(new Date().getFullYear()+`-${new Date().getMonth()>8?"":0}`+(new Date().getMonth()+1)+"-"+new Date().getDate())
+  // console.log(new Date().getFullYear()+`-${new Date().getMonth()>8?"":0}`+(new Date().getMonth()+1)+`-${new Date().getDate()>9?"":0}`+new Date().getDate())
   return (
     <div style={{ marginBottom: "2%", border: "0px solid" }}>
       <Box marginTop="2%">
@@ -114,7 +114,7 @@ export default function SearchPanel() {
               type="date"
               name="checkin"
               onChange={handletraveller}
-              min={new Date().getFullYear()+`-${new Date().getMonth()>8?"":0}`+(new Date().getMonth()+1)+"-"+new Date().getDate()}
+              min={new Date().getFullYear()+`-${new Date().getMonth()>8?"":0}`+(new Date().getMonth()+1)+`-${new Date().getDate()>9?"":0}`+new Date().getDate()}
             />
           </InputGroup>
 
