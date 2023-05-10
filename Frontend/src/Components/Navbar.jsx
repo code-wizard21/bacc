@@ -29,7 +29,7 @@ export default function Navbar() {
   };
 
   return (
-    <div style={{ position: "sticky", top: "0px", zIndex: "1" }}>
+    <div style={{ position: "sticky", top: "0px", zIndex: "10" }}>
       <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <Link to="/">
