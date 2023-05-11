@@ -5,14 +5,13 @@ import {
   InputGroup,
   InputLeftAddon,
   Box,
-  HStack,
   useToast,
   Text,
 } from "@chakra-ui/react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import DatalistInput from "react-datalist-input";
 import "react-datalist-input/dist/styles.css";
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { SearchContext } from "../Contexts/SearchContextProvider";
 import { useState } from "react";
 import Alert from "./Alert";
@@ -22,11 +21,6 @@ export default function SearchPanel() {
   const { setsearch } = useContext(SearchContext);
   const [location, setlocation] = useState(null);
   const toast = useToast();
-  let alertdata = {
-    title: " Invalid Input",
-    description: "Please check the input again",
-    status: "warning",
-  };
 
   let initialdata = {
     destination: null,
@@ -37,13 +31,18 @@ export default function SearchPanel() {
   };
 
   const [traveldata, settraveldata] = useState(initialdata);
-  // console.log(traveldata)
 
   let handletraveller = (el) => {
     settraveldata({ ...traveldata, [el.target.name]: el.target.value });
   };
 
+  //------------------------Search function if criterias are fulfilled--------------------------------
   const handleSearch = () => {
+    let alertdata = {
+      title: " Invalid Input",
+      description: "Please check the input again",
+      status: "warning",
+    };
     let flag = true;
     for (let key in traveldata) {
       if (traveldata[key] == null) {
@@ -62,7 +61,13 @@ export default function SearchPanel() {
 
     if (flag == true) {
       let bookingdata = JSON.parse(localStorage.getItem("booking"));
-      setsearch(location);
+      setsearch([
+        location,
+        traveldata.checkin,
+        traveldata.checkout,
+        traveldata.travellers,
+        traveldata.rooms,
+      ]);
       navigate("/products");
       localStorage.setItem(
         "booking",
@@ -70,7 +75,18 @@ export default function SearchPanel() {
       );
     }
   };
-  // console.log(new Date().getFullYear()+`-${new Date().getMonth()>8?"":0}`+(new Date().getMonth()+1)+"-"+new Date().getDate())
+
+  //------------------- Debouncer using closure for API Search----------------------------
+  const debounceRef = useRef();
+  const debounceSearch = () => {
+    return () => {
+      debounceRef.current && clearTimeout(debounceRef.current);
+      debounceRef.current = setTimeout(() => {
+        handleSearch();
+      }, 1000);
+    };
+  };
+  // console.log(new Date().getFullYear()+`-${new Date().getMonth()>8?"":0}`+(new Date().getMonth()+1)+`-${new Date().getDate()>9?"":0}`+new Date().getDate())
   return (
     <div style={{ marginBottom: "2%", border: "0px solid" }}>
       <Box marginTop="2%">
@@ -114,7 +130,13 @@ export default function SearchPanel() {
               type="date"
               name="checkin"
               onChange={handletraveller}
-              min={new Date().getFullYear()+`-${new Date().getMonth()>8?"":0}`+(new Date().getMonth()+1)+"-"+new Date().getDate()}
+              min={
+                new Date().getFullYear() +
+                `-${new Date().getMonth() > 8 ? "" : 0}` +
+                (new Date().getMonth() + 1) +
+                `-${new Date().getDate() > 9 ? "" : 0}` +
+                new Date().getDate()
+              }
             />
           </InputGroup>
 
@@ -125,7 +147,7 @@ export default function SearchPanel() {
               type="date"
               name="checkout"
               onChange={handletraveller}
-              disabled={traveldata.checkin?false:true}
+              disabled={traveldata.checkin ? false : true}
               min={traveldata.checkin}
             />
           </InputGroup>
@@ -155,7 +177,7 @@ export default function SearchPanel() {
         </Stack>
       </Stack>
 
-      <Button colorScheme="blue" size="lg" onClick={handleSearch}>
+      <Button colorScheme="blue" size="lg" onClick={debounceSearch()}>
         Search
       </Button>
 
