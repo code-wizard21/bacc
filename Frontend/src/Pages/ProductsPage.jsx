@@ -33,6 +33,7 @@ import { SearchContext } from "../Contexts/SearchContextProvider";
 
 export default function ProductsPage() {
   const { search } = useContext(SearchContext);
+  // console.log(search)
   const [products, setproducts] = useState([]);
   const [price, setprice] = useState(4800);
   useEffect(() => {
@@ -40,7 +41,7 @@ export default function ProductsPage() {
       try {
         let res = await axios({
           method: "get",
-          url: `${process.env.REACT_APP_URL}/products?location=${search}`,
+          url: `${process.env.REACT_APP_URL}/products?location=${search[0]}`,
         });
         // console.log(res)
         let priceFiltered = res.data.filter((prod) => prod.price <= price);
