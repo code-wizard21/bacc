@@ -30,12 +30,21 @@ import PriceSlider from "../Components/PriceSlider";
 import ProductCard from "../Components/ProductCard";
 import SearchPanel from "../Components/SearchPanel";
 import { SearchContext } from "../Contexts/SearchContextProvider";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 export default function ProductsPage() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
   const { search } = useContext(SearchContext);
-  // console.log(search)
   const [products, setproducts] = useState([]);
-  const [price, setprice] = useState(4800);
+  const [price, setprice] = useState(0);
+
+  const handleSorting = (str) => {
+    let newParams = new URLSearchParams(searchParams);
+    newParams.set("sort", str);
+    setSearchParams(newParams);
+  };
+
   useEffect(() => {
     const FtchData = async () => {
       try {
@@ -44,8 +53,16 @@ export default function ProductsPage() {
           url: `${process.env.REACT_APP_URL}/products?location=${search[0]}`,
         });
         // console.log(res)
-        let priceFiltered = res.data.filter((prod) => prod.price <= price);
-        setproducts(priceFiltered);
+        var newParams = new URLSearchParams(searchParams);
+
+        if (price) {
+          let priceFiltered = res.data.filter((prod) => prod.price <= price);
+          setproducts(priceFiltered);
+          newParams.set("price", price);
+        } else setproducts(res.data);
+       
+        newParams.set("location", search[0]);
+        setSearchParams(newParams);
       } catch (error) {
         console.error(error);
       }
@@ -57,7 +74,14 @@ export default function ProductsPage() {
     <Box px={10}>
       <SearchPanel />
 
-      <HStack justifyContent={"space-between"} position={'sticky'} top={'64px'} zIndex={2} backgroundColor={'white'} p={3}>
+      <HStack
+        justifyContent={"space-between"}
+        position={"sticky"}
+        top={"64px"}
+        zIndex={2}
+        backgroundColor={"white"}
+        p={3}
+      >
         <Box visibility={{ base: "block", md: "hidden" }}>
           <Popover placement="bottom-start">
             <PopoverTrigger>
@@ -111,17 +135,21 @@ export default function ProductsPage() {
               SortBy
             </MenuButton>
             <MenuList>
-              <MenuItem>Low to High</MenuItem>
-              <MenuItem>High to Low</MenuItem>
+              <MenuItem onClick={() => handleSorting("Ascending")}>
+                Low to High
+              </MenuItem>
+              <MenuItem onClick={() => handleSorting("Descending")}>
+                High to Low
+              </MenuItem>
             </MenuList>
           </Menu>
         </Box>
       </HStack>
-    <br/>
+      <br />
       <Stack direction="row" spacing={4}>
         <Hide below="md">
           <VStack
-            w={{ sm: "0%", md: "50%", lg:"30%" }}
+            w={{ sm: "0%", md: "50%", lg: "30%" }}
             border="0px solid grey"
             align="flex-start"
             alignSelf={"start"}

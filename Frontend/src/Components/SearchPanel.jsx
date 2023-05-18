@@ -8,7 +8,7 @@ import {
   useToast,
   Text,
 } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import DatalistInput from "react-datalist-input";
 import "react-datalist-input/dist/styles.css";
 import { useContext, useRef } from "react";
@@ -19,15 +19,16 @@ import Alert from "./Alert";
 export default function SearchPanel() {
   const navigate = useNavigate();
   const { setsearch } = useContext(SearchContext);
-  const [location, setlocation] = useState(null);
+  const [location, setlocation] = useState("");
+  // console.log(location)
   const toast = useToast();
 
   let initialdata = {
-    destination: null,
-    checkin: null,
-    checkout: null,
-    travellers: null,
-    rooms: null,
+    destination: "",
+    checkin: "",
+    checkout: "",
+    travellers: "",
+    rooms: "",
   };
 
   const [traveldata, settraveldata] = useState(initialdata);
@@ -45,7 +46,7 @@ export default function SearchPanel() {
     };
     let flag = true;
     for (let key in traveldata) {
-      if (traveldata[key] == null) {
+      if (traveldata[key] == "") {
         toast(Alert(alertdata));
         flag = false;
         break;
@@ -86,6 +87,22 @@ export default function SearchPanel() {
       }, 1000);
     };
   };
+
+  let obj={
+    "Goa":1,
+    "Antartica":1,
+    "Shara Desert":1,
+    "Mt.Everst":1,
+    "Amazon":1
+  }
+  window.onclick=()=>{
+    if(!obj[location] && location!="") document.getElementById('notAvailable').style.visibility="visible"
+  }
+  const handleSearchChange=(e)=>{
+    document.getElementById('notAvailable').style.visibility="hidden"
+    setlocation(e.target.value)
+  }
+
   // console.log(new Date().getFullYear()+`-${new Date().getMonth()>8?"":0}`+(new Date().getMonth()+1)+`-${new Date().getDate()>9?"":0}`+new Date().getDate())
   return (
     <div style={{ marginBottom: "2%", border: "0px solid" }}>
@@ -101,6 +118,7 @@ export default function SearchPanel() {
           <DatalistInput
             // border={'1px'}
             placeholder="Enter the destination"
+            onChange={(e)=>handleSearchChange(e)}
             onSelect={(item) => {
               setlocation(item.value);
               traveldata.destination = item.value;
@@ -114,6 +132,7 @@ export default function SearchPanel() {
             ]}
           />
         </InputGroup>
+        <Text id="notAvailable" color='red' visibility={'hidden'}>Destination not available!</Text>
       </Box>
       <Stack
         direction={{ base: "column", lg: "row" }}
