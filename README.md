@@ -1,4 +1,4 @@
-# Ba..e(Be As You Are)
+# BA..e(Be As You Are)
 This is a Travel booking website inspired from Orbitz.com.
 Specifically catering to the LGBTQ+ community.
 
@@ -14,6 +14,9 @@ Specifically catering to the LGBTQ+ community.
   <li> Multi-page Application feature by using routes</li>
   <li> Toast for alerts/feedbacks to the user</li>
   <li> Fully responsive for all screen-sizes</li>
+  <li> Debouncing using closure for making API requests</li>
+  <li> Handling wrong URL</li>
+  <li> Dynamic Routes for single-product page</li>
 </ul>
 
 <h2>Tech Stacks used</h2>
