@@ -38,37 +38,40 @@ export default function ProductsPage() {
   const { search } = useContext(SearchContext);
   const [products, setproducts] = useState([]);
   const [price, setprice] = useState(0);
+  const [sort, setSort] = useState("");
 
   const handleSorting = (str) => {
-    let newParams = new URLSearchParams(searchParams);
-    newParams.set("sort", str);
-    setSearchParams(newParams);
+    setSort(str);
   };
 
-  useEffect(() => {
-    const FtchData = async () => {
-      try {
-        let res = await axios({
-          method: "get",
-          url: `${process.env.REACT_APP_URL}/products?location=${search[0]}`,
-        });
-        // console.log(res)
-        var newParams = new URLSearchParams(searchParams);
+  let keep = searchParams.get("place");
 
-        if (price) {
-          let priceFiltered = res.data.filter((prod) => prod.price <= price);
-          setproducts(priceFiltered);
-          newParams.set("price", price);
-        } else setproducts(res.data);
-       
-        newParams.set("location", search[0]);
-        setSearchParams(newParams);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    FtchData();
-  }, [search, price]);
+//------------------- useEffect for setting the URL-----------------------------  
+  useEffect(() => {
+    let newParams = { place: search[0] || keep };
+    price && (newParams.price = price);
+    sort && (newParams.sort = sort);
+    setSearchParams(newParams);
+  }, [search, price, sort]);
+
+//------------- useEffect for making api calls using URL parameters--------------  
+  useEffect(() => {
+    axios({
+      method: "get",
+      url: `${process.env.REACT_APP_URL}/products?location=${
+        search[0] || keep
+      }`,
+      headers: {
+        place: searchParams.get("place") || "",
+        price: searchParams.get("price") || "",
+        sort: searchParams.get("sort") || "",
+      },
+    })
+      .then((res) => {
+        setproducts(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, [location.search]);
 
   return (
     <Box px={10}>
@@ -135,10 +138,10 @@ export default function ProductsPage() {
               SortBy
             </MenuButton>
             <MenuList>
-              <MenuItem onClick={() => handleSorting("Ascending")}>
+              <MenuItem onClick={() => handleSorting("asc")}>
                 Low to High
               </MenuItem>
-              <MenuItem onClick={() => handleSorting("Descending")}>
+              <MenuItem onClick={() => handleSorting("desc")}>
                 High to Low
               </MenuItem>
             </MenuList>
