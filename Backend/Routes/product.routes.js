@@ -3,9 +3,12 @@ const { productModel } = require('../model/productModel')
 const productrouter=express.Router()
 
 productrouter.get('/',async(req,res)=>{
-    console.log(req.headers.price,req.headers.place,req.headers.sort)
-    try {
-        let see=await productModel.find({'location':req.query.location})
+    let price=+req.headers.price
+    let destination=req.headers.destination
+    let sort=req.headers.sort
+    // console.log(price,typeof price)
+    try {   
+        let see=await productModel.find({'location':destination})
         res.send(see)
     } catch (error) {
         console.log(error)

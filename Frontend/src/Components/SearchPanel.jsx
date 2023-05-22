@@ -11,24 +11,23 @@ import {
 import { useNavigate, useSearchParams } from "react-router-dom";
 import DatalistInput from "react-datalist-input";
 import "react-datalist-input/dist/styles.css";
-import { useContext, useRef } from "react";
-import { SearchContext } from "../Contexts/SearchContextProvider";
+import { useRef } from "react";
 import { useState } from "react";
 import Alert from "./Alert";
 
 export default function SearchPanel() {
   const navigate = useNavigate();
-  const { setsearch } = useContext(SearchContext);
   const [location, setlocation] = useState("");
-  // console.log(location)
   const toast = useToast();
 
+  let localdata=JSON.parse(localStorage.getItem('booking'))
+
   let initialdata = {
-    destination: "",
-    checkin: "",
-    checkout: "",
-    travellers: "",
-    rooms: "",
+    destination: localdata?.destination || "",
+    checkin: localdata?.checkin || "",
+    checkout: localdata?.checkout || "",
+    travellers: localdata?.travellers || "",
+    rooms: localdata?.rooms || "",
   };
 
   const [traveldata, settraveldata] = useState(initialdata);
@@ -62,18 +61,11 @@ export default function SearchPanel() {
 
     if (flag == true) {
       let bookingdata = JSON.parse(localStorage.getItem("booking"));
-      setsearch([
-        location,
-        traveldata.checkin,
-        traveldata.checkout,
-        traveldata.travellers,
-        traveldata.rooms,
-      ]);
-      navigate("/products");
       localStorage.setItem(
         "booking",
         JSON.stringify({ ...bookingdata, ...traveldata })
       );
+      navigate("/products");     
     }
   };
 
@@ -117,6 +109,7 @@ export default function SearchPanel() {
           <InputLeftAddon h={"auto"}>Going to</InputLeftAddon>
           <DatalistInput
             // border={'1px'}
+            value={traveldata.destination}
             placeholder="Enter the destination"
             onChange={(e)=>handleSearchChange(e)}
             onSelect={(item) => {
@@ -148,6 +141,7 @@ export default function SearchPanel() {
               size="md"
               type="date"
               name="checkin"
+              value={traveldata.checkin}
               onChange={handletraveller}
               min={
                 new Date().getFullYear() +
@@ -165,6 +159,7 @@ export default function SearchPanel() {
               size="md"
               type="date"
               name="checkout"
+              value={traveldata.checkout}
               onChange={handletraveller}
               disabled={traveldata.checkin ? false : true}
               min={traveldata.checkin}
@@ -179,6 +174,7 @@ export default function SearchPanel() {
               size="md"
               type="number"
               name="travellers"
+              value={traveldata.travellers}
               onChange={handletraveller}
             />
           </InputGroup>
@@ -190,6 +186,7 @@ export default function SearchPanel() {
               size="md"
               type="number"
               name="rooms"
+              value={traveldata.rooms}
               onChange={handletraveller}
             />
           </InputGroup>

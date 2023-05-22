@@ -24,45 +24,46 @@ import {
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import axios from "axios";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import PriceSlider from "../Components/PriceSlider";
 import ProductCard from "../Components/ProductCard";
 import SearchPanel from "../Components/SearchPanel";
-import { SearchContext } from "../Contexts/SearchContextProvider";
+// import { SearchContext } from "../Contexts/SearchContextProvider";
 import { useLocation, useSearchParams } from "react-router-dom";
 
 export default function ProductsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
-  const { search } = useContext(SearchContext);
+  // const { search } = useContext(SearchContext);
   const [products, setproducts] = useState([]);
-  const [price, setprice] = useState(0);
-  const [sort, setSort] = useState("");
+  const [price, setprice] = useState(searchParams.get('price'));
+  // console.log(price)
+  const [sort, setSort] = useState(searchParams.get('sort'));
 
   const handleSorting = (str) => {
     setSort(str);
   };
 
-  let keep = searchParams.get("place");
+  let bookingdata = JSON.parse(localStorage.getItem("booking"));
+  // console.log(bookingdata)
+
 
 //------------------- useEffect for setting the URL-----------------------------  
   useEffect(() => {
-    let newParams = { place: search[0] || keep };
+    let newParams = { destination: bookingdata.destination };
     price && (newParams.price = price);
     sort && (newParams.sort = sort);
     setSearchParams(newParams);
-  }, [search, price, sort]);
+  }, [price, sort ,bookingdata.destination]);
 
 //------------- useEffect for making api calls using URL parameters--------------  
   useEffect(() => {
     axios({
       method: "get",
-      url: `${process.env.REACT_APP_URL}/products?location=${
-        search[0] || keep
-      }`,
+      url: `${process.env.REACT_APP_URL}/products`,
       headers: {
-        place: searchParams.get("place") || "",
+        destination: searchParams.get("destination") || bookingdata.destination,
         price: searchParams.get("price") || "",
         sort: searchParams.get("sort") || "",
       },
@@ -72,6 +73,8 @@ export default function ProductsPage() {
       })
       .catch((err) => console.log(err));
   }, [location.search]);
+
+  
 
   return (
     <Box px={10}>
@@ -125,7 +128,7 @@ export default function ProductsPage() {
                 </PopoverHeader>
                 <PopoverBody>
                   <Container direction="row">
-                    <PriceSlider setprice={setprice} />
+                    <PriceSlider setprice={setprice} price={price}/>
                   </Container>
                 </PopoverBody>
               </Box>
@@ -185,7 +188,7 @@ export default function ProductsPage() {
             <br />
             <Heading size="md">Price</Heading>
             <Container direction="row">
-              <PriceSlider setprice={setprice} />
+              <PriceSlider setprice={setprice} price={price}/>
             </Container>
           </VStack>
         </Hide>
