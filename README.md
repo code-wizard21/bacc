@@ -17,6 +17,7 @@ Specifically catering to the LGBTQ+ community.
   <li> Debouncing using closure for making API requests</li>
   <li> Handling wrong URL</li>
   <li> Dynamic Routes for single-product page</li>
+  <li> Retaining the filterd data even after the refreshing of the web-page</li>
 </ul>
 
 <h2>Tech Stacks used</h2>
