@@ -108,7 +108,7 @@ export default function SearchPanel() {
         >
           <InputLeftAddon h={"auto"}>Going to</InputLeftAddon>
           <DatalistInput
-            // border={'1px'}
+            zindex={2}
             value={traveldata.destination}
             placeholder="Enter the destination"
             onChange={(e)=>handleSearchChange(e)}
