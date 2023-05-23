@@ -15,7 +15,7 @@ productrouter.get("/", async (req, res) => {
 
     let found;
     if(sort) found=await productModel.find(obj).sort({'price':sort=='asc'?1:-1})
-    else await productModel.find(obj)
+    else found=await productModel.find(obj)
     res.send(found)
 
   } catch (error) {

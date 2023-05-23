@@ -29,16 +29,13 @@ import { useState } from "react";
 import PriceSlider from "../Components/PriceSlider";
 import ProductCard from "../Components/ProductCard";
 import SearchPanel from "../Components/SearchPanel";
-// import { SearchContext } from "../Contexts/SearchContextProvider";
 import { useLocation, useSearchParams } from "react-router-dom";
 
 export default function ProductsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
-  // const { search } = useContext(SearchContext);
   const [products, setproducts] = useState([]);
   const [price, setprice] = useState(searchParams.get('price'));
-  // console.log(price)
   const [sort, setSort] = useState(searchParams.get('sort'));
 
   const handleSorting = (str) => {
@@ -46,7 +43,6 @@ export default function ProductsPage() {
   };
 
   let bookingdata = JSON.parse(localStorage.getItem("booking"));
-  // console.log(bookingdata)
 
 
 //------------------- useEffect for setting the URL-----------------------------  
@@ -74,8 +70,6 @@ export default function ProductsPage() {
       })
       .catch((err) => console.log(err));
   }, [location.search]);
-
-  
 
   return (
     <Box px={10}>

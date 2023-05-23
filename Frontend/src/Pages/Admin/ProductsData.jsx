@@ -30,7 +30,6 @@ import {
 export const ProductsData = () => {
   const [allproducts, setAllProducts] = React.useState([]);
   const [edit, setEdit]=React.useState("")
-  console.log(edit)
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleEdit=(data)=>{
