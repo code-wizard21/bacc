@@ -7,7 +7,7 @@ const productSchema=mongoose.Schema({
     place:String,
     image:String,
     amenities:Array,
-    price:String,
+    price:Number,
     rating:String
 })
 

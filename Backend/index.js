@@ -5,11 +5,13 @@ const cors=require('cors')
 const mongoose=require('mongoose')
 const { authrouter } = require('./Routes/auth.routes')
 const { productrouter } = require('./Routes/product.routes')
+const { adminRouter } = require('./Routes/admin.routes')
 
 app.use(express.json())
 app.use(cors())
 app.use('/authentication',authrouter)
 app.use('/products',productrouter)
+app.use('/admin',adminRouter)
 
 app.listen(process.env.port,()=>{
     mongoose.connect(process.env.mongo)

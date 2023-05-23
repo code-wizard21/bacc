@@ -8,26 +8,26 @@ import {
   useToast,
   Text,
 } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import DatalistInput from "react-datalist-input";
 import "react-datalist-input/dist/styles.css";
-import { useContext, useRef } from "react";
-import { SearchContext } from "../Contexts/SearchContextProvider";
+import { useRef } from "react";
 import { useState } from "react";
 import Alert from "./Alert";
 
 export default function SearchPanel() {
   const navigate = useNavigate();
-  const { setsearch } = useContext(SearchContext);
-  const [location, setlocation] = useState(null);
+  const [location, setlocation] = useState("");
   const toast = useToast();
 
+  let localdata=JSON.parse(localStorage.getItem('booking'))
+
   let initialdata = {
-    destination: null,
-    checkin: null,
-    checkout: null,
-    travellers: null,
-    rooms: null,
+    destination: localdata?.destination || "",
+    checkin: localdata?.checkin || "",
+    checkout: localdata?.checkout || "",
+    travellers: localdata?.travellers || "",
+    rooms: localdata?.rooms || "",
   };
 
   const [traveldata, settraveldata] = useState(initialdata);
@@ -45,7 +45,7 @@ export default function SearchPanel() {
     };
     let flag = true;
     for (let key in traveldata) {
-      if (traveldata[key] == null) {
+      if (traveldata[key] == "") {
         toast(Alert(alertdata));
         flag = false;
         break;
@@ -61,18 +61,11 @@ export default function SearchPanel() {
 
     if (flag == true) {
       let bookingdata = JSON.parse(localStorage.getItem("booking"));
-      setsearch([
-        location,
-        traveldata.checkin,
-        traveldata.checkout,
-        traveldata.travellers,
-        traveldata.rooms,
-      ]);
-      navigate("/products");
       localStorage.setItem(
         "booking",
         JSON.stringify({ ...bookingdata, ...traveldata })
       );
+      navigate("/products");     
     }
   };
 
@@ -86,6 +79,22 @@ export default function SearchPanel() {
       }, 1000);
     };
   };
+
+  let obj={
+    "Goa":1,
+    "Antartica":1,
+    "Shara Desert":1,
+    "Mt.Everst":1,
+    "Amazon":1
+  }
+  window.onclick=()=>{
+    if(!obj[location] && location!="") document.getElementById('notAvailable').style.visibility="visible"
+  }
+  const handleSearchChange=(e)=>{
+    document.getElementById('notAvailable').style.visibility="hidden"
+    setlocation(e.target.value)
+  }
+
   // console.log(new Date().getFullYear()+`-${new Date().getMonth()>8?"":0}`+(new Date().getMonth()+1)+`-${new Date().getDate()>9?"":0}`+new Date().getDate())
   return (
     <div style={{ marginBottom: "2%", border: "0px solid" }}>
@@ -100,7 +109,9 @@ export default function SearchPanel() {
           <InputLeftAddon h={"auto"}>Going to</InputLeftAddon>
           <DatalistInput
             // border={'1px'}
+            value={traveldata.destination}
             placeholder="Enter the destination"
+            onChange={(e)=>handleSearchChange(e)}
             onSelect={(item) => {
               setlocation(item.value);
               traveldata.destination = item.value;
@@ -114,6 +125,7 @@ export default function SearchPanel() {
             ]}
           />
         </InputGroup>
+        <Text id="notAvailable" color='red' visibility={'hidden'}>Destination not available!</Text>
       </Box>
       <Stack
         direction={{ base: "column", lg: "row" }}
@@ -129,6 +141,7 @@ export default function SearchPanel() {
               size="md"
               type="date"
               name="checkin"
+              value={traveldata.checkin}
               onChange={handletraveller}
               min={
                 new Date().getFullYear() +
@@ -146,6 +159,7 @@ export default function SearchPanel() {
               size="md"
               type="date"
               name="checkout"
+              value={traveldata.checkout}
               onChange={handletraveller}
               disabled={traveldata.checkin ? false : true}
               min={traveldata.checkin}
@@ -160,6 +174,7 @@ export default function SearchPanel() {
               size="md"
               type="number"
               name="travellers"
+              value={traveldata.travellers}
               onChange={handletraveller}
             />
           </InputGroup>
@@ -171,6 +186,7 @@ export default function SearchPanel() {
               size="md"
               type="number"
               name="rooms"
+              value={traveldata.rooms}
               onChange={handletraveller}
             />
           </InputGroup>

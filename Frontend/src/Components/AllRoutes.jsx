@@ -7,11 +7,13 @@ import ProductsPage from "../Pages/ProductsPage"
 import SingleProduct from "../Pages/SingleProduct"
 import PaymentsPage from "../Pages/PaymentsPage"
 import CheckoutPage from "../Pages/CheckoutPage"
-import AdminPage from "../Pages/AdminPage"
-import PropertyListing from "../Pages/PropertyListing"
 import LoaderPage from "../Pages/LoaderPage"
 import SuccessPayment from "../Pages/SuccessPayment"
 import { Error404 } from "./Error404"
+import { CreateProduct } from "../Pages/Admin/CreateProduct"
+import { UserData } from "../Pages/Admin/UserData"
+import { ProductsData } from "../Pages/Admin/ProductsData"
+import { Admin } from "../Pages/Admin/Admin"
 
 export default function Allroutes(){
     return(
@@ -23,8 +25,10 @@ export default function Allroutes(){
             <Route path='/singleproduct/:id' element={<SingleProduct/>}/>
             <Route path='/checkout' element={<PrivateRouter><CheckoutPage/></PrivateRouter>}/>
             <Route path='/payment' element={<PrivateRouter><PaymentsPage/></PrivateRouter>}/>
-            <Route path='/admin' element={<AdminPage/>}/>
-            {/* <Route path='/propertylist' element={<PropertyListing/>}/> */}
+            <Route path='/admin' element={<Admin/>}/>
+            <Route path='/admin/productDashboard' element={<ProductsData/>}/>
+            <Route path='/admin/userDashboard' element={<UserData/>}/>
+            <Route path='/admin/createProduct' element={<CreateProduct/>}/>
             <Route path='/loader' element={<PrivateRouter><LoaderPage/></PrivateRouter>}/>
             <Route path='/paymentdone' element={<PrivateRouter><SuccessPayment/></PrivateRouter>}/>
             <Route path='/*' element={<Error404/>}/>

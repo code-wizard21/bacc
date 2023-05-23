@@ -24,40 +24,65 @@ import {
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import axios from "axios";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import PriceSlider from "../Components/PriceSlider";
 import ProductCard from "../Components/ProductCard";
 import SearchPanel from "../Components/SearchPanel";
-import { SearchContext } from "../Contexts/SearchContextProvider";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 export default function ProductsPage() {
-  const { search } = useContext(SearchContext);
-  // console.log(search)
+  const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
   const [products, setproducts] = useState([]);
-  const [price, setprice] = useState(4800);
+  const [price, setprice] = useState(searchParams.get('price'));
+  const [sort, setSort] = useState(searchParams.get('sort'));
+
+  const handleSorting = (str) => {
+    setSort(str);
+  };
+
+  let bookingdata = JSON.parse(localStorage.getItem("booking"));
+
+
+//------------------- useEffect for setting the URL-----------------------------  
   useEffect(() => {
-    const FtchData = async () => {
-      try {
-        let res = await axios({
-          method: "get",
-          url: `${process.env.REACT_APP_URL}/products?location=${search[0]}`,
-        });
-        // console.log(res)
-        let priceFiltered = res.data.filter((prod) => prod.price <= price);
-        setproducts(priceFiltered);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    FtchData();
-  }, [search, price]);
+    let newParams = { destination: bookingdata.destination };
+    price && (newParams.price = price);
+    sort && (newParams.sort = sort);
+    setSearchParams(newParams);
+  }, [price, sort ,bookingdata.destination]);
+
+//------------- useEffect for making api calls using URL parameters--------------  
+  useEffect(() => {
+    axios({
+      method: "get",
+      url: `${process.env.REACT_APP_URL}/products`,
+      headers: {
+        destination: searchParams.get("destination") || bookingdata.destination,
+        price: searchParams.get("price") || "",
+        sort: searchParams.get("sort") || "",
+      },
+    })
+      .then((res) => {
+        setproducts(res.data);
+        // console.log(res.data)
+      })
+      .catch((err) => console.log(err));
+  }, [location.search]);
 
   return (
     <Box px={10}>
       <SearchPanel />
 
-      <HStack justifyContent={"space-between"} position={'sticky'} top={'64px'} zIndex={2} backgroundColor={'white'} p={3}>
+      <HStack
+        justifyContent={"space-between"}
+        position={"sticky"}
+        top={"64px"}
+        zIndex={2}
+        backgroundColor={"white"}
+        p={3}
+      >
         <Box visibility={{ base: "block", md: "hidden" }}>
           <Popover placement="bottom-start">
             <PopoverTrigger>
@@ -98,7 +123,7 @@ export default function ProductsPage() {
                 </PopoverHeader>
                 <PopoverBody>
                   <Container direction="row">
-                    <PriceSlider setprice={setprice} />
+                    <PriceSlider setprice={setprice} price={price}/>
                   </Container>
                 </PopoverBody>
               </Box>
@@ -111,17 +136,21 @@ export default function ProductsPage() {
               SortBy
             </MenuButton>
             <MenuList>
-              <MenuItem>Low to High</MenuItem>
-              <MenuItem>High to Low</MenuItem>
+              <MenuItem onClick={() => handleSorting("asc")}>
+                Low to High
+              </MenuItem>
+              <MenuItem onClick={() => handleSorting("desc")}>
+                High to Low
+              </MenuItem>
             </MenuList>
           </Menu>
         </Box>
       </HStack>
-    <br/>
+      <br />
       <Stack direction="row" spacing={4}>
         <Hide below="md">
           <VStack
-            w={{ sm: "0%", md: "50%", lg:"30%" }}
+            w={{ sm: "0%", md: "50%", lg: "30%" }}
             border="0px solid grey"
             align="flex-start"
             alignSelf={"start"}
@@ -154,7 +183,7 @@ export default function ProductsPage() {
             <br />
             <Heading size="md">Price</Heading>
             <Container direction="row">
-              <PriceSlider setprice={setprice} />
+              <PriceSlider setprice={setprice} price={price}/>
             </Container>
           </VStack>
         </Hide>

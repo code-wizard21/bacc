@@ -24,41 +24,66 @@ import { AuthContext } from "../Contexts/AuthContextProvider";
 
 export default function Signup() {
   let initial = {
-    mobile: null,
-    email: null,
-    password: null,
+    mobile: "",
+    email: "",
+    password: "",
+    isAdmin: false,
   };
   const [showPassword, setShowPassword] = useState(false);
   let { Login } = useContext(AuthContext);
   const navigate = useNavigate();
   const [signup, setsignup] = useState(initial);
-  // console.log(signup);
 
   const handleChange = (el) => {
     setsignup({ ...signup, [el.target.name]: el.target.value });
+
+    if (signup.mobile.length >= 9) {
+      document.getElementById("mobile").type = "text";
+    } else document.getElementById("mobile").type = "number";
+  
   };
 
   const toast = useToast();
 
   const authenticating = (data) => {
-    if(data=='success') navigate("/");
+    if (data == "success") navigate("/");
     let alertdata = {
-      title: data=='success'?"Signup Successfull":"User already present",
-      description: data=='success'?"You're being redirected to the Home Page":"Please try again!",
-      status: data=='success'?"success":"warning",
+      title: data == "success" ? "Signup Successfull" : "User already present",
+      description:
+        data == "success"
+          ? "You're being redirected to the Home Page"
+          : "Please try again!",
+      status: data == "success" ? "success" : "warning",
     };
     toast(Alert(alertdata));
-    Login()
+    Login();
   };
 
-  const handleSignup = () => {  
-        axios({
-          method: "post",
-          url:`${process.env.REACT_APP_URL}/authentication`,
-          data: signup,
-        })
-        .then(res=>authenticating(res.data))
-        .catch(err=>console.log(err))       
+  const handleSignup = () => {
+    let flag = false;
+    for (let key in signup) {
+      if (!signup[key] && key !== "isAdmin") {
+        flag = true;
+        break;
+      }
+    }
+    // console.log(signup);
+    if (!flag) {
+      axios({
+        method: "post",
+        url: `${process.env.REACT_APP_URL}/authentication`,
+        data: signup,
+      })
+        .then((res) => authenticating(res.data))
+        .catch((err) => console.log(err));
+    } else {
+      let alertdata = {
+        title: "Empty details!",
+        description: "Please fill all the details",
+        status: "warning",
+      };
+      toast(Alert(alertdata));
+    }
   };
 
   return (
@@ -84,17 +109,23 @@ export default function Signup() {
           p={8}
         >
           <Stack spacing={4}>
-            <FormControl id="mobile">
+            <FormControl isRequired>
               <FormLabel>Mobile Number</FormLabel>
-              <Input type="number" name="mobile" onChange={handleChange} />
+              <Input
+                type="number"
+                maxLength={"10"}
+                id="mobile"
+                name="mobile"
+                onChange={handleChange}
+              />
             </FormControl>
 
-            <FormControl id="email" isRequired>
+            <FormControl isRequired>
               <FormLabel>Email address</FormLabel>
               <Input type="email" name="email" onChange={handleChange} />
             </FormControl>
 
-            <FormControl id="password" isRequired>
+            <FormControl isRequired>
               <FormLabel>Password</FormLabel>
               <InputGroup>
                 <Input

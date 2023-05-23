@@ -22,7 +22,7 @@ import EmailContactForm from "../Components/Mail";
 import { AuthContext } from "../Contexts/AuthContextProvider";
 
 export default function Login() {
-  let { Login, page } = useContext(AuthContext);
+  let { Login, page, isAdmin, setIsAdmin } = useContext(AuthContext);
   const navigate = useNavigate();
 
   let initial = {
@@ -43,7 +43,8 @@ export default function Login() {
           url: `${process.env.REACT_APP_URL}/authentication/login`,
           data: login,
         });
-        authenticating(res.data);
+        authenticating(res.data.msg);
+        if(res.data.isAdmin) setIsAdmin(!isAdmin)
       } catch (error) {
         console.error(error);
       }

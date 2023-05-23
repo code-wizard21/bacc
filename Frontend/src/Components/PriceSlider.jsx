@@ -8,8 +8,9 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 
-export default function PriceSlider({setprice}) {
-  const [sliderValue, setSliderValue] = useState(50);
+export default function PriceSlider({setprice,price}) {
+  let initial=price/48
+  const [sliderValue, setSliderValue] = useState(initial?initial:50);
     
   return (
     <>
@@ -18,6 +19,7 @@ export default function PriceSlider({setprice}) {
           aria-label="slider-ex-6"
           onChange={(val) => setSliderValue(val)}
           onChangeEnd={() => setprice(sliderValue * 48)}
+          defaultValue={sliderValue}
         >
           <SliderMark
             value={sliderValue}
