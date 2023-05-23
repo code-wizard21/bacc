@@ -12,7 +12,10 @@ import PropertyListing from "../Pages/PropertyListing"
 import LoaderPage from "../Pages/LoaderPage"
 import SuccessPayment from "../Pages/SuccessPayment"
 import { Error404 } from "./Error404"
-import { Admin } from "../Pages/Admin"
+import { CreateProduct } from "../Pages/Admin/CreateProduct"
+import { UserData } from "../Pages/Admin/UserData"
+import { ProductsData } from "../Pages/Admin/ProductsData"
+import { Admin } from "../Pages/Admin/Admin"
 
 export default function Allroutes(){
     return(
@@ -25,6 +28,9 @@ export default function Allroutes(){
             <Route path='/checkout' element={<PrivateRouter><CheckoutPage/></PrivateRouter>}/>
             <Route path='/payment' element={<PrivateRouter><PaymentsPage/></PrivateRouter>}/>
             <Route path='/admin' element={<Admin/>}/>
+            <Route path='/admin/productDashboard' element={<ProductsData/>}/>
+            <Route path='/admin/userDashboard' element={<UserData/>}/>
+            <Route path='/admin/createProduct' element={<CreateProduct/>}/>
             {/* <Route path='/propertylist' element={<PropertyListing/>}/> */}
             <Route path='/loader' element={<PrivateRouter><LoaderPage/></PrivateRouter>}/>
             <Route path='/paymentdone' element={<PrivateRouter><SuccessPayment/></PrivateRouter>}/>

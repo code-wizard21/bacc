@@ -27,6 +27,7 @@ export default function Signup() {
     mobile: null,
     email: null,
     password: null,
+    isAdmin:false,
   };
   const [showPassword, setShowPassword] = useState(false);
   let { Login } = useContext(AuthContext);

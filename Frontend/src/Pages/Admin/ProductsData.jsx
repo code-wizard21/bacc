@@ -27,7 +27,7 @@ import {
   ModalCloseButton,
 } from "@chakra-ui/react";
 
-export const Admin = () => {
+export const ProductsData = () => {
   const [allproducts, setAllProducts] = React.useState([]);
   const [edit, setEdit]=React.useState("")
   console.log(edit)
@@ -46,14 +46,17 @@ export const Admin = () => {
     onClose()
     axios({
         method:'put',
-        url:`${process.env.REACT_APP_URL}/admin/edit`
+        url:`${process.env.REACT_APP_URL}/admin/editProducts`,
+        data: edit
     })
+    .then(res=>console.log(res.data))
+    .catch(err=>console.log(err))
   }
 
   React.useEffect(() => {
     axios({
       method: "get",
-      url: `${process.env.REACT_APP_URL}/admin/all`,
+      url: `${process.env.REACT_APP_URL}/admin/allProducts`,
     })
       .then((res) => setAllProducts(res.data))
       .catch((err) => console.log(err));
@@ -62,7 +65,7 @@ export const Admin = () => {
     <div>
       <Box display={"grid"} gridTemplateColumns={"repeat(3,1fr)"} gap={"1%"}>
         {allproducts?.map((product) => (
-          <TableContainer key={product.id} border={"1px"}>
+          <TableContainer key={product.id} border={"1px"} p={'1%'}>
             <Table variant="striped" colorScheme="teal">
               <Thead>
                 <Tr>

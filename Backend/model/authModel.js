@@ -3,7 +3,8 @@ const mongoose=require('mongoose')
 const authSchema=mongoose.Schema({
     mobile:Number,
     email:String,
-    password:String
+    password:String,
+    isAdmin:Boolean,
 })
 
 const authModel=mongoose.model("auth",authSchema)
