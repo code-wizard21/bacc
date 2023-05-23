@@ -7,9 +7,11 @@ import {
   Box,
   useToast,
   Text,
+  Container,
+  Select,
 } from "@chakra-ui/react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import DatalistInput from "react-datalist-input";
+// import DatalistInput from "react-datalist-input";
 import "react-datalist-input/dist/styles.css";
 import { useRef } from "react";
 import { useState } from "react";
@@ -17,10 +19,10 @@ import Alert from "./Alert";
 
 export default function SearchPanel() {
   const navigate = useNavigate();
-  const [location, setlocation] = useState("");
+  // const [location, setlocation] = useState("");
   const toast = useToast();
 
-  let localdata=JSON.parse(localStorage.getItem('booking'))
+  let localdata = JSON.parse(localStorage.getItem("booking"));
 
   let initialdata = {
     destination: localdata?.destination || "",
@@ -65,7 +67,7 @@ export default function SearchPanel() {
         "booking",
         JSON.stringify({ ...bookingdata, ...traveldata })
       );
-      navigate("/products");     
+      navigate("/products");
     }
   };
 
@@ -80,20 +82,21 @@ export default function SearchPanel() {
     };
   };
 
-  let obj={
-    "Goa":1,
-    "Antartica":1,
-    "Shara Desert":1,
-    "Mt.Everst":1,
-    "Amazon":1
-  }
-  window.onclick=()=>{
-    if(!obj[location] && location!="") document.getElementById('notAvailable').style.visibility="visible"
-  }
-  const handleSearchChange=(e)=>{
-    document.getElementById('notAvailable').style.visibility="hidden"
-    setlocation(e.target.value)
-  }
+  // let obj = {
+  //   Goa: 1,
+  //   Antartica: 1,
+  //   "Shara Desert": 1,
+  //   "Mt.Everst": 1,
+  //   Amazon: 1,
+  // };
+  // window.onclick = () => {
+  //   if (!obj[location] && location != "")
+  //     document.getElementById("notAvailable").style.visibility = "visible";
+  // };
+  // const handleSearchChange = (e) => {
+    // document.getElementById("notAvailable").style.visibility = "hidden";
+    // setlocation(e.target.value);
+  // };
 
   // console.log(new Date().getFullYear()+`-${new Date().getMonth()>8?"":0}`+(new Date().getMonth()+1)+`-${new Date().getDate()>9?"":0}`+new Date().getDate())
   return (
@@ -107,8 +110,7 @@ export default function SearchPanel() {
           margin="auto"
         >
           <InputLeftAddon h={"auto"}>Going to</InputLeftAddon>
-          <DatalistInput
-            zindex={2}
+          {/* <DatalistInput
             value={traveldata.destination}
             placeholder="Enter the destination"
             onChange={(e)=>handleSearchChange(e)}
@@ -123,9 +125,23 @@ export default function SearchPanel() {
               { id: "Mt.Everst", value: "Mt.Everst" },
               { id: "Goa", value: "Goa" },
             ]}
-          />
+          /> */}
+          <Select
+            placeholder="Select option"
+            name="destination"
+            defaultValue={traveldata.destination}
+            onChange={handletraveller}
+          >
+            <option value="Antartica">Antartica</option>
+            <option value="Shara Desert">Shara Desert</option>
+            <option value="Amazon">Amazon</option>
+            <option value="Mt.Everst">Mt.Everst</option>
+            <option value="Goa">Goa</option>
+          </Select>
         </InputGroup>
-        <Text id="notAvailable" color='red' visibility={'hidden'}>Destination not available!</Text>
+        {/* <Text id="notAvailable" color="red" visibility={"hidden"}>
+          Destination not available!
+        </Text> */}
       </Box>
       <Stack
         direction={{ base: "column", lg: "row" }}
