@@ -19,7 +19,7 @@ import { AuthContext } from "../Contexts/AuthContextProvider";
 
 export default function Navbar() {
   const navigate = useNavigate();
-  const { isAuth, Logout } = useContext(AuthContext);
+  const { isAuth, Logout, isAdmin } = useContext(AuthContext);
   let userdata = JSON.parse(localStorage.getItem("booking"));
 
   const handleLogout = () => {
@@ -97,7 +97,7 @@ export default function Navbar() {
                   <br />
                   <MenuDivider />
                   <Link to="/admin">
-                    <MenuItem>Admin User</MenuItem>
+                    <MenuItem isDisabled={isAdmin?false:true}>Admin</MenuItem>
                   </Link>
                   <MenuItem onClick={handleLogout} isDisabled={isAuth?false:true}>Logout</MenuItem>
                 </MenuList>
