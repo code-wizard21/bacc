@@ -27,11 +27,14 @@ import {
   ModalBody,
   ModalCloseButton,
 } from "@chakra-ui/react";
+import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
+import { useNavigate } from "react-router-dom";
 
 export const ProductsData = () => {
   const [allproducts, setAllProducts] = React.useState([]);
   const [edit, setEdit]=React.useState("")
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const navigate=useNavigate()
 
   const handleEdit=(data)=>{
     setEdit(data)
@@ -46,7 +49,7 @@ export const ProductsData = () => {
     onClose()
     axios({
         method:'put',
-        url:`${process.env.REACT_APP_URL}/admin/editProducts`,
+        url:`${process.env.REACT_APP_URL}/admin/editProduct`,
         data: edit
     })
     .then(res=>console.log(res.data))
@@ -65,7 +68,7 @@ export const ProductsData = () => {
     <div>
       <Box backgroundColor={'gray.100'}>
       <Box display={'flex'} justifyContent={'flex-end'} padding={'1%'}>
-      <Button colorScheme="blue">Create</Button>
+      <Button colorScheme="blue" onClick={()=>navigate('/admin/createProduct')}>Create</Button>
       </Box>
       <Box display={"grid"} gridTemplateColumns={"repeat(3,1fr)"} gap={"1%"} p={'1%'} >
         {allproducts?.map((product) => (
@@ -104,10 +107,11 @@ export const ProductsData = () => {
                 </Tr>
                 <Tr>
                   <Td>
-                    <Button onClick={()=>handleEdit(product)}>Edit</Button>
+                    
+                    <Button onClick={()=>handleEdit(product)}><EditIcon/></Button>
                   </Td>
                   <Td>
-                    <Button colorScheme="red">Delete</Button>
+                    <Button colorScheme="red"><DeleteIcon/></Button>
                   </Td>
                 </Tr>
               </Tbody>
