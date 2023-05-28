@@ -15,6 +15,7 @@ import {
   useDisclosure,
   FormLabel,
   Input,
+  Link,
 } from "@chakra-ui/react";
 
 import {
@@ -62,10 +63,14 @@ export const ProductsData = () => {
   }, []);
   return (
     <div>
-      <Box display={"grid"} gridTemplateColumns={"repeat(3,1fr)"} gap={"1%"}>
+      <Box backgroundColor={'gray.100'}>
+      <Box display={'flex'} justifyContent={'flex-end'} padding={'1%'}>
+      <Button colorScheme="blue">Create</Button>
+      </Box>
+      <Box display={"grid"} gridTemplateColumns={"repeat(3,1fr)"} gap={"1%"} p={'1%'} >
         {allproducts?.map((product) => (
-          <TableContainer key={product.id} border={"1px"} p={'1%'}>
-            <Table variant="striped" colorScheme="teal">
+          <TableContainer key={product.id} border={"0px"} p={'4% 0%'} boxShadow={'base'} bg={'white'}>
+            <Table size={'sm'}>
               <Thead>
                 <Tr>
                   <Th>DATA</Th>
@@ -92,9 +97,9 @@ export const ProductsData = () => {
                 <Tr>
                   <Td>image</Td>
                   <Td>
-                    <a target="_blank" href={product.image}>
+                    <Link color={'blue'} textDecoration={'underline'} target="_blank" href={product.image}>
                       click me
-                    </a>
+                    </Link>
                   </Td>
                 </Tr>
                 <Tr>
@@ -109,6 +114,7 @@ export const ProductsData = () => {
             </Table>
           </TableContainer>
         ))}
+      </Box>
       </Box>
 
       <Modal isOpen={isOpen} onClose={onClose}>
