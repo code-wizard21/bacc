@@ -11,6 +11,7 @@ var initialdetails = {
 
 export const CreateProduct = () => {
   const [details,setdetails]=React.useState(initialdetails)
+  console.log(details)
 
   const handleChange=(e)=>{
     setdetails({...details,[e.target.name]:e.target.value})
@@ -31,7 +32,7 @@ export const CreateProduct = () => {
     {
       axios({
         method:'post',
-        url:`${process.env.URL}/admin/addProduct`,
+        url:`${process.env.REACT_APP_URL}/admin/addProduct`,
         data:details
       })
       .then(res=>console.log(res.data))

@@ -22,10 +22,18 @@ adminRouter.put('/editProduct',async(req,res)=>{
 })
 
 adminRouter.post('/addProduct',async(req,res)=>{
-    console.log(req.body)
     try {
         let insert=await productModel.insertMany(req.body)
         res.send(insert)
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+adminRouter.delete('/deleteProduct',async(req,res)=>{
+    try {
+        await productModel.findByIdAndDelete({'_id':req.headers.id})
+        res.send('Deleted Successfully')
     } catch (error) {
         console.log(error)
     }

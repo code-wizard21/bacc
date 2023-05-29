@@ -26,7 +26,6 @@ authrouter.post('/',async(req,res)=>{
 authrouter.post('/login',async(req,res)=>{
     try {
         let find=await authModel.find({'mobile':req.body.mobile,'password':req.body.password})
-        console.log(find)
         if(find.length==0) res.send({msg:'fail',isAdmin:false})
         else res.send({msg:'pass',isAdmin:find[0].isAdmin?true:false})
     } catch (error) {

@@ -36,6 +36,15 @@ export const ProductsData = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate=useNavigate()
 
+  const FetchProductData=()=>{
+    axios({
+      method: "get",
+      url: `${process.env.REACT_APP_URL}/admin/allProducts`,
+    })
+      .then((res) => setAllProducts(res.data))
+      .catch((err) => console.log(err));
+  }
+
   const handleEdit=(data)=>{
     setEdit(data)
     onOpen()
@@ -56,13 +65,18 @@ export const ProductsData = () => {
     .catch(err=>console.log(err))
   }
 
-  React.useEffect(() => {
+  const handleDelete=(id)=>{
     axios({
-      method: "get",
-      url: `${process.env.REACT_APP_URL}/admin/allProducts`,
+      method:'delete',
+      url:`${process.env.REACT_APP_URL}/admin/deleteProduct`,
+      headers:{id},
     })
-      .then((res) => setAllProducts(res.data))
-      .catch((err) => console.log(err));
+    .then(res=>FetchProductData())
+    .catch(err=>console.log(err))
+  }
+
+  React.useEffect(() => {
+    FetchProductData()
   }, []);
   return (
     <div>
@@ -111,7 +125,7 @@ export const ProductsData = () => {
                     <Button onClick={()=>handleEdit(product)}><EditIcon/></Button>
                   </Td>
                   <Td>
-                    <Button colorScheme="red"><DeleteIcon/></Button>
+                    <Button colorScheme="red" onClick={()=>handleDelete(product._id)}><DeleteIcon/></Button>
                   </Td>
                 </Tr>
               </Tbody>
