@@ -13,10 +13,11 @@ import {
   Text,
   useColorModeValue,
   useToast,
+  FormHelperText,
 } from "@chakra-ui/react";
 
 import { useContext, useEffect, useState } from "react";
-import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { CheckIcon, CloseIcon, ViewIcon, ViewOffIcon, WarningTwoIcon } from "@chakra-ui/icons";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Alert from "../Components/Alert";
@@ -40,7 +41,6 @@ export default function Signup() {
     if (signup.mobile.length >= 9) {
       document.getElementById("mobile").type = "text";
     } else document.getElementById("mobile").type = "number";
-  
   };
 
   const toast = useToast();
@@ -59,16 +59,7 @@ export default function Signup() {
     Login();
   };
 
-  const handleSignup = () => {
-    let flag = false;
-    for (let key in signup) {
-      if (!signup[key] && key !== "isAdmin") {
-        flag = true;
-        break;
-      }
-    }
-    // console.log(signup);
-    if (!flag) {
+  const handleSignup = () => {   
       axios({
         method: "post",
         url: `${process.env.REACT_APP_URL}/authentication`,
@@ -76,15 +67,24 @@ export default function Signup() {
       })
         .then((res) => authenticating(res.data))
         .catch((err) => console.log(err));
-    } else {
-      let alertdata = {
-        title: "Empty details!",
-        description: "Please fill all the details",
-        status: "warning",
-      };
-      toast(Alert(alertdata));
-    }
   };
+
+  const EMAIL_REGEX = /^[\w]+@([\w-]+\.)+[\w-]{3}$/g;
+  const PASS_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+  const [validNumber, setValidNumber] = useState(false);
+  const [validEmail, setValidEmail] = useState(false);
+  const [validPassword, setValidPassword] = useState(false);
+
+  useEffect(() => {
+    if (signup.mobile.length == 10) setValidNumber(true);
+    else setValidNumber(false);
+
+    const res = EMAIL_REGEX.test(signup.email);
+    setValidEmail(res);
+
+    const pass = PASS_REGEX.test(signup.password);
+    setValidPassword(pass);
+  }, [signup.mobile, signup.email, signup.password]);
 
   return (
     <Flex
@@ -109,10 +109,21 @@ export default function Signup() {
           p={8}
         >
           <Stack spacing={4}>
-            <FormControl isRequired>
-              <FormLabel>Mobile Number</FormLabel>
+            <FormControl>
+              <FormLabel>
+                Mobile Number{" "}
+                <CheckIcon
+                  color={"green"}
+                  display={validNumber ? "inline" : "none"}
+                />{" "}
+                <CloseIcon
+                  color={"red"}
+                  display={validNumber || !signup.mobile ? "none" : "inline"}
+                />
+              </FormLabel>
               <Input
                 type="number"
+                minLength={"10"}
                 maxLength={"10"}
                 id="mobile"
                 name="mobile"
@@ -120,13 +131,35 @@ export default function Signup() {
               />
             </FormControl>
 
-            <FormControl isRequired>
-              <FormLabel>Email address</FormLabel>
+            <FormControl>
+              <FormLabel>
+                Email address{" "}
+                <CheckIcon
+                  color={"green"}
+                  display={validEmail ? "inline" : "none"}
+                />{" "}
+                <CloseIcon
+                  color={"red"}
+                  display={validEmail || !signup.email ? "none" : "inline"}
+                />
+              </FormLabel>
               <Input type="email" name="email" onChange={handleChange} />
             </FormControl>
 
-            <FormControl isRequired>
-              <FormLabel>Password</FormLabel>
+            <FormControl>
+              <FormLabel>
+                Password{" "}
+                <CheckIcon
+                  color={"green"}
+                  display={validPassword ? "inline" : "none"}
+                />{" "}
+                <CloseIcon
+                  color={"red"}
+                  display={
+                    validPassword || !signup.password ? "none" : "inline"
+                  }
+                />
+              </FormLabel>
               <InputGroup>
                 <Input
                   type={showPassword ? "text" : "password"}
@@ -144,6 +177,13 @@ export default function Signup() {
                   </Button>
                 </InputRightElement>
               </InputGroup>
+              <FormHelperText color={"red"} textAlign={'start'}>
+                <WarningTwoIcon boxSize={'1.2em'}/>
+                {" "}8 to 24 characters.
+                <br />
+                Must include uppercase and lowercase letters, a number and a
+                special character.
+              </FormHelperText>
             </FormControl>
 
             <Stack spacing={10} pt={2}>
@@ -156,6 +196,7 @@ export default function Signup() {
                   bg: "blue.500",
                 }}
                 onClick={handleSignup}
+                isDisabled={validNumber && validEmail && validPassword?false:true}
               >
                 Sign up
               </Button>

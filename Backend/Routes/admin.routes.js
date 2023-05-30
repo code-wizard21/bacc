@@ -12,10 +12,30 @@ adminRouter.get('/allProducts',async(req,res)=>{
     }
 })
 
-adminRouter.put('/editProducts',async(req,res)=>{
+adminRouter.put('/editProduct',async(req,res)=>{
     try {
         let edit=await productModel.findByIdAndUpdate({'_id':req.body._id},req.body)
         res.send(edit)
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+adminRouter.post('/addProduct',async(req,res)=>{
+    try {
+        let count=await productModel.find()
+        let insert=await productModel.insertMany({id:count.length+1,...req.body})
+        res.send(insert)
+    } catch (error) {
+        console.log(error)
+        res.send(error)
+    }
+})
+
+adminRouter.delete('/deleteProduct',async(req,res)=>{
+    try {
+        await productModel.findByIdAndDelete({'_id':req.headers.id})
+        res.send('Deleted Successfully')
     } catch (error) {
         console.log(error)
     }

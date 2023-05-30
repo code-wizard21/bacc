@@ -15,6 +15,7 @@ import {
   useDisclosure,
   FormLabel,
   Input,
+  Link,
 } from "@chakra-ui/react";
 
 import {
@@ -26,11 +27,23 @@ import {
   ModalBody,
   ModalCloseButton,
 } from "@chakra-ui/react";
+import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
+import { useNavigate } from "react-router-dom";
 
 export const ProductsData = () => {
   const [allproducts, setAllProducts] = React.useState([]);
   const [edit, setEdit]=React.useState("")
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const navigate=useNavigate()
+
+  const FetchProductData=()=>{
+    axios({
+      method: "get",
+      url: `${process.env.REACT_APP_URL}/admin/allProducts`,
+    })
+      .then((res) => setAllProducts(res.data))
+      .catch((err) => console.log(err));
+  }
 
   const handleEdit=(data)=>{
     setEdit(data)
@@ -45,27 +58,36 @@ export const ProductsData = () => {
     onClose()
     axios({
         method:'put',
-        url:`${process.env.REACT_APP_URL}/admin/editProducts`,
+        url:`${process.env.REACT_APP_URL}/admin/editProduct`,
         data: edit
     })
     .then(res=>console.log(res.data))
     .catch(err=>console.log(err))
   }
 
-  React.useEffect(() => {
+  const handleDelete=(id)=>{
     axios({
-      method: "get",
-      url: `${process.env.REACT_APP_URL}/admin/allProducts`,
+      method:'delete',
+      url:`${process.env.REACT_APP_URL}/admin/deleteProduct`,
+      headers:{id},
     })
-      .then((res) => setAllProducts(res.data))
-      .catch((err) => console.log(err));
+    .then(res=>FetchProductData())
+    .catch(err=>console.log(err))
+  }
+
+  React.useEffect(() => {
+    FetchProductData()
   }, []);
   return (
     <div>
-      <Box display={"grid"} gridTemplateColumns={"repeat(3,1fr)"} gap={"1%"}>
+      <Box backgroundColor={'gray.100'}>
+      <Box display={'flex'} justifyContent={'flex-end'} padding={'1%'}>
+      <Button colorScheme="blue" onClick={()=>navigate('/admin/createProduct')}>Create</Button>
+      </Box>
+      <Box display={"grid"} gridTemplateColumns={"repeat(3,1fr)"} gap={"1%"} p={'1%'} >
         {allproducts?.map((product) => (
-          <TableContainer key={product.id} border={"1px"} p={'1%'}>
-            <Table variant="striped" colorScheme="teal">
+          <TableContainer key={product.id} border={"0px"} p={'4% 0%'} boxShadow={'base'} bg={'white'}>
+            <Table size={'sm'}>
               <Thead>
                 <Tr>
                   <Th>DATA</Th>
@@ -92,23 +114,25 @@ export const ProductsData = () => {
                 <Tr>
                   <Td>image</Td>
                   <Td>
-                    <a target="_blank" href={product.image}>
+                    <Link color={'blue'} textDecoration={'underline'} target="_blank" href={product.image}>
                       click me
-                    </a>
+                    </Link>
                   </Td>
                 </Tr>
                 <Tr>
                   <Td>
-                    <Button onClick={()=>handleEdit(product)}>Edit</Button>
+                    
+                    <Button onClick={()=>handleEdit(product)}><EditIcon/></Button>
                   </Td>
                   <Td>
-                    <Button colorScheme="red">Delete</Button>
+                    <Button colorScheme="red" onClick={()=>handleDelete(product._id)}><DeleteIcon/></Button>
                   </Td>
                 </Tr>
               </Tbody>
             </Table>
           </TableContainer>
         ))}
+      </Box>
       </Box>
 
       <Modal isOpen={isOpen} onClose={onClose}>

@@ -27,6 +27,7 @@ import {
   ModalBody,
   ModalCloseButton,
 } from "@chakra-ui/react";
+import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 
 export const UserData = () => {
   const [allUsers, setallUsers] = React.useState([]);
@@ -86,6 +87,8 @@ export const UserData = () => {
                   <Th>Mobile</Th>
                   <Th>Email</Th>
                   <Th>Admin</Th>
+                  <Th>Edit</Th>
+                  <Th>Delete</Th>
                 </Tr>
               </Thead>
               <Tbody>
@@ -96,10 +99,10 @@ export const UserData = () => {
                 <Td>{user.email}</Td>
                 <Td>{user.isAdmin?'YES':'NO'}</Td>
                 <Td>
-                  <Button onClick={()=>handleEdit(user)}>Edit</Button>
+                  <Button onClick={()=>handleEdit(user)}><EditIcon/></Button>
                 </Td>
                 <Td>
-                  <Button colorScheme="red" onClick={()=>handleDelete(user._id)}>Delete</Button>
+                  <Button colorScheme="red" onClick={()=>handleDelete(user._id)}><DeleteIcon/></Button>
                 </Td>
               </Tr>
                 )}            

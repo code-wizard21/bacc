@@ -14,6 +14,7 @@ import { CreateProduct } from "../Pages/Admin/CreateProduct"
 import { UserData } from "../Pages/Admin/UserData"
 import { ProductsData } from "../Pages/Admin/ProductsData"
 import { Admin } from "../Pages/Admin/Admin"
+import PrivateAdminRouter from "./PrivateAdminRouter"
 
 export default function Allroutes(){
     return(
@@ -25,10 +26,10 @@ export default function Allroutes(){
             <Route path='/singleproduct/:id' element={<SingleProduct/>}/>
             <Route path='/checkout' element={<PrivateRouter><CheckoutPage/></PrivateRouter>}/>
             <Route path='/payment' element={<PrivateRouter><PaymentsPage/></PrivateRouter>}/>
-            <Route path='/admin' element={<Admin/>}/>
-            <Route path='/admin/productDashboard' element={<ProductsData/>}/>
-            <Route path='/admin/userDashboard' element={<UserData/>}/>
-            <Route path='/admin/createProduct' element={<CreateProduct/>}/>
+            <Route path='/admin' element={<PrivateAdminRouter><Admin/></PrivateAdminRouter>}/>
+            <Route path='/admin/productDashboard' element={<PrivateAdminRouter><ProductsData/></PrivateAdminRouter>}/>
+            <Route path='/admin/userDashboard' element={<PrivateAdminRouter><UserData/></PrivateAdminRouter>}/>
+            <Route path='/admin/createProduct' element={<PrivateAdminRouter><CreateProduct/></PrivateAdminRouter>}/>
             <Route path='/loader' element={<PrivateRouter><LoaderPage/></PrivateRouter>}/>
             <Route path='/paymentdone' element={<PrivateRouter><SuccessPayment/></PrivateRouter>}/>
             <Route path='/*' element={<Error404/>}/>
