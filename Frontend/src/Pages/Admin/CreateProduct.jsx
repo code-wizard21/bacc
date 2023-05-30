@@ -1,6 +1,7 @@
 import { Box, Button, FormLabel, Input } from "@chakra-ui/react";
 import axios from "axios";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 var initialdetails = {
   location: "",
@@ -10,8 +11,8 @@ var initialdetails = {
 };
 
 export const CreateProduct = () => {
+  const navigate=useNavigate()
   const [details,setdetails]=React.useState(initialdetails)
-  console.log(details)
 
   const handleChange=(e)=>{
     setdetails({...details,[e.target.name]:e.target.value})
@@ -35,7 +36,9 @@ export const CreateProduct = () => {
         url:`${process.env.REACT_APP_URL}/admin/addProduct`,
         data:details
       })
-      .then(res=>console.log(res.data))
+      .then(res=>{
+        navigate('/admin/productDashboard')
+      })
       .catch(err=>console.log(err))
     }
   }

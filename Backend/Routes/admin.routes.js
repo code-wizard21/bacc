@@ -23,10 +23,12 @@ adminRouter.put('/editProduct',async(req,res)=>{
 
 adminRouter.post('/addProduct',async(req,res)=>{
     try {
-        let insert=await productModel.insertMany(req.body)
+        let count=await productModel.find()
+        let insert=await productModel.insertMany({id:count.length+1,...req.body})
         res.send(insert)
     } catch (error) {
         console.log(error)
+        res.send(error)
     }
 })
 
