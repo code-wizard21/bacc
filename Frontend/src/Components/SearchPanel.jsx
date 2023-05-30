@@ -13,13 +13,14 @@ import {
 import { useNavigate, useSearchParams } from "react-router-dom";
 // import DatalistInput from "react-datalist-input";
 import "react-datalist-input/dist/styles.css";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useState } from "react";
 import Alert from "./Alert";
+import axios from "axios";
 
 export default function SearchPanel() {
   const navigate = useNavigate();
-  // const [location, setlocation] = useState("");
+  const [locations, setLocations] = useState([]);
   const toast = useToast();
 
   let localdata = JSON.parse(localStorage.getItem("booking"));
@@ -82,21 +83,14 @@ export default function SearchPanel() {
     };
   };
 
-  // let obj = {
-  //   Goa: 1,
-  //   Antartica: 1,
-  //   "Shara Desert": 1,
-  //   "Mt.Everst": 1,
-  //   Amazon: 1,
-  // };
-  // window.onclick = () => {
-  //   if (!obj[location] && location != "")
-  //     document.getElementById("notAvailable").style.visibility = "visible";
-  // };
-  // const handleSearchChange = (e) => {
-    // document.getElementById("notAvailable").style.visibility = "hidden";
-    // setlocation(e.target.value);
-  // };
+  useEffect(() => {
+    axios({
+      method: "get",
+      url: `${process.env.REACT_APP_URL}/products/locations`,
+    })
+      .then((res) => setLocations(res.data))
+      .catch((err) => console.log(err));
+  }, []);
 
   // console.log(new Date().getFullYear()+`-${new Date().getMonth()>8?"":0}`+(new Date().getMonth()+1)+`-${new Date().getDate()>9?"":0}`+new Date().getDate())
   return (
@@ -110,33 +104,17 @@ export default function SearchPanel() {
           margin="auto"
         >
           <InputLeftAddon h={"auto"}>Going to</InputLeftAddon>
-          {/* <DatalistInput
-            value={traveldata.destination}
-            placeholder="Enter the destination"
-            onChange={(e)=>handleSearchChange(e)}
-            onSelect={(item) => {
-              setlocation(item.value);
-              traveldata.destination = item.value;
-            }}
-            items={[
-              { id: "Antartica", value: "Antartica" },
-              { id: "Shara Desert", value: "Shara Desert" },
-              { id: "Amazon", value: "Amazon" },
-              { id: "Mt.Everst", value: "Mt.Everst" },
-              { id: "Goa", value: "Goa" },
-            ]}
-          /> */}
           <Select
             placeholder="Select option"
             name="destination"
             defaultValue={traveldata.destination}
             onChange={handletraveller}
           >
-            <option value="Antartica">Antartica</option>
-            <option value="Shara Desert">Shara Desert</option>
-            <option value="Amazon">Amazon</option>
-            <option value="Mt.Everst">Mt.Everst</option>
-            <option value="Goa">Goa</option>
+            {locations?.map((location, index) => (
+              <option key={index} value={location}>
+                {location}
+              </option>
+            ))}
           </Select>
         </InputGroup>
         {/* <Text id="notAvailable" color="red" visibility={"hidden"}>

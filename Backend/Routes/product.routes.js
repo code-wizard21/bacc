@@ -32,4 +32,16 @@ productrouter.get("/single", async (req, res) => {
   }
 });
 
+productrouter.get("/locations",async(req,res)=>{
+  try {
+    let found=await productModel.find()
+    let extractLocations=[];
+    found.forEach((each)=>extractLocations.push(each.location))
+    let uniqueLocations=extractLocations.filter((el,index)=>extractLocations.indexOf(el)==index)
+    res.send(uniqueLocations)
+  } catch (error) {
+    res.send(error)
+  }
+})
+
 module.exports = { productrouter };

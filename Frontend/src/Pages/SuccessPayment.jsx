@@ -9,6 +9,8 @@ export default function SuccessPayment() {
   const navigate=useNavigate()
 
   useEffect(()=>{
+    localStorage.removeItem('booking')
+
     if(countdown===0) navigate("/")
 
     cref.current=setTimeout(()=>{
