@@ -31,6 +31,7 @@ import ProductCard from "../Components/ProductCard";
 import SearchPanel from "../Components/SearchPanel";
 import { useLocation, useSearchParams } from "react-router-dom";
 import { SidePanel } from "../Components/SidePanel";
+import { ProductSkeleton } from "../Components/ProductSkeleton";
 
 export default function ProductsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -193,33 +194,10 @@ export default function ProductsPage() {
 
         {products.length == 0 ? (
           <Box w="100%">
-            <Box padding="6" boxShadow="lg" bg="white">
-              <SkeletonCircle size="10" />
-              <SkeletonText
-                mt="4"
-                noOfLines={4}
-                spacing="4"
-                skeletonHeight="2"
-              />
-            </Box>
-            <Box padding="6" boxShadow="lg" bg="white">
-              <SkeletonCircle size="10" />
-              <SkeletonText
-                mt="4"
-                noOfLines={4}
-                spacing="4"
-                skeletonHeight="2"
-              />
-            </Box>
-            <Box padding="6" boxShadow="lg" bg="white">
-              <SkeletonCircle size="10" />
-              <SkeletonText
-                mt="4"
-                noOfLines={4}
-                spacing="4"
-                skeletonHeight="2"
-              />
-            </Box>
+            <ProductSkeleton/>
+            <ProductSkeleton/>
+            <ProductSkeleton/>
+            <ProductSkeleton/>
           </Box>
         ) : (
           <VStack
