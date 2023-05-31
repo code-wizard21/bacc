@@ -1,12 +1,13 @@
 import { Checkbox, Container, Divider, Heading, Text } from "@chakra-ui/react";
-import React from "react";
+import React, { memo } from "react";
 import PriceSlider from "./PriceSlider";
 
-export const SidePanel = React.memo(({ price, setprice }) => {
+const SidePanel = ({ price, setprice }) => {
+
   return (
-    <div style={{textAlign:'start'}}>
+    <div style={{ textAlign: "start" }}>
       <Heading size="md">Traveller Experience</Heading>
-      <br/>
+      <br />
       <Checkbox size="lg" isChecked>
         LGBTQ welcoming:
       </Checkbox>
@@ -34,4 +35,6 @@ export const SidePanel = React.memo(({ price, setprice }) => {
       </Container>
     </div>
   );
-})
+};
+
+export default memo(SidePanel);

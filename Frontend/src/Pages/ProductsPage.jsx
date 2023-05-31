@@ -20,7 +20,7 @@ import { useState } from "react";
 import ProductCard from "../Components/ProductCard";
 import {SearchPanel} from "../Components/SearchPanel";
 import { useLocation, useSearchParams } from "react-router-dom";
-import { SidePanel } from "../Components/SidePanel";
+import SidePanel  from "../Components/SidePanel";
 import { ProductSkeleton } from "../Components/ProductSkeleton";
 
 export default function ProductsPage() {
