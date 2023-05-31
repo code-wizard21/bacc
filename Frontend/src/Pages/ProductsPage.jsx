@@ -30,6 +30,7 @@ import PriceSlider from "../Components/PriceSlider";
 import ProductCard from "../Components/ProductCard";
 import SearchPanel from "../Components/SearchPanel";
 import { useLocation, useSearchParams } from "react-router-dom";
+import { SidePanel } from "../Components/SidePanel";
 
 export default function ProductsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -88,9 +89,9 @@ export default function ProductsPage() {
             <PopoverTrigger>
               <Button rightIcon={<ChevronDownIcon />}>Filter</Button>
             </PopoverTrigger>
-            <PopoverContent zIndex={2}>
-              <Box>
-                <PopoverHeader fontWeight="semibold">
+            <PopoverContent zIndex={2} p={'4%'}>
+              {/* <Box> */}
+                {/* <PopoverHeader fontWeight="semibold">
                   <Heading size="md">Traveller Experience</Heading>
                 </PopoverHeader>
                 <PopoverBody>
@@ -125,8 +126,9 @@ export default function ProductsPage() {
                   <Container direction="row">
                     <PriceSlider setprice={setprice} price={price}/>
                   </Container>
-                </PopoverBody>
-              </Box>
+                </PopoverBody> */}
+                <SidePanel price={price} setprice={setprice}/>
+              {/* </Box> */}
             </PopoverContent>
           </Popover>
         </Box>
@@ -159,7 +161,7 @@ export default function ProductsPage() {
             borderRight={"1px solid grey"}
             paddingRight={3}
           >
-            <Heading size="md">Traveller Experience</Heading>
+            {/* <Heading size="md">Traveller Experience</Heading>
             <Checkbox size="lg" isChecked>
               LGBTQ welcoming:
             </Checkbox>
@@ -184,7 +186,8 @@ export default function ProductsPage() {
             <Heading size="md">Price</Heading>
             <Container direction="row">
               <PriceSlider setprice={setprice} price={price}/>
-            </Container>
+            </Container> */}
+            <SidePanel price={price} setprice={setprice}/>
           </VStack>
         </Hide>
 

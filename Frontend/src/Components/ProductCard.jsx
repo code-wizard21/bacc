@@ -1,19 +1,15 @@
 import {
-  Badge,
   Button,
   Card,
   CardBody,
   CardFooter,
-  Center,
   Divider,
-  Flex,
   Heading,
   Image,
   Stack,
   Text,
-  useColorModeValue,
 } from '@chakra-ui/react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function ProductCard({ product, id }) {
 
@@ -40,7 +36,7 @@ export default function ProductCard({ product, id }) {
           </CardBody>
 
           <CardFooter justifyContent='space-between'>
-            <Text fontSize='xl'>Price: <b>{product.price}</b>/individual</Text>
+            <Text fontSize='xl'>Price: <b>{product.price}</b></Text>
             <Link to={`/singleproduct/${id}`}>
               <Button variant='solid' colorScheme='blue'>
                 Book Now
