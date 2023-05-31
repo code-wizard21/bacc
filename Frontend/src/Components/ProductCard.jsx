@@ -36,7 +36,7 @@ export default function ProductCard({ product, id }) {
           </CardBody>
 
           <CardFooter justifyContent='space-between'>
-            <Text fontSize='xl'>Price: <b>{product.price}</b></Text>
+            <Text fontSize='xl'>Price: ₹ <b>{product.price}</b></Text>
             <Link to={`/singleproduct/${id}`}>
               <Button variant='solid' colorScheme='blue'>
                 Book Now
