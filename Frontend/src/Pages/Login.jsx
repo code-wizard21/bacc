@@ -15,8 +15,8 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useContext } from "react";
-import { useState, useRef } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Alert from "../Components/Alert";
 import EmailContactForm from "../Components/Mail";
 import { AuthContext } from "../Contexts/AuthContextProvider";
@@ -43,8 +43,8 @@ export default function Login() {
           url: `${process.env.REACT_APP_URL}/authentication/login`,
           data: login,
         });
-        authenticating(res.data.msg);
         if(res.data.isAdmin) setIsAdmin(!isAdmin)
+        authenticating(res.data.msg);       
       } catch (error) {
         console.error(error);
       }
@@ -56,17 +56,23 @@ export default function Login() {
 
   const authenticating = (response) => {
     if (response == "pass") {
-      if (page) navigate(`/singleproduct/${page}`);
-      else {
+      let alertdata = {
+        title: "Hurrah...Login Success!",
+        status: "success",
+      };
+      if (page)
+      {
+        navigate(`/singleproduct/${page}`);
+        alertdata.description="Continue your Booking..."
+      } 
+      else
+      {
         navigate("/");
-        let alertdata = {
-          title: "Hurrah...Login Success!",
-          description: "You're being redirected to Home Page",
-          status: "success",
-        };
-        toast(Alert(alertdata));
-      }
-      Login();
+        alertdata.description="You're being redirected to HomePage"
+      } 
+      Login();     
+      toast(Alert(alertdata));
+      
     } else {
       let alertdata = {
         title: "Invalid Credentials",

@@ -11,7 +11,7 @@ import {
   useToast,
   VStack,
 } from "@chakra-ui/react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import React from "react";
 import Alert from "../Components/Alert";
 
@@ -28,9 +28,10 @@ export default function CheckoutPage() {
   };
 
   const [detail, setdetail] = React.useState(initialdetails);
-  //console.log(detail)
+  const [searchParams,setSearchParams]=useSearchParams()
+  
   const navigate = useNavigate();
-
+  
   const handlebooking = () => {
     if (detail.fullname == null || detail.email == null)
       toast(Alert(alertdata));
@@ -38,7 +39,6 @@ export default function CheckoutPage() {
   };
 
   const handleChange = (el) => {
-    //console.log(el.target.name,el.target.value)
     setdetail({ ...detail, [el.target.name]: el.target.value });
   };
 
@@ -47,6 +47,10 @@ export default function CheckoutPage() {
   let discount = totalprice * (5 / 100);
   let couponadd = 400;
   let payableamount = totalprice - discount - couponadd;
+
+  React.useEffect(()=>{
+    setSearchParams({isAuth:true})
+  },[])
   return (
     <div>
       <Stack

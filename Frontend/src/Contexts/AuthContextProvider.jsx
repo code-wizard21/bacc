@@ -1,9 +1,11 @@
 import React from "react"
+import { useSearchParams } from "react-router-dom"
 
 export const AuthContext=React.createContext()
 
 export default function AuthContextProvider({children}){
-    const [isAuth,setisAuth]=React.useState(false)
+    const [searchParams,setSearchParams]=useSearchParams()
+    const [isAuth,setisAuth]=React.useState(false||searchParams.get('isAuth'))
     let [page,setpage]=React.useState(null)
     const [isAdmin,setIsAdmin]=React.useState(false)
     

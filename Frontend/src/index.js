@@ -9,13 +9,15 @@ import  AuthContextProvider  from './Contexts/AuthContextProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  <BrowserRouter>
   <AuthContextProvider>
   <ChakraProvider>
-  <BrowserRouter>
+  
     <App />
-  </BrowserRouter>
+  
   </ChakraProvider>
   </AuthContextProvider>
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function
