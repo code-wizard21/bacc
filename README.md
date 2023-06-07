@@ -34,8 +34,8 @@ Specifically catering to the LGBTQ+ community.
 
 <h2> Snippets</h2>
 <div>
-  <img src="https://github.com/jagroshansingh/Orbitz-Clone/blob/master/my-app/pics/Bae%20LandingPage.png?raw=true" width="49%">
-  <img src="https://github.com/jagroshansingh/Orbitz-Clone/blob/master/my-app/pics/Bae%20HotelsPage.png?raw=true" width="49%">
+  <img src="https://github.com/jagroshansingh/BA..e-BeAsYouAre/blob/master/Frontend/pics/Bae%20LandingPage.png?raw=true" width="49%">
+  <img src="https://github.com/jagroshansingh/BA..e-BeAsYouAre/blob/master/Frontend/pics/Bae%20HotelsPage.png?raw=true" width="49%">
 </div>
 
 <h2>Backend</h2>
