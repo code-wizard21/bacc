@@ -93,7 +93,7 @@ export const CreateProduct = () => {
           <FormLabel mt={4}>Amenities</FormLabel>
           <Input
             name="amenities"
-            placeholder="amenity1,amenity2,amenity2,..."
+            placeholder="amenity1,amenity2,amenity3,..."
             onChange={handleChange}
           />
           <Input bg="blue.400" type="submit" marginTop={'4%'}/>
