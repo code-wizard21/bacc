@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
 import styles from './CSS/ProductCard.module.css'
 
 export default function ProductCard({ product, id }) {
-console.log(product)
+// console.log(product)
   return (
     <>
       <Card

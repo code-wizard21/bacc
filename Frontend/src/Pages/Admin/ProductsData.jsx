@@ -115,7 +115,7 @@ export const ProductsData = () => {
                   <Td>image</Td>
                   <Td>
                     <Link color={'blue'} textDecoration={'underline'} target="_blank" href={product.image}>
-                      click me
+                      click here
                     </Link>
                   </Td>
                 </Tr>
