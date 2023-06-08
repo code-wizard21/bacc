@@ -1,22 +1,20 @@
 import {
-  Badge,
   Button,
   Card,
   CardBody,
   CardFooter,
-  Center,
   Divider,
-  Flex,
+  HStack,
   Heading,
   Image,
   Stack,
   Text,
-  useColorModeValue,
 } from '@chakra-ui/react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import styles from './CSS/ProductCard.module.css'
 
 export default function ProductCard({ product, id }) {
-
+// console.log(product)
   return (
     <>
       <Card
@@ -37,12 +35,15 @@ export default function ProductCard({ product, id }) {
           <CardBody textAlign='start'>
             <Heading size='md'>{product.name}</Heading>
             <Text py='2'>{product.location}</Text>
+            <HStack className={styles.amenities}>
+            {product.amenities.map((each)=><Heading size={'xs'}>{each}</Heading>)}
+            </HStack>
           </CardBody>
 
           <CardFooter justifyContent='space-between'>
-            <Text fontSize='xl'>Price: <b>{product.price}</b>/individual</Text>
+            <Text fontSize={{base:'md',lg:'xl'}}>Price: ₹ <b>{product.price}</b></Text>
             <Link to={`/singleproduct/${id}`}>
-              <Button variant='solid' colorScheme='blue'>
+              <Button variant='solid' colorScheme='blue' size={{base:'xs',md:'sm',lg:'lg'}}>
                 Book Now
               </Button>
             </Link>

@@ -1,15 +1,16 @@
 import axios from "axios";
-import { Navigate, useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import React from "react";
 import { useContext } from "react";
 import { AuthContext } from "../Contexts/AuthContextProvider";
 import Product from "../Components/Product";
 
 export default function SingleProduct() {
+  const [searchParams,setSearchParams]=useSearchParams()
   let { isAuth, setpage } = useContext(AuthContext);
   const { id } = useParams();
   const [products, setproducts] = React.useState([]);
-  
+
   React.useEffect(() => {
     const FtchData = async () => {
       try {
@@ -23,8 +24,8 @@ export default function SingleProduct() {
       }
     };
     FtchData();
-
     setpage(id);
+    if(isAuth) setSearchParams({isAuth:true})
   }, []);
 
   return <Product products={products} />;

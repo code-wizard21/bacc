@@ -1,0 +1,12 @@
+.amenities>h2{
+    background-color: rgb(206, 204, 204);
+    padding:4px;
+    border-radius: 3px;
+    font-style: italic;
+}
+
+.amenities{
+    flex-wrap: wrap;
+    border: 0px solid;
+    gap: 5px;
+}

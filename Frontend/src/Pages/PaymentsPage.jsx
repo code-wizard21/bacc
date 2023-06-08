@@ -1,4 +1,3 @@
-import { CloseIcon } from "@chakra-ui/icons";
 import {
   TabList,
   TabPanel,
@@ -9,32 +8,20 @@ import {
   Heading,
   Text,
   Input,
-  Box,
   HStack,
   VStack,
   Button,
   useDisclosure,
-  ModalOverlay,
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
-  ModalBody,
-  ModalFooter,
-  PinInputField,
-  PinInput,
-  Toast,
   useToast,
-  Flex,
 } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useSearchParams } from "react-router-dom";
 import Alert from "../Components/Alert";
 import PinModal from "../Components/PinModal";
-//import PinVerificationModal from '../Components/PinVerificationModal'
 
 export default function PaymentsPage() {
+  const [searchParams,setSearchParams]=useSearchParams()
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
   const toast = useToast();
@@ -68,7 +55,7 @@ export default function PaymentsPage() {
     };
 
     if (random != entered) toast(Alert(alertdata));
-    else navigate("/paymentdone");
+    else navigate("/paymentInprocess");
   };
 
   const handlePayment = (type) => {
@@ -94,12 +81,16 @@ export default function PaymentsPage() {
 
   const handlePin = () => {
     onClose();
-    navigate("/loader");
+    navigate("/paymentInprocess");
   };
 
   const handleCard = (e) => {
     setCard({ ...card, [e.target.name]: e.target.value });
   };
+
+  useEffect(()=>{
+    setSearchParams({isAuth:true})
+  },[])
 
   return (
     <div style={{ margin: "5%" }}>

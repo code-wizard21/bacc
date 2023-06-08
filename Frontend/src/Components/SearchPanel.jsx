@@ -7,18 +7,14 @@ import {
   Box,
   useToast,
   Text,
-  Container,
   Select,
 } from "@chakra-ui/react";
-import { useNavigate, useSearchParams } from "react-router-dom";
-// import DatalistInput from "react-datalist-input";
-import "react-datalist-input/dist/styles.css";
-import { useEffect, useRef } from "react";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
 import Alert from "./Alert";
 import axios from "axios";
 
-export default function SearchPanel() {
+export const SearchPanel = () => {
   const navigate = useNavigate();
   const [locations, setLocations] = useState([]);
   const toast = useToast();
@@ -194,4 +190,4 @@ export default function SearchPanel() {
       <Text textAlign="end">*Maximum: 3 Individuals/room</Text>
     </div>
   );
-}
+};
