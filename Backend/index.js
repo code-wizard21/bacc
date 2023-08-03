@@ -12,6 +12,7 @@ app.use(cors())
 app.use('/authentication',authrouter)
 app.use('/products',productrouter)
 app.use('/admin',adminRouter)
+// app.use('/count',)
 
 app.listen(process.env.port,()=>{
     mongoose.connect(process.env.mongo)
