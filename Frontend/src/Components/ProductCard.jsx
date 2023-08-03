@@ -36,7 +36,7 @@ export default function ProductCard({ product, id }) {
             <Heading size='md'>{product.name}</Heading>
             <Text py='2'>{product.location}</Text>
             <HStack className={styles.amenities}>
-            {product.amenities.map((each)=><Heading size={'xs'}>{each}</Heading>)}
+            {product.amenities.map((each,index)=><Heading key={index} size={'xs'}>{each}</Heading>)}
             </HStack>
           </CardBody>
 
