@@ -6,6 +6,7 @@ import Footer from "./Components/Footer";
 import axios from "axios";
 
 function App() {
+  const [vCount, setVCount]=React.useState(0)
   //--------------website hit count-----------------
   React.useEffect(() => {
     axios({
@@ -14,18 +15,19 @@ function App() {
     })
       .then((res) => {
         console.log(res.data.count)
+        setVCount(res.data.count)
       })
       .catch((err) => {
         console.log(err);
       })
-  });
+  },[]);
 
   return (
     <div className="App">
       <Navbar />
       <Allroutes />
 
-      <Footer />
+      <Footer vCount={vCount}/>
     </div>
   );
 }
