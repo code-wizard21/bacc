@@ -7,14 +7,19 @@ import axios from "axios";
 
 function App() {
   //--------------website hit count-----------------
-  React.useEffect(()=>{
-    window.onload=console.log('hello')
-    // axios({
-    //   method:'post',
-    //   url:`${process.env.REACT_APP_URL}`
-    // })
-  })
-  
+  React.useEffect(() => {
+    axios({
+      method: "get",
+      url: `${process.env.REACT_APP_URL}/count`,
+    })
+      .then((res) => {
+        console.log(res.data.count)
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  });
+
   return (
     <div className="App">
       <Navbar />
