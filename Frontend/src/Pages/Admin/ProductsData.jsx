@@ -4,11 +4,9 @@ import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
-  TableCaption,
   TableContainer,
   Box,
   Button,
@@ -34,7 +32,7 @@ import { useNavigate } from "react-router-dom";
 export const ProductsData = () => {
   const [allproducts, setAllProducts] = React.useState([]);
   const [edit, setEdit] = React.useState("");
-  console.log(edit)
+  // console.log(edit)
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
 
@@ -53,7 +51,7 @@ export const ProductsData = () => {
   };
 
   const handleChange = (e) => {
-    if(e.target.name=='amenities')
+    if(e.target.name==='amenities')
     {
       let ar=e.target.value.split(",")
       setEdit({...edit,[e.target.name]:ar})

@@ -14,6 +14,9 @@ export const Admin = () => {
           <Button colorScheme="blue" onClick={() => navigate("/admin/userDashboard")}>
             User Dashboard
           </Button>
+          <Button colorScheme="orange" onClick={() => navigate("/admin/visitorDashboard")}>
+            Visitor Dashboard
+          </Button>
         </Box>
       </Box>
     </div>
