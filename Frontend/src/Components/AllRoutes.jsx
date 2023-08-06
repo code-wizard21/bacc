@@ -14,6 +14,7 @@ import { ProductsData } from "../Pages/Admin/ProductsData"
 import { Admin } from "../Pages/Admin/Admin"
 import PrivateAdminRouter from "./PrivateAdminRouter"
 import PaymentInProcess from "../Pages/PaymentInProcess"
+import { VisitorData } from "../Pages/Admin/VisitorData"
 
 export default function Allroutes(){
     return(
@@ -29,6 +30,7 @@ export default function Allroutes(){
             <Route path='/admin' element={<PrivateAdminRouter><Admin/></PrivateAdminRouter>}/>
             <Route path='/admin/productDashboard' element={<PrivateAdminRouter><ProductsData/></PrivateAdminRouter>}/>
             <Route path='/admin/userDashboard' element={<PrivateAdminRouter><UserData/></PrivateAdminRouter>}/>
+            <Route path='/admin/visitorDashboard' element={<PrivateAdminRouter><VisitorData/></PrivateAdminRouter>}/>
             <Route path='/admin/createProduct' element={<PrivateAdminRouter><CreateProduct/></PrivateAdminRouter>}/>
             
             <Route path='/*' element={<Error404/>}/>

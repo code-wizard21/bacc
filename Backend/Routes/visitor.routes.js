@@ -30,11 +30,19 @@ visitorRouter.post("/count", async (req, res) => {
 visitorRouter.get("/count", async (req, res) => {
   try {
     let count = await visitorModel.countDocuments();
-    
     res.send({count});
   } catch (error) {
     console.log(error);
   }
 });
+
+visitorRouter.get('/all',async(req,res)=>{
+    try {
+        let all=await visitorModel.find({})
+        res.send(all)
+    } catch (error) {
+        console.log(error)
+    }
+})
 
 module.exports = { visitorRouter };
