@@ -34,8 +34,8 @@ export const VisitorData = () => {
                 </Tr>
               </Thead>
               <Tbody>
-                {visitors?.map((visitor,i) => (
-                  <Tr key={visitor.id}>
+                {visitors?.sort((a,b)=>b.id-a.id)?.map((visitor,i) => (
+                  <Tr key={visitor._id}>
                     <Td>{i+1}</Td>
                     <Td>{visitor.ipAddress}</Td>
                     <Td>{visitor.hostname}</Td>

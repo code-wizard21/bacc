@@ -2,6 +2,7 @@ const mongoose=require('mongoose')
 const {Schema}=mongoose
 
 const visitorSchema=new Schema({
+    id:Number,
     ipAddress:String,
     hostname:String,
     architechture:String,

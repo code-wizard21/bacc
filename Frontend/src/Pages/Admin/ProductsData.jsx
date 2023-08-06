@@ -4,11 +4,9 @@ import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
-  TableCaption,
   TableContainer,
   Box,
   Button,
@@ -53,7 +51,7 @@ export const ProductsData = () => {
   };
 
   const handleChange = (e) => {
-    if(e.target.name=='amenities')
+    if(e.target.name==='amenities')
     {
       let ar=e.target.value.split(",")
       setEdit({...edit,[e.target.name]:ar})
