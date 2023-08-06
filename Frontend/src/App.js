@@ -6,27 +6,37 @@ import Footer from "./Components/Footer";
 import axios from "axios";
 
 function App() {
+
+  //--------------website visitor count-----------------
   const [vCount, setVCount]=React.useState(0)
-  //--------------website hit count-----------------
+  
   React.useEffect(() => {
+
     axios({
-      method: "get",
-      url: `${process.env.REACT_APP_URL}/count`,
+      method:'post',
+      url:`${process.env.REACT_APP_URL}/visitor/count`
     })
-      .then((res) => {
-        console.log(res.data.count)
-        setVCount(res.data.count)
+    .then(res=>console.log(res))
+    .catch(err=>console.log(err))
+
+    setTimeout(()=>{
+      axios({
+        method: "get",
+        url: `${process.env.REACT_APP_URL}/visitor/count`,
       })
-      .catch((err) => {
-        console.log(err);
-      })
+        .then((res) => {
+          setVCount(res.data.count)
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    },500)
   },[]);
 
   return (
     <div className="App">
       <Navbar />
       <Allroutes />
-
       <Footer vCount={vCount}/>
     </div>
   );
