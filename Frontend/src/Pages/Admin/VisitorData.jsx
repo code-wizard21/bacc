@@ -1,10 +1,11 @@
-import { Box, Table, TableContainer, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
+import { Box, Button, Table, TableContainer, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
 import axios from "axios";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export const VisitorData = () => {
   const [visitors, setVisitors] = React.useState([]);
-  console.log(visitors);
+  const navigate=useNavigate()
 
   React.useEffect(() => {
     axios({
@@ -18,7 +19,7 @@ export const VisitorData = () => {
   return (
     <div>
       <Box backgroundColor={"gray.100"}>
-        <Box marginTop={"2%"}>
+        <Box marginY={"2%"}>
           <TableContainer>
             <Table variant="striped" size={"sm"} colorScheme="teal">
               <Thead>
@@ -50,6 +51,7 @@ export const VisitorData = () => {
             </Table>
           </TableContainer>
         </Box>
+        <Button colorScheme="blue" marginBottom={"2%"} onClick={()=>navigate('/admin')}>Go Back</Button>
       </Box>
     </div>
   );
