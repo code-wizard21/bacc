@@ -22,7 +22,7 @@ import EmailContactForm from "../Components/Mail";
 import { AuthContext } from "../Contexts/AuthContextProvider";
 
 export default function Login() {
-  let { Login, page, isAdmin, setIsAdmin } = useContext(AuthContext);
+  let { Login, page, isAdmin, setIsAdmin, setIsTourist } = useContext(AuthContext);
   const navigate = useNavigate();
 
   let initial = {
@@ -43,7 +43,7 @@ export default function Login() {
           url: `${process.env.REACT_APP_URL}/authentication/login`,
           data: login,
         });
-        if(res.data.isAdmin) setIsAdmin(!isAdmin)
+        if(res.data.isAdmin) setIsAdmin(true)
         authenticating(res.data.msg);       
       } catch (error) {
         console.error(error);
@@ -70,6 +70,8 @@ export default function Login() {
         navigate("/");
         alertdata.description="You're being redirected to HomePage"
       } 
+
+      if(login.mobile=='123' && login.password=='123') setIsTourist(true)
       Login();     
       toast(Alert(alertdata));
       

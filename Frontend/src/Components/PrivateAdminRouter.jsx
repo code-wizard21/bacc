@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom"
 import { AuthContext } from "../Contexts/AuthContextProvider"
 
 export default function PrivateAdminRouter({children}){
-    // const {isAdmin}=useContext(AuthContext)
-    // if(!isAdmin) return <Navigate to="/"/>
+    const {isAdmin}=useContext(AuthContext)
+    if(!isAdmin) return <Navigate to="/"/>
     return children
 }

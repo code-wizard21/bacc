@@ -19,10 +19,12 @@ import { AuthContext } from "../Contexts/AuthContextProvider";
 
 export default function Navbar() {
   const navigate = useNavigate();
-  const { isAuth, Logout, isAdmin } = useContext(AuthContext);
+  const { isAuth, Logout, isAdmin, setIsAdmin, setIsTourist } = useContext(AuthContext);
   let userdata = JSON.parse(localStorage.getItem("booking"));
 
   const handleLogout = () => {
+    setIsAdmin(false)
+    setIsTourist(false)
     Logout();
     localStorage.clear();
     navigate(`/`);

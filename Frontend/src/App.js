@@ -16,7 +16,7 @@ function App() {
       method:'post',
       url:`${process.env.REACT_APP_URL}/visitor/count`
     })
-    .then(res=>{})
+    .then(res=>console.log(res))
     .catch(err=>console.log(err))
 
     setTimeout(()=>{

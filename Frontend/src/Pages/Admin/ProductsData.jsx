@@ -1,5 +1,5 @@
 import axios from "axios";
-import React from "react";
+import React, { useContext } from "react";
 import {
   Table,
   Thead,
@@ -28,12 +28,13 @@ import {
 } from "@chakra-ui/react";
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Contexts/AuthContextProvider";
 
 export const ProductsData = () => {
   const [allproducts, setAllProducts] = React.useState([]);
   const [edit, setEdit] = React.useState("");
-  // console.log(edit)
   const { isOpen, onOpen, onClose } = useDisclosure();
+  let { isTourist } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const FetchProductData = () => {
@@ -51,33 +52,35 @@ export const ProductsData = () => {
   };
 
   const handleChange = (e) => {
-    if(e.target.name==='amenities')
-    {
-      let ar=e.target.value.split(",")
-      setEdit({...edit,[e.target.name]:ar})
-    } 
-    else setEdit({ ...edit, [e.target.name]: e.target.value });
+    if (e.target.name === "amenities") {
+      let ar = e.target.value.split(",");
+      setEdit({ ...edit, [e.target.name]: ar });
+    } else setEdit({ ...edit, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = () => {
-    onClose();
-    axios({
-      method: "put",
-      url: `${process.env.REACT_APP_URL}/admin/editProduct`,
-      data: edit,
-    })
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err));
+    if (!isTourist) {
+      onClose();
+      axios({
+        method: "put",
+        url: `${process.env.REACT_APP_URL}/admin/editProduct`,
+        data: edit,
+      })
+        .then((res) => console.log(res.data))
+        .catch((err) => console.log(err));
+    } else alert("You are not Authorized!");
   };
 
   const handleDelete = (id) => {
-    axios({
-      method: "delete",
-      url: `${process.env.REACT_APP_URL}/admin/deleteProduct`,
-      headers: { id },
-    })
-      .then((res) => FetchProductData())
-      .catch((err) => console.log(err));
+    if (!isTourist) {
+      axios({
+        method: "delete",
+        url: `${process.env.REACT_APP_URL}/admin/deleteProduct`,
+        headers: { id },
+      })
+        .then((res) => FetchProductData())
+        .catch((err) => console.log(err));
+    } else alert('You are not Authorized!')
   };
 
   React.useEffect(() => {
@@ -94,7 +97,7 @@ export const ProductsData = () => {
             Create
           </Button>
         </Box>
-        <Box marginTop={"2%"}>
+        <Box marginY={"2%"}>
           <TableContainer>
             <Table variant="striped" size={"sm"} colorScheme="teal">
               <Thead>
@@ -119,7 +122,7 @@ export const ProductsData = () => {
                     <Td>
                       {
                         <Select size={"xs"} width={"35px"}>
-                          {product.amenities.map((each,i) => (
+                          {product.amenities.map((each, i) => (
                             <option key={i}>{each}</option>
                           ))}
                         </Select>
@@ -159,6 +162,13 @@ export const ProductsData = () => {
             </Table>
           </TableContainer>
         </Box>
+        <Button
+          colorScheme="blue"
+          marginBottom={"2%"}
+          onClick={() => navigate("/admin")}
+        >
+          Go Back
+        </Button>
       </Box>
 
       <Modal isOpen={isOpen} onClose={onClose}>
