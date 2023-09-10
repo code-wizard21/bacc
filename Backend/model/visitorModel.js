@@ -4,13 +4,8 @@ const {Schema}=mongoose
 const visitorSchema=new Schema({
     id:Number,
     ipAddress:String,
-    hostname:String,
-    architechture:String,
-    CPUs:Array,
-    cores:Number,
-    OSversion:String,
-    totalmemory:Number,
-    freememory:Number,
+    browser:String,
+    os:String,
     date:String,
     time:String
 })

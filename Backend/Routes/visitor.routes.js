@@ -4,26 +4,25 @@ const os = require("os");
 const { visitorModel } = require("../model/visitorModel");
 
 visitorRouter.post("/count", async (req, res) => {
+  // console.log(req.body)
   try {
     let date = new Date();
     let count = await visitorModel.countDocuments();
     let details = {
       id: count + 1,
       ipAddress: req.ip,
-      hostname: os.hostname(),
-      architechture: os.machine(),
-      CPUs: os.cpus(),
-      cores: os.cpus().length,
-      OSversion: os.version(),
-      totalmemory: os.totalmem(),
-      freememory: os.freemem(),
-      date: date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear(),
+      os:req.body.os,
+      browser:req.body.browser,
+      date: date.getDate() + "/" + (date.getMonth()+1) + "/" + date.getFullYear(),
       time: date.getHours() + ":" + date.getMinutes(),
     };
-
-    let visitor = new visitorModel(details);
-    await visitor.save();
-    res.send("added success");
+    // if(details.ipAddress!='127.0.0.1')
+    // {
+      let visitor = new visitorModel(details);
+      await visitor.save();
+      res.send("added success");
+    // }
+    // else res.send("can't add")
   } catch (error) {
     console.log(error);
   }
@@ -46,5 +45,14 @@ visitorRouter.get("/all", async (req, res) => {
     console.log(error);
   }
 });
+
+visitorRouter.delete('/clearAll',async(req,res)=>{
+  try {
+    await visitorModel.deleteMany({})
+    res.send('All Cleared')
+  } catch (error) {
+    console.log(error)
+  }
+})
 
 module.exports = { visitorRouter };
