@@ -59,7 +59,7 @@ export const UserData = () => {
         url:`${process.env.REACT_APP_URL}/admin/editUser`,
         data: edit
     })
-    .then(res=>console.log(res.data))
+    .then(res=>FetchUserData())
     .catch(err=>console.log(err))
   }
 
@@ -122,7 +122,7 @@ export const UserData = () => {
             <FormLabel mt={4}>Email</FormLabel>
             <Input readOnly value={edit?.email || ""} />
             <FormLabel mt={4}>Admin</FormLabel>
-            <Checkbox onChange={(e)=>handleChange(e)}>IsAdmin</Checkbox>
+            <Checkbox isChecked={edit?.isAdmin} onChange={(e)=>handleChange(e)}>IsAdmin</Checkbox>
           </ModalBody>
 
           <ModalFooter>
