@@ -1,9 +1,16 @@
 # BA..e(Be As You Are)
-This is a Travel booking website inspired from Orbitz.com.
-Specifically catering to the LGBTQ+ community.
+
+<p>This is a Travel booking website inspired from Orbitz.com.</p>
+<p>Specifically catering to the LGBTQ+ community.</p>
+<p><b>Live: bae-travel.vercel.app/</b></p>
+<br/>
+<p><i>For accessing admin section, Login with below credentials</i></p>
+<p>Mobile Number: <i>123</i></p>
+<p>Password: <i>123</i></p>
+
 
 <h2>Website Logo</h2>
-<img src="https://github.com/jagroshansingh/cute-hand-680/blob/day-2/BA..e_logo.png?raw=true" alt="project logo"/>
+<img src="./BA..e_logo.png" alt="project logo"/>
 
 <h2>Functionalities:</h2>
 <ul>
@@ -35,17 +42,23 @@ Specifically catering to the LGBTQ+ community.
 <h2> Snippets</h2>
 <div>
 <div>
-  <img src="https://github.com/jagroshansingh/BA..e-BeAsYouAre/blob/master/Frontend/pics/Bae%20LandingPage.png?raw=true" width="49%">
-  <img src="https://github.com/jagroshansingh/BA..e-BeAsYouAre/blob/master/Frontend/pics/Bae%20HotelsPage.png?raw=true" width="49%">
+  <img src="./Frontend/pics/Bae LandingPage.png" alt="Landing page" width="49%">
+  <img src="./Frontend/pics/Bae HotelsPage.png" alt="Hotels Page" width="49%">
 </div>
+<p>Admin Page</p>
 <div>
-<img src="./Frontend/pics/Bae Admin ProductData.png" width="49%">
-<img src="./Frontend/pics/Bae Admin ProductData_Edit.png" width="49%">
+<img src="./Frontend/pics/Bae Admin ProductData.png" alt="Admin Product data" width="49%">
+<img src="./Frontend/pics/Bae Admin ProductData_Edit.png" alt="Admin Prodect data edit" width="49%">
+<p>Mobile View</p>
+<div>
+<img src="./Frontend/pics/Mobile SignInPage.png" alt="Sign in page" width="24%">
+<img src="./Frontend/pics/Mobile SignupPage.png" alt="Sign up page" width="24%">
+<img src="./Frontend/pics/Mobile LandingPage.png" alt="Landing page" width="24%">
+<img src="./Frontend/pics/Mobile PaymentsPage.png" alt="Payments page" width="24%">
+</div>
 </div>
 </div>
 
 <h2>Backend</h2>
 <p>Repo: <span>https://github.com/jagroshansingh/BA..e-BeAsYouAre_Backend<span></p>
 <p>Deployed: <span>https://wicked-mite-tweed-jacket.cyclic.app/</span></p>
-
-
