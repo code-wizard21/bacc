@@ -34,8 +34,14 @@ Specifically catering to the LGBTQ+ community.
 
 <h2> Snippets</h2>
 <div>
+<div>
   <img src="https://github.com/jagroshansingh/BA..e-BeAsYouAre/blob/master/Frontend/pics/Bae%20LandingPage.png?raw=true" width="49%">
   <img src="https://github.com/jagroshansingh/BA..e-BeAsYouAre/blob/master/Frontend/pics/Bae%20HotelsPage.png?raw=true" width="49%">
+</div>
+<div>
+<img src="./Frontend/pics/Bae Admin ProductData.png" width="49%">
+<img src="./Frontend/pics/Bae Admin ProductData_Edit.png" width="49%">
+</div>
 </div>
 
 <h2>Backend</h2>
