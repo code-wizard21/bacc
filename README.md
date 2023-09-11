@@ -1,12 +1,12 @@
 # BA..e(Be As You Are)
 
-<p>This is a Travel booking website inspired from Orbitz.com.</p>
-<p>Specifically catering to the LGBTQ+ community.</p>
-<p><b>Live: bae-travel.vercel.app/</b></p>
+This is a Travel booking website inspired from Orbitz.com.</br>
+Specifically catering to the LGBTQ+ community.
+<b>Live: <a href="bae-travel.vercel.app/">bae-travel.vercel.app/</a></b>
 <br/>
-<p><i>For accessing admin section, Login with below credentials</i></p>
-<p>Mobile Number: <i>123</i></p>
-<p>Password: <i>123</i></p>
+<i>For accessing admin section, Login with below credentials</i></br>
+Mobile Number: <i>123</i></br>
+Password: <i>123</i>
 
 
 <h2>Website Logo</h2>
