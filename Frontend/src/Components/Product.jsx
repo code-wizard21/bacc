@@ -1,6 +1,5 @@
 import {
   Box,
-  chakra,
   Container,
   Stack,
   Text,
@@ -12,10 +11,8 @@ import {
   SimpleGrid,
   StackDivider,
   useColorModeValue,
-  VisuallyHidden,
   List,
   ListItem,
-  Toast,
   useToast,
 } from "@chakra-ui/react";
 import Alert from "../Components/Alert";
@@ -26,34 +23,33 @@ import { Navigate, useParams } from "react-router-dom";
 import React from "react";
 
 export default function Product({ products }) {
-  let { isAuth, page } = useContext(AuthContext);
+  let { isAuth } = useContext(AuthContext);
   const navigate = useNavigate();
-  // let isAuth = true;
 
   const toast = useToast();
   let bookingdata = JSON.parse(localStorage.getItem("booking"));
 
   const handleReserve = () => {
+
+    navigate("/checkout");
+    localStorage.setItem(
+      "booking",
+      JSON.stringify({
+        ...bookingdata,
+        price: products.price,
+        hotel: products.name,
+      })
+    );
+
     let alertdata = {
       title: " Kindly Login/Signup first",
       description: "Sorry to interrupt, but we can't proceed further.",
       status: "warning",
     };
-    if (!isAuth) {
-      toast(Alert(alertdata));
-      navigate("/login");
-    } else {
-      localStorage.setItem(
-        "booking",
-        JSON.stringify({
-          ...bookingdata,
-          price: products.price,
-          hotel: products.name,
-        })
-      );
-      navigate("/checkout");
-    }
+    if (!isAuth) toast(Alert(alertdata));
   };
+
+  
   return (
     <>
       <Container maxW={"7xl"} border="0px solid">

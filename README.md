@@ -5,7 +5,7 @@ Specifically catering to the LGBTQ+ community.</br>
 <b>Live: <a href="bae-travel.vercel.app/">bae-travel.vercel.app/</a></b>
 <br/>
 <br/>
-<i>For accessing admin section, Login with below credentials</i></br>
+<i style="color: red;">For accessing admin section, Login with below credentials</i></br>
 Mobile Number: <i>123</i></br>
 Password: <i>123</i>
 

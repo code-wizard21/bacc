@@ -29,7 +29,7 @@ export const VisitorData = () => {
   };
 
   const handleClear = () => {
-    if (!isTourist) {
+    if (!isTourist) {                                                  //the tourists should not be able to manipulate the data
       axios({
         method: "delete",
         url: `${process.env.REACT_APP_URL}/visitor/clearAll`,

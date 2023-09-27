@@ -6,7 +6,6 @@ export const AuthContext=React.createContext()
 export default function AuthContextProvider({children}){
     const [searchParams,setSearchParams]=useSearchParams()
     const [isAuth,setisAuth]=React.useState(false||searchParams.get('isAuth'))
-    let [page,setpage]=React.useState(null)
     const [isAdmin,setIsAdmin]=React.useState(false)
     const [isTourist,setIsTourist]=React.useState(false)
     
@@ -18,5 +17,5 @@ export default function AuthContextProvider({children}){
         setisAuth(false)
     }
 
-    return <AuthContext.Provider value={{isAuth,Login,setpage,page,Logout,isAdmin,setIsAdmin,isTourist,setIsTourist}}>{children}</AuthContext.Provider>
+    return <AuthContext.Provider value={{isAuth,Login,Logout,isAdmin,setIsAdmin,isTourist,setIsTourist}}>{children}</AuthContext.Provider>
 }
