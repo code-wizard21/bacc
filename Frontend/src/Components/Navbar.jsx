@@ -99,9 +99,9 @@ export default function Navbar() {
                   <br />
                   <MenuDivider />
                   <Link to="/admin">
-                    <MenuItem isDisabled={isAdmin?false:true}>Admin</MenuItem>
+                    <MenuItem disabled={isAdmin?false:true}>Admin</MenuItem>
                   </Link>
-                  <MenuItem onClick={handleLogout} isDisabled={isAuth?false:true}>Logout</MenuItem>
+                  <MenuItem onClick={handleLogout} disabled={isAuth?false:true}>Logout</MenuItem>
                 </MenuList>
               </Menu>
             </Stack>
