@@ -16,13 +16,15 @@ import {
 import axios from "axios";
 import { useContext } from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Alert from "../Components/Alert";
 import EmailContactForm from "../Components/Mail";
 import { AuthContext } from "../Contexts/AuthContextProvider";
 
 export default function Login() {
-  let { Login, page, isAdmin, setIsAdmin, setIsTourist } = useContext(AuthContext);
+  let { Login, setIsAdmin, setIsTourist } = useContext(AuthContext);
+  const location=useLocation()
+  // console.log(location)
   const navigate = useNavigate();
 
   let initial = {
@@ -60,18 +62,12 @@ export default function Login() {
         title: "Hurrah...Login Success!",
         status: "success",
       };
-      if (page)
-      {
-        navigate(`/singleproduct/${page}`);
-        alertdata.description="Continue your Booking..."
-      } 
-      else
-      {
-        navigate("/");
-        alertdata.description="You're being redirected to HomePage"
-      } 
+      if (location.state) alertdata.description="Continue with your Booking..."
+      else alertdata.description="You're being redirected to HomePage"
+  
+      navigate(location.state || "/", {replace:true});
 
-      if(login.mobile=='123' && login.password=='123') setIsTourist(true)
+      if(login.mobile=='123' && login.password=='123') setIsTourist(true)                //checking if the user is just a tourist with fixed credentials
       Login();     
       toast(Alert(alertdata));
       

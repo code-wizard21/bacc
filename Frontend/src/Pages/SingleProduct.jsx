@@ -7,7 +7,7 @@ import Product from "../Components/Product";
 
 export default function SingleProduct() {
   const [searchParams,setSearchParams]=useSearchParams()
-  let { isAuth, setpage } = useContext(AuthContext);
+  let { isAuth } = useContext(AuthContext);
   const { id } = useParams();
   const [products, setproducts] = React.useState([]);
 
@@ -24,7 +24,6 @@ export default function SingleProduct() {
       }
     };
     FtchData();
-    setpage(id);
     if(isAuth) setSearchParams({isAuth:true})
   }, []);
 

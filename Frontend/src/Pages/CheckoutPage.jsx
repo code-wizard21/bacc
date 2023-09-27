@@ -44,7 +44,7 @@ export default function CheckoutPage() {
 
   let bookdata = JSON.parse(localStorage.getItem("booking"));
   let totalprice = bookdata.price * bookdata.travellers;
-  let discount = totalprice * (5 / 100);
+  let discount = Math.round(totalprice * (5 / 100));
   let couponadd = 400;
   let payableamount = totalprice - discount - couponadd;
 
