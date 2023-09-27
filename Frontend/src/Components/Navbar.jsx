@@ -48,7 +48,7 @@ export default function Navbar() {
             <Stack direction={"row"} spacing={{ base: "1%", md: 4 }}>
               <Link to="/login">
                 <Button
-                  disabled={isAuth ? true : false}
+                  isDisabled={isAuth ? true : false}
                   variant={"outline"}
                   colorScheme={"teal"}
                   size={{ base: "sm", md: "md" }}
@@ -60,10 +60,9 @@ export default function Navbar() {
 
               <Link to="/signup">
                 <Button
-                  disabled={isAuth ? true : false}
+                  isDisabled={isAuth ? true : false}
                   variant={"solid"}
                   colorScheme={"pink"}
-                  // size={'md'}
                   size={{ base: "sm", md: "md" }}
                   mr={4}
                 >
@@ -99,9 +98,9 @@ export default function Navbar() {
                   <br />
                   <MenuDivider />
                   <Link to="/admin">
-                    <MenuItem disabled={isAdmin?false:true}>Admin</MenuItem>
+                    <MenuItem isDisabled={isAdmin?false:true}>Admin</MenuItem>
                   </Link>
-                  <MenuItem onClick={handleLogout} disabled={isAuth?false:true}>Logout</MenuItem>
+                  <MenuItem onClick={handleLogout} isDisabled={isAuth?false:true}>Logout</MenuItem>
                 </MenuList>
               </Menu>
             </Stack>
